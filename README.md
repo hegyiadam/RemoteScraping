@@ -1,5 +1,5 @@
 # RemoteScrapingProject
 
-## Diagrams branch
+## Design branch
 
-This branch should contain only diagrams and nothing else.
+This branch contains diagrams, formats conventions and notes.
