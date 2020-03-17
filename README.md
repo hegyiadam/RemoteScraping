@@ -1,4 +1,4 @@
-# RemoteScrapingProject
+# Remote Scraping
 
 ## Design branch
 
