@@ -1,0 +1,53 @@
+<app type="NAME" version="1.0.2">
+	<group name="SimpleValueExamples">
+		<add name="NAME_OF_PARAMETER">
+			<value type="text">
+				SomeName
+			</value>
+		</add>
+		<add name="NAME_OF_PARAMETER">
+			<value type="longText">
+				Real long text
+			</value>
+		</add>
+		<add name="NAME_OF_PARAMETER">
+			<value type="number">
+				1
+			</value>
+		</add>
+		<add name="NAME_OF_PARAMETER">
+			<value type="float">
+				1.0
+			</value>
+		</add>
+		<add name="NAME_OF_PARAMETER">
+			<value type="bool">
+				True
+			</value>
+		</add>
+	</group>
+	<group name="ArrayValueExamples">
+		<add name="NAME_OF_PARAMETER">
+			<value type="number">
+				1
+			</value>
+			<value type="number">
+				4
+			</value>
+			<value type="number">
+				5
+			</value>
+		</add>
+		<add name="NAME_OF_PARAMETER">
+			<value type="number">
+				1
+			</value>
+			<value type="text">
+				someone
+			</value>
+			<value type="bool">
+				false
+			</value>
+		</add>
+	</group>
+</app>
