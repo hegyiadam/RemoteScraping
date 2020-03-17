@@ -1,0 +1,30 @@
+Client Machine must provide:
++ UI to inspect web pages
++ UI to specify identifiers
++ UI to display web pages
++ Connection to Master Machine
++ Information about the process current state
++ 
+
+
+Master Machine must provide:
++ Connection to its features
++ Duplex connection to Processor Machines
++ Distribute Commands between Processor Machines
++ 
+
+
+Processor Machine must provide:
++ Duplex connection to Master Machines
++ REST Api for scraping
++ Scraping
++ Options to save scrape results
++
+
+
+ALL Machine must provide:
++ Common config options (per platform)
++ Common solution to set those settings
++ Log options
++ Test libraries
++
