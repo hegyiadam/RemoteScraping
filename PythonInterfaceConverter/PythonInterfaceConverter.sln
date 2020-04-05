@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverterLibrary", "PythonInterfaceConverterLibrary\PythonInterfaceConverterLibrary.csproj", "{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{D6EF9F10-FC48-4172-87EC-1512A6FFD591}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter", "PythonInterfaceConverter\PythonInterfaceConverter.csproj", "{5D4E5583-19FC-423C-B4EC-B303F08C813C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6EF9F10-FC48-4172-87EC-1512A6FFD591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6EF9F10-FC48-4172-87EC-1512A6FFD591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6EF9F10-FC48-4172-87EC-1512A6FFD591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6EF9F10-FC48-4172-87EC-1512A6FFD591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE5CA643-C1A0-4CDD-B7EE-6A9804DC708E}
+	EndGlobalSection
+EndGlobal

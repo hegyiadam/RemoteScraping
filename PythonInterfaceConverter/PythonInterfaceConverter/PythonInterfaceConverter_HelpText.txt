@@ -1,0 +1,11 @@
+﻿PythonInterfaceConverter help:
+
+PythonInterfaceConverter.exe full <python_filepath> <interface_filepath> <implementation_filepath> <namespace>
+PythonInterfaceConverter.exe inter <python_filepath> <interface_filepath> <namespace>
+PythonInterfaceConverter.exe impl <python_filepath> <implementation_filepath> <namespace>
+
+python_filepath : absolute path to source python interface file (python class name needs to start with "I" letter)
+interface_filepath : absolute path to the target .cs file which will be the interface
+implementation_filepath : absolute path to the target the target .cs file which will be the implementation
+
+For implementation the converter removes the "I" letter from the name of the interface
