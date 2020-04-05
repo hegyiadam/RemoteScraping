@@ -33,4 +33,4 @@ Command line application is not too helpful if we need to write all parameters e
 
 Parsable Python code is required to code creation. That is why you should follow the guidelines bellow:
 - Use interface as the source of your createion. This means start the class name with "I" letter and do not implement the methods only pass them. Also to make sure your code will be parsed properly keep your interface code as pure as possible.
-- Use type prefixes: i_ for integers; b_ for bools; d_ for decimal numbers (the values without prefix will be detected as strings)
+- Use type prefixes: i_ for integers; b_ for bools; d_ for decimal numbers (the values without prefix will be detected as strings) _Prefixes will be removed in code generation so do not use names with only prefix difference_
