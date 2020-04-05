@@ -39,7 +39,7 @@ namespace PythonInterfaceConverterLibrary
         {
             InterfaceMethodData interfaceMethodData = new InterfaceMethodData();
             interfaceMethodData.Name = StringManipulator.GetTextEndedWith(header, "(");
-            string parameters = StringManipulator.GetTextBetweenBorderTexts(header, "(", ")");
+            string parameters = StringManipulator.GetTextBetweenBorderTexts(header, "(", ")").Replace(" ", String.Empty);
             interfaceMethodData.Parameters.AddRange(parameters.Split(','));
             return interfaceMethodData;
         }

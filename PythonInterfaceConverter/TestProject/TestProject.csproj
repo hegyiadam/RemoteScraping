@@ -56,6 +56,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"C:\Users\brr7089\source\repos\PythonInterfaceConverter\InterfaceImplementation\bin\Debug\InterfaceImplementation.exe" "C:\Users\brr7089\source\repos\RestApiExample\Executor\IExecutable.py" "C:\Users\brr7089\source\repos\PythonInterfaceConverter\TestProject\IExecutable.cs" "C:\Users\brr7089\source\repos\PythonInterfaceConverter\TestProject\Executable.cs" $(ProjectName)</PreBuildEvent>
+    <PreBuildEvent>"C:\Users\brr7089\source\repos\PythonInterfaceConverter\PythonInterfaceConverter\bin\Debug\PythonInterfaceConverter.exe" full "C:\Users\brr7089\source\repos\RestApiExample\Executor\IExecutable.py" "C:\Users\brr7089\source\repos\PythonInterfaceConverter\TestProject\IExecutable.cs" "C:\Users\brr7089\source\repos\PythonInterfaceConverter\TestProject\Executable.cs" $(ProjectName)</PreBuildEvent>
   </PropertyGroup>
 </Project>

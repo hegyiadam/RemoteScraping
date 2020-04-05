@@ -46,6 +46,7 @@
     <Compile Include="InterfaceConverter.cs" />
     <Compile Include="InterfaceData.cs" />
     <Compile Include="InterfaceMethodData.cs" />
+    <Compile Include="InterfaceMethodParameterData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

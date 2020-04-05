@@ -11,7 +11,7 @@ namespace PythonInterfaceConverterLibrary
 {
     public class ApiInvocation
     {
-        public static void RunCommandOnPython(string methodName, List<string> parameters)
+        public static void RunCommandOnPython(string methodName, List<object> parameters)
         {
             string url = GetUrlAddressForMethod(methodName);
             string json = CreateJsonFromParameters(parameters);
@@ -44,7 +44,7 @@ namespace PythonInterfaceConverterLibrary
             return httpWebRequest;
         }
 
-        private static string CreateJsonFromParameters(List<string> parameters)
+        private static string CreateJsonFromParameters(List<object> parameters)
         {
             string json = "{\"params\": [";
 
@@ -55,7 +55,14 @@ namespace PythonInterfaceConverterLibrary
                 {
                     for (int i = 1; i < parameters.Count; i++)
                     {
-                        json += ",\"" + parameters[i] + "\"";
+                        if(parameters is string)
+                        {
+                            json += ",\"" + parameters[i] + "\"";
+                        }
+                        else
+                        {
+                            json += "," + parameters[i];
+                        }
                     }
                 }
             }

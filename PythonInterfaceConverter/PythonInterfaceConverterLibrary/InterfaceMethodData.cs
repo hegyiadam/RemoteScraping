@@ -10,25 +10,59 @@ namespace PythonInterfaceConverterLibrary
     {
         public string Name { get; set; }
         public List<string> Parameters { get; set; } = new List<string>();
+        
         internal string GetInterfacePlainText()
         {
-            return "\t\tvoid " + Name + "(string " + String.Join(", string", Parameters) + ");\n";
+            List<InterfaceMethodParameterData> parameterDatas = GetParameters();
+            return "\t\tvoid " + Name + "(" + ParametersPlainText(parameterDatas) + ");\n";
         }
 
         internal string GetImplementationPlainText()
         {
             string tabPrefix2 = "\t\t";
             string tabPrefix3 = "\t\t\t";
-            string result = tabPrefix2 + "public void " + Name + "(string " + String.Join(", string", Parameters) + ")\n\t\t{\n";
+            List<InterfaceMethodParameterData> parameterDatas = GetParameters();
+            string result = tabPrefix2 + "public void " + Name + "(" + ParametersPlainText(parameterDatas) + ")\n\t\t{\n";
             result += tabPrefix3+"string methodName = MethodInfo.GetCurrentMethod().Name;\n";
-            result += tabPrefix3+"List<string> parameters = new List<string>();\n";
-            foreach(string param in Parameters)
+            result += tabPrefix3+"List<object> parameters = new List<object>();\n";
+            foreach(InterfaceMethodParameterData param in parameterDatas)
             {
-                result += tabPrefix3 + "parameters.Add("+param+");\n";
+                result += tabPrefix3 + "parameters.Add("+param.Name+");\n";
             }
             result += tabPrefix3 + "ApiInvocation.RunCommandOnPython(methodName, parameters);\n";
             result += tabPrefix2 + "}\n";
             return result;
         }
+
+        private string ParametersPlainText(List<InterfaceMethodParameterData> parameterDatas)
+        {
+            if (parameterDatas.Count == 0)
+            {
+                return "";
+            }
+            string paramsText = parameterDatas[0].ToString();
+            for (int i = 1; i < Parameters.Count; i++)
+            {
+                paramsText += ", " + parameterDatas[i].ToString();
+            }
+
+            return paramsText;
+        }
+
+        
+
+        private List<InterfaceMethodParameterData> GetParameters()
+        {
+            List<InterfaceMethodParameterData> parameterDatas = new List<InterfaceMethodParameterData>();
+            
+            foreach (string param in Parameters)
+            {
+                parameterDatas.Add(new InterfaceMethodParameterData(param));
+            }
+            return parameterDatas;
+        }
+
     }
+
+
 }
