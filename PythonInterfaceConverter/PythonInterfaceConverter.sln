@@ -3,13 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverterLibrary", "PythonInterfaceConverterLibrary\PythonInterfaceConverterLibrary.csproj", "{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary", "Source\PythonInterfaceConverterLibrary\PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary.csproj", "{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{D6EF9F10-FC48-4172-87EC-1512A6FFD591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Example.TestProject", "Example\TestProject\PythonInterfaceConverter.Example.TestProject.csproj", "{D6EF9F10-FC48-4172-87EC-1512A6FFD591}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04} = {B2D8DD21-DD1A-4EE3-987A-554847DE6E04}
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C} = {5D4E5583-19FC-423C-B4EC-B303F08C813C}
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F} = {3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A} = {A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter", "PythonInterfaceConverter\PythonInterfaceConverter.csproj", "{5D4E5583-19FC-423C-B4EC-B303F08C813C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.PythonInterfaceConverter", "Source\PythonInterfaceConverter\PythonInterfaceConverter.Source.PythonInterfaceConverter.csproj", "{5D4E5583-19FC-423C-B4EC-B303F08C813C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.CommonLibrary", "Source\CommonLibrary\PythonInterfaceConverter.Source.CommonLibrary.csproj", "{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{52C77E08-6489-4F56-A9BD-FBA9FEFFDCF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BF72C744-4370-4F99-B490-80668E3A6973}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\test.runsettings = Tests\test.runsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{5A9EFFD9-3916-4752-B81C-C8F8812CFF90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Test.CommonLibrary", "Tests\PythonInterfaceConverter.Test.CommonLibrary\PythonInterfaceConverter.Test.CommonLibrary.csproj", "{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Test.PythonInterfaceConverter", "Tests\PythonInterfaceConverter.Test.PythonInterfaceConverter\PythonInterfaceConverter.Test.PythonInterfaceConverter.csproj", "{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Test.PythonInterfaceConverterLibrary", "Tests\PythonInterfaceConverter.Test.PythonInterfaceConverterLibrary\PythonInterfaceConverter.Test.PythonInterfaceConverterLibrary.csproj", "{38B671A9-E258-4316-A16B-3714E5BD9EA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +54,30 @@ Global
 		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B671A9-E258-4316-A16B-3714E5BD9EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B671A9-E258-4316-A16B-3714E5BD9EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B671A9-E258-4316-A16B-3714E5BD9EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B671A9-E258-4316-A16B-3714E5BD9EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2D8DD21-DD1A-4EE3-987A-554847DE6E04} = {52C77E08-6489-4F56-A9BD-FBA9FEFFDCF3}
+		{D6EF9F10-FC48-4172-87EC-1512A6FFD591} = {5A9EFFD9-3916-4752-B81C-C8F8812CFF90}
+		{5D4E5583-19FC-423C-B4EC-B303F08C813C} = {52C77E08-6489-4F56-A9BD-FBA9FEFFDCF3}
+		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A} = {52C77E08-6489-4F56-A9BD-FBA9FEFFDCF3}
+		{3B9B55A1-CBD3-4DC4-BC11-48C15A0E414F} = {BF72C744-4370-4F99-B490-80668E3A6973}
+		{BA9DAFBD-C093-4369-83B3-82FFB77E6F1F} = {BF72C744-4370-4F99-B490-80668E3A6973}
+		{38B671A9-E258-4316-A16B-3714E5BD9EA2} = {BF72C744-4370-4F99-B490-80668E3A6973}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE5CA643-C1A0-4CDD-B7EE-6A9804DC708E}
