@@ -9,13 +9,18 @@ namespace PythonInterfaceConverter.Source.PythonInterfaceConverter
 {
     public class Program
     {
+        private const string HELP_COMMAND_STRING = "?";
+        private const string FULL_CONVERT_COMMAND_STRING = "full";
+        private const string INTERFACE_CONVERT_COMMAND_STRING = "inter";
+        private const string IMPLEMENTATION_CONVERT_COMMAND_STRING = "impl";
+
         public static void Main(string[] args)
         {
             try
             {
                 CommandSeparator(args);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("ERROR");
                 Console.WriteLine(e.Message);
@@ -33,19 +38,19 @@ namespace PythonInterfaceConverter.Source.PythonInterfaceConverter
                 return;
             }
 
-            string command = args[0];
-            switch (command)
+            string commandString = args[0];
+            switch (commandString)
             {
-                case "?":
+                case HELP_COMMAND_STRING:
                     HelpCommand();
                     break;
-                case "full":
+                case FULL_CONVERT_COMMAND_STRING:
                     FullCommand(args);
                     break;
-                case "inter":
+                case INTERFACE_CONVERT_COMMAND_STRING:
                     InterfaceCommand(args);
                     break;
-                case "impl":
+                case IMPLEMENTATION_CONVERT_COMMAND_STRING:
                     ImplementationCommand(args);
                     break;
                 default:
@@ -128,29 +133,52 @@ namespace PythonInterfaceConverter.Source.PythonInterfaceConverter
 
         private static ClassifiedArgs ParseArgs(string[] args)
         {
-            ClassifiedArgs classifiedArgs = new ClassifiedArgs();
-            if (args.Length == 4)
+            string commandString = args[0];
+            switch (commandString)
             {
-                classifiedArgs.PythonSourceFilePath = args[1];
-                if(args[0] == "impl")
-                {
-                    classifiedArgs.ImplementationTargetFilePath = args[2];
-                }
-                else
-                {
-                    classifiedArgs.InterfaceTargetFilePath = args[2];
-                }
-                classifiedArgs.Namespace = args[3];
+                case IMPLEMENTATION_CONVERT_COMMAND_STRING:
+                    return ClassifieImplementationCommandArgs(args);
+                case INTERFACE_CONVERT_COMMAND_STRING:
+                    return ClassifieInterfaceCommandArgs(args);
+                case FULL_CONVERT_COMMAND_STRING:
+                    return ClassifieFullCommandArgs(args);
             }
-            if (args.Length == 5)
+
+            throw new ArgumentException(String.Join(",",args));
+        }
+
+        private static ClassifiedArgs ClassifieImplementationCommandArgs(string[] args)
+        {
+            ClassifiedArgs classifiedArgs = new ClassifiedArgs()
             {
-                classifiedArgs.PythonSourceFilePath = args[1];
-                classifiedArgs.InterfaceTargetFilePath = args[2];
-                classifiedArgs.ImplementationTargetFilePath = args[3];
-                classifiedArgs.Namespace = args[4];
-            }
+                PythonSourceFilePath = args[1],
+                ImplementationTargetFilePath = args[2],
+                Namespace = args[3]
+            };
             return classifiedArgs;
         }
+        private static ClassifiedArgs ClassifieInterfaceCommandArgs(string[] args)
+        {
+            ClassifiedArgs classifiedArgs = new ClassifiedArgs()
+            {
+                PythonSourceFilePath = args[1],
+                InterfaceTargetFilePath = args[2],
+                Namespace = args[3]
+            };
+            return classifiedArgs;
+        }
+        private static ClassifiedArgs ClassifieFullCommandArgs(string[] args)
+        {
+            ClassifiedArgs classifiedArgs = new ClassifiedArgs()
+            {
+                PythonSourceFilePath = args[1],
+                InterfaceTargetFilePath = args[2],
+                ImplementationTargetFilePath = args[3],
+                Namespace = args[4]
+            };
+            return classifiedArgs;
+        }
+
         private struct ClassifiedArgs
         {
             public string PythonSourceFilePath;
