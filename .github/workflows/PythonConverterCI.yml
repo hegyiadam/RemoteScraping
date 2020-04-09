@@ -28,4 +28,6 @@ jobs:
     - name: Run tests 
       run: |
         cd PythonInterfaceConverter\Deploy\Tests
-        dotnet test --no-build
+        dotnet vstest PythonInterfaceConverter.Test.CommonLibrary.dll
+        dotnet vstest PythonInterfaceConverter.Test.PythonInterfaceConverter.dll
+        dotnet vstest PythonInterfaceConverter.Test.PythonInterfaceConverterLibrary.dll
