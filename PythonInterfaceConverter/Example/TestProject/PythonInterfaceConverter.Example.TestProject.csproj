@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PythonInterfaceConverterLibrary">
-      <HintPath>..\PythonInterfaceConverterLibrary\bin\Debug\PythonInterfaceConverterLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -53,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\PythonInterfaceConverterLibrary\PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary.csproj">
+      <Project>{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}</Project>
+      <Name>PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

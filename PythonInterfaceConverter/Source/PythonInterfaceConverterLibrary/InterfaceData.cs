@@ -24,7 +24,7 @@ namespace PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary
         }
         internal string GetImplementationPlainText()
         {
-            string basicUsings = "using PythonInterfaceConverterLibrary;\nusing System.Collections.Generic;\nusing System.Reflection;\n\n";
+            string basicUsings = "using PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary;\nusing System.Collections.Generic;\nusing System.Reflection;\n\n";
             string result = basicUsings + "namespace " + Namespace + "\n{\n\tpublic class " + Name.Remove(0,1) + " : "+Name+"\n\t{\n";
             foreach (InterfaceMethodData data in InterfaceMethodDatas)
             {
