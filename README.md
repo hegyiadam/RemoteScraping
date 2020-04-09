@@ -1,6 +1,5 @@
 # Python Converter
 ## What is python converter?
-
 Converter is a command line application written in C#.
 ## Why is it needed?
 To run Python script from DotNet code a Python REST Api (Flask) is implemented. Pyhton is the host the DotNet code is the client. In the communicaion the C# code is generic because it has no other logic than just POST request creation to the REST Api. In python the basic structure on the edge of the component is a interface which includes all the callable commands. This means that the DotNet code needs to be cosistent with the python interface. Converter creates a consistent interface in DotNet using the python code and also creates an implementation which is basicly the parametrized call of the python function.
