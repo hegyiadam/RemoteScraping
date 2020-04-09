@@ -27,5 +27,5 @@ jobs:
         .\MSBuild.exe $Env:GITHUB_WORKSPACE\PythonInterfaceConverter
     - name: Run tests 
       run: |
-        cd CommunicationModule\Deploy\Tests
+        cd PythonInterfaceConverter\Deploy\Tests
         dotnet test --no-build
