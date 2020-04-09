@@ -1,9 +1,6 @@
 name: PythonConverter.CI
 
-on:
-  push:
-    branches: 
-      - PythonConverter
+on: [push]
 
 jobs:
   build:
