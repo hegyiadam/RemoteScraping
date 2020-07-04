@@ -1,1 +1,2 @@
-# RemoteScrapingProject
+# RemoteScraping - BrowserClient
+
