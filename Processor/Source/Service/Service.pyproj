@@ -4,8 +4,9 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>96f0b589-f859-45e6-a164-81f8a418c65d</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectGuid>034002d8-d6d3-4417-92c5-6e17bdafb3f8</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
     <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <StartupFile>runserver.py</StartupFile>
     <SearchPath>
@@ -15,10 +16,9 @@
     <WebBrowserUrl>http://localhost</WebBrowserUrl>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
-    <Name>Communication</Name>
-    <RootNamespace>Communication</RootNamespace>
-    <InterpreterId>
-    </InterpreterId>
+    <Name>Service</Name>
+    <RootNamespace>RestApiExample</RootNamespace>
+    <WebBrowserPort>8800</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,15 +29,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Communication\views.py" />
-    <Compile Include="Communication\__init__.py" />
     <Compile Include="runserver.py" />
+    <Compile Include="Service\__init__.py" />
+    <Compile Include="Service\route.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Communication\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Executable\CommandExecution.pyproj">
+      <Name>CommandExecution</Name>
+      <Project>{1448083e-3579-44d6-94e9-f969d2755e07}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 
