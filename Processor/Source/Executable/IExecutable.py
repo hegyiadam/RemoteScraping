@@ -1,5 +1,5 @@
 class IExecutable:
-    def download_page(url):
+    def GetElement(selector):
         pass
 
 
