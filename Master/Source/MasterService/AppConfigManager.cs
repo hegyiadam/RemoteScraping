@@ -9,7 +9,6 @@ namespace MasterService
 {
     public class AppConfigManager
     {
-
 		private static AppConfigManager _instance = null;
 		private AppConfigManager() { }
 		public static AppConfigManager Instance

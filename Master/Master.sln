@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonComponents", "Source\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{5AE93162-7E23-44E6-A894-2412A0E79569}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2CECB5D7-B342-4A85-881F-1D49BD1EAF3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterServiceTests", "Test\MasterServiceTests\MasterServiceTests.csproj", "{493283C1-7A24-4F40-B70D-A4029CDBBA9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{493283C1-7A24-4F40-B70D-A4029CDBBA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493283C1-7A24-4F40-B70D-A4029CDBBA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493283C1-7A24-4F40-B70D-A4029CDBBA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493283C1-7A24-4F40-B70D-A4029CDBBA9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{751E7CAC-0047-4BF3-B6AD-6A0925F96FD0} = {5AE93162-7E23-44E6-A894-2412A0E79569}
 		{93B7034F-BD26-4036-AEE5-3D0369AE7D7B} = {5AE93162-7E23-44E6-A894-2412A0E79569}
 		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A} = {5AE93162-7E23-44E6-A894-2412A0E79569}
+		{493283C1-7A24-4F40-B70D-A4029CDBBA9C} = {2CECB5D7-B342-4A85-881F-1D49BD1EAF3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1220FD59-7D52-4AEB-8803-3DE0A3D4D39F}

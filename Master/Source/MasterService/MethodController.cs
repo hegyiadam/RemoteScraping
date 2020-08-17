@@ -16,8 +16,5 @@ namespace MasterService
         {
             return id;
         }
-
-
-
     }
 }
