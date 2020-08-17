@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{5AE931
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2CECB5D7-B342-4A85-881F-1D49BD1EAF3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterServiceTests", "Test\MasterServiceTests\MasterServiceTests.csproj", "{493283C1-7A24-4F40-B70D-A4029CDBBA9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master.Test.MasterServiceTests", "Test\MasterServiceTests\Master.Test.MasterServiceTests.csproj", "{493283C1-7A24-4F40-B70D-A4029CDBBA9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

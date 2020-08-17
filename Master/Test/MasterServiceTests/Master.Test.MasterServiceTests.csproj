@@ -8,8 +8,8 @@
     <ProjectGuid>{493283C1-7A24-4F40-B70D-A4029CDBBA9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MasterServiceTests</RootNamespace>
-    <AssemblyName>MasterServiceTests</AssemblyName>
+    <RootNamespace>Master.Test.MasterServiceTests</RootNamespace>
+    <AssemblyName>Master.Test.MasterServiceTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
