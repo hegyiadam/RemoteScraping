@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controller.Tasks
 {
-    enum TaskState
+    public enum TaskState
     {
     }
 }

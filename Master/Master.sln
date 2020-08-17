@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler", "Source\Schedul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonComponents", "Source\PythonComponents\PythonComponents.csproj", "{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{5AE93162-7E23-44E6-A894-2412A0E79569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD8A1620-06B8-4B3F-9BF9-08B1EA414410} = {5AE93162-7E23-44E6-A894-2412A0E79569}
+		{751E7CAC-0047-4BF3-B6AD-6A0925F96FD0} = {5AE93162-7E23-44E6-A894-2412A0E79569}
+		{93B7034F-BD26-4036-AEE5-3D0369AE7D7B} = {5AE93162-7E23-44E6-A894-2412A0E79569}
+		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A} = {5AE93162-7E23-44E6-A894-2412A0E79569}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1220FD59-7D52-4AEB-8803-3DE0A3D4D39F}

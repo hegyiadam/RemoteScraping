@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Controller.Tasks
 {
-    interface ITask
+    public delegate void TaskStateChangeHandler();
+
+    public interface ITask
     {
+        event TaskStateChangeHandler StateChangedEvent;
+
+        TaskState ActualState { get; }
+
+        bool CanRun();
+
+        void Call();
     }
 }
