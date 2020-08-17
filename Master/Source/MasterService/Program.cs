@@ -8,13 +8,13 @@ using System.Web.Http;
 
 namespace MasterService
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            WebApp.Start<RestApi>("http://localhost:3333/");
-            Console.ReadLine(); // block main thread
-
+            WebApp.Start<RestApi>(AppConfigManager.Instance.ServerAddress);
+            Console.WriteLine("REST Api is online!");
+            Console.ReadLine();
         }
     }
 }

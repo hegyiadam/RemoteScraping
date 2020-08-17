@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace MasterService
 {
     public class MethodController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        [HttpGet]
+        [ActionName("MethodOne")]
+        public string GetElementById(string id)
         {
-            return new string[] { "value1", "value2" };
+            return id;
         }
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+
 
     }
 }
