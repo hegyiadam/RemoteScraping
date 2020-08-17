@@ -1,8 +1,8 @@
-name: PythonConverter.CI
+name: MasterServer.CI
 on:
   push:
     branches:
-      - 'PythonConverter'
+      - 'dev/masterserver'
 
 jobs:
   build:
