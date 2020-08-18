@@ -26,28 +26,6 @@
     <Compile Include="IExecutable.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ProcessingWorkflow\RAW DATA\Element.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ProcessingWorkflow\RAW DATA\RawData.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ProcessingWorkflow\RAW DATA\Tag.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ProcessingWorkflow\Workflow.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ProcessingWorkflow\RAW DATA\Webpage.py">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProcessingWorkflow\" />
-    <Folder Include="ProcessingWorkflow\DATA FORMATTING\FormatableData\" />
-    <Folder Include="ProcessingWorkflow\DATA SELECTION\" />
-    <Folder Include="ProcessingWorkflow\Data Formatting\" />
-    <Folder Include="ProcessingWorkflow\RAW DATA\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
