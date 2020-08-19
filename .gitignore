@@ -9,6 +9,7 @@ logs
 **/*.backup.*
 **/*.back.*
 Processor/Test/ReactTestWebsite/my-app/src/Resources/Thumbnails
+Processor/Test/ReactTestWebsite/my-app/src/Resources/Articles
 node_modules
 bower_components
 

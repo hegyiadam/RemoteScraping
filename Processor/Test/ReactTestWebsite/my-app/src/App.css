@@ -43,7 +43,6 @@
 .thumbnail{
   height: 100px;
   width: 100px; 
-  float: left;
 }
 
 
@@ -51,14 +50,29 @@
   height: 100px;
   text-align: left;
   width: 500px;
-  text-overflow: ellipsis;
-  overflow: hidden; 
   margin: 20px;
+  display: flex;
+  flex-direction: row;
+  background-color: #FFF;
+  color: #282c34;
 }
 .element-title{
   padding: 0;
   margin: 0;
 }
-.list-container{
-  
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.element-text{
+  padding: 5px;
+}
+.article-overview{
+  border-top: 2px solid #282c34;
+  padding: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

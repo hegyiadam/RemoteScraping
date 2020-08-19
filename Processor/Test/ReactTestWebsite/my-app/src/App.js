@@ -10,8 +10,8 @@ function App() {
       <header className="App-header ">
         <TitleBar/>
       </header>
-      <body>
-        <ListContainer numberOfElements={3}></ListContainer>
+      <body className="centered" >
+        <ListContainer numberOfElements={10}></ListContainer>
       </body>
 
     </div>
