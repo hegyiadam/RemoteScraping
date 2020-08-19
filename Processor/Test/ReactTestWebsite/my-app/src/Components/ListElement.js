@@ -10,11 +10,15 @@ class ListElement extends React.Component{
         return (
             <div className="element">
                 <div className="element-image">
-                    <img className="thumbnail" src={this.props.src}/>
+                    <img className="thumbnail" src={require("../Resources/Thumbnails/"+this.props.itemNumber+".jpg")}/>
                 </div>
                 <div className="element-text">
-                    <h3 className="element-title" >Title</h3>
-                    <div className="article-overview">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+                    <h3 className="element-title" >
+                        <a href={"/topic/"+this.props.itemNumber}>
+                            {require("../Resources/Articles/"+this.props.itemNumber+".json").title.split(/\s+/).slice(0,3).join(" ")}
+                        </a>
+                    </h3>
+                    <div className="article-overview">{require("../Resources/Articles/"+this.props.itemNumber+".json").article[0]}</div>
                 </div>
             </div>
         );

@@ -14,7 +14,7 @@ class ListContainer extends React.Component{
         data={this.state.elements}
         pageSize={4}
         renderItem={(item) => (
-            <ListElement src={require("../Resources/Thumbnails/"+item+".jpg")}/>
+            <ListElement itemNumber={item}/>
         )}></PaginationList>;
     }
 }

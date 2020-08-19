@@ -76,3 +76,21 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+body > div > ul{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.article-body{
+  width: 50vw;
+  text-align: justify;
+}
+
+.article{
+  padding-top: 10px;
+  font-size: x-large;
+}

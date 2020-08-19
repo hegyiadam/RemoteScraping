@@ -9,7 +9,7 @@ class TitleBar extends React.Component{
     }
     render(){
         return (
-            <h1>RemoteScraping Test Site</h1>
+        <h1>{this.props.title}</h1>
         );
     }
 }
