@@ -114,11 +114,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\UserControls\SearchBar.xaml">
+    <Page Include="View\Pages\RootSitePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Windows\RootSiteWindow.xaml">
+    <Page Include="View\Pages\SiteScrapingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\SearchBarUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -130,12 +138,23 @@
     <Compile Include="Model\ConfigManager.cs" />
     <Compile Include="ViewModel\Commands\NavigateCommand.cs" />
     <Compile Include="ViewModel\Commands\RemoveFocusCommand.cs" />
-    <Compile Include="ViewModel\StartSiteSearchViewModel.cs" />
-    <Compile Include="View\UserControls\SearchBar.xaml.cs">
-      <DependentUpon>SearchBar.xaml</DependentUpon>
+    <Compile Include="ViewModel\Commands\StartScrapingCommand.cs" />
+    <Compile Include="ViewModel\Commands\TestCommand.cs" />
+    <Compile Include="ViewModel\DisplayableCommand.cs" />
+    <Compile Include="ViewModel\RootSitePageViewModel.cs" />
+    <Compile Include="ViewModel\SiteScrapingPageViewModel.cs" />
+    <Compile Include="ViewModel\WindowViewModel.cs" />
+    <Compile Include="View\Pages\RootSitePage.xaml.cs">
+      <DependentUpon>RootSitePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\RootSiteWindow.xaml.cs">
-      <DependentUpon>RootSiteWindow.xaml</DependentUpon>
+    <Compile Include="View\Pages\SiteScrapingPage.xaml.cs">
+      <DependentUpon>SiteScrapingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\SearchBarUserControl.xaml.cs">
+      <DependentUpon>SearchBarUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

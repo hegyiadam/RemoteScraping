@@ -18,9 +18,9 @@ namespace WPFBrowserClient.View
     /// <summary>
     /// Interaction logic for SearchBar.xaml
     /// </summary>
-    public partial class SearchBar : UserControl
+    public partial class SearchBarUserControl : UserControl
     {
-        public SearchBar()
+        public SearchBarUserControl()
         {
             InitializeComponent();
         }

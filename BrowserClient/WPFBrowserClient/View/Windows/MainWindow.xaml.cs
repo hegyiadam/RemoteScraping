@@ -18,11 +18,12 @@ namespace View.WPFBrowserClient
     /// <summary>
     /// Interaction logic for StartSiteSearch.xaml
     /// </summary>
-    public partial class RootSiteWindow : Window
+    public partial class MainWindow : Window
     {
-        public RootSiteWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
+
     }
 }

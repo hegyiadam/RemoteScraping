@@ -7,12 +7,12 @@ using WPFBrowserClient.Model;
 
 namespace WPFBrowserClient.ViewModel
 {
-    public class StartSiteSearchViewModel
+    public class RootSitePageViewModel
     {
         private ActualPage actualPage = new ActualPage(ConfigManager.Instance.DefaultURL);
 
         public string URL
-        { 
+        {
             get
             {
                 return actualPage.URL;

@@ -18,10 +18,9 @@ namespace WPFBrowserClient
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            RootSiteWindow window = new RootSiteWindow();
-            StartSiteSearchViewModel VM = new StartSiteSearchViewModel();
-            window.DataContext = VM;
-            window.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.DataContext = WindowViewModel.Instance;
+            mainWindow.Show();
         }
     }
 }
