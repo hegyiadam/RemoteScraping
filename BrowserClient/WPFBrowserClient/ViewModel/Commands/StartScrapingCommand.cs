@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WPFBrowserClient.View.Pages;
 
@@ -11,6 +12,13 @@ namespace WPFBrowserClient.ViewModel.Commands
 {
     public class StartScrapingCommand : ICommand
     {
+        private Page targetPage;
+
+        public StartScrapingCommand(Page toPage)
+        {
+            this.targetPage = toPage;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -20,11 +28,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            MessageBox.Show("dfsdf");
-            WindowViewModel.Instance.ActualPage = new SiteScrapingPage()
-            {
-                DataContext = new RootSitePageViewModel()
-            };
+            WindowViewModel.MainFrame.Navigate(targetPage);
         }
     }
 }

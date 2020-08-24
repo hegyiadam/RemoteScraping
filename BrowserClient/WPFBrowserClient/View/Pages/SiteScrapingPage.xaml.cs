@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFBrowserClient.ViewModel;
 
 namespace WPFBrowserClient.View.Pages
 {
@@ -23,6 +24,7 @@ namespace WPFBrowserClient.View.Pages
         public SiteScrapingPage()
         {
             InitializeComponent();
+            DataContext = new SiteScrapingPageViewModel();
         }
     }
 }

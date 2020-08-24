@@ -19,7 +19,7 @@ namespace WPFBrowserClient
         {
             base.OnStartup(e);
             MainWindow mainWindow = new MainWindow();
-            mainWindow.DataContext = WindowViewModel.Instance;
+            mainWindow.DataContext = new WindowViewModel();
             mainWindow.Show();
         }
     }
