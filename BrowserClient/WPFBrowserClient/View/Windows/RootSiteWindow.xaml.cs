@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFBrowserClient
+namespace View.WPFBrowserClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartSiteSearch.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RootSiteWindow : Window
     {
-        public MainWindow()
+        public RootSiteWindow()
         {
             InitializeComponent();
         }

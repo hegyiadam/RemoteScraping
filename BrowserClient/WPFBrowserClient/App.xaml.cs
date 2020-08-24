@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using View.WPFBrowserClient;
+using WPFBrowserClient.ViewModel;
 
 namespace WPFBrowserClient
 {
@@ -13,5 +15,13 @@ namespace WPFBrowserClient
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            RootSiteWindow window = new RootSiteWindow();
+            StartSiteSearchViewModel VM = new StartSiteSearchViewModel();
+            window.DataContext = VM;
+            window.Show();
+        }
     }
 }
