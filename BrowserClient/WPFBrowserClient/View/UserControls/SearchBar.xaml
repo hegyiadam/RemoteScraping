@@ -9,9 +9,7 @@
     <Grid VerticalAlignment="Center" Height="30" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="urlTb" Text="{Binding URL, Mode=TwoWay}"  VerticalAlignment="Stretch" Grid.Column="0" VerticalContentAlignment="Center" FontSize="15"/>
-        <Button x:Name="settingsBtn" Content="Settings" Background="LightSeaGreen" VerticalAlignment="Stretch"  Grid.Column="1" Padding="10,0,10,0"/>
     </Grid>
 </UserControl>
