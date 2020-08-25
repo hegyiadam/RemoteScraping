@@ -14,7 +14,7 @@
             <ColumnDefinition Width="5*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <wpf:ChromiumWebBrowser x:Name="Browser" Address="{Binding URL, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Grid.Column="0"/>
+        <wpf:ChromiumWebBrowser x:Name="Browser" Address="{Binding URL, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Grid.Column="0"/>
         <ListView Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Commands}">
             <ListView.ItemTemplate >
                 <DataTemplate >

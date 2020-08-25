@@ -12,13 +12,6 @@ namespace WPFBrowserClient.ViewModel.Commands
 {
     public class StartScrapingCommand : ICommand
     {
-        private Page targetPage;
-
-        public StartScrapingCommand(Page toPage)
-        {
-            this.targetPage = toPage;
-        }
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -28,7 +21,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            WindowViewModel.MainFrame.Navigate(targetPage);
+            WindowViewModel.MainFrame.Navigate(new SiteScrapingPage());
         }
     }
 }

@@ -23,10 +23,18 @@ namespace WPFBrowserClient.ViewModel
         {
             get
             {
-                return (Frame)Application.Current.MainWindow.FindName("mainFrame");
+                return MainWindow.FindName("mainFrame") as Frame;
+
+            }
+        }
+        public static Window MainWindow
+        {
+            get
+            {
+                return Application.Current.MainWindow;
 
             }
         }
 
-	}
+    }
 }

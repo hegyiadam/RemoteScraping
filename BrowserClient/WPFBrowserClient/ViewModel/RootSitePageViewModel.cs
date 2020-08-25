@@ -12,13 +12,20 @@ namespace WPFBrowserClient.ViewModel
 {
     public class RootSitePageViewModel
     {
-        private ActualPage actualPage = new ActualPage(ConfigManager.Instance.DefaultURL);
+        private ActualPage actualPage = ActualPage.Instance;
+
+        public RootSitePageViewModel()
+        {
+            URL = ConfigManager.Instance.DefaultURL;
+        }
+
+
 
         public ICommand StartScrapingCommand
         {
             get
             {
-                return new StartScrapingCommand(new SiteScrapingPage());
+                return new StartScrapingCommand();
             }
         }
         public string URL

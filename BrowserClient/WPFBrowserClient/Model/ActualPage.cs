@@ -13,10 +13,20 @@ namespace WPFBrowserClient.Model
 		private string url;
 
 
-		public ActualPage(string actualUrl)
+		private static ActualPage _instance = null;
+		private ActualPage() { }
+		public static ActualPage Instance
 		{
-			url = actualUrl;
+			get
+			{
+				if (_instance == null)
+				{
+					_instance = new ActualPage();
+				}
+				return _instance;
+			}
 		}
+
 
 
 		public string URL
