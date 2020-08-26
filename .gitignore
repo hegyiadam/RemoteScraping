@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+Debug/
+BrowserClient/Deploy/
 # Distribution / packaging
 .Python
 build/
