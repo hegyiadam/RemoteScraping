@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{272FA475
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserClient.Test.BrowserClientTests", "Tests\BrowserClientTests\BrowserClient.Test.BrowserClientTests.csproj", "{F7E6739D-9BBD-4379-A865-F4092FFBC596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBrowserClient", "WPFBrowserClient\WPFBrowserClient.csproj", "{B5D056C8-6061-4F86-86CA-D1F8B71FD392}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBrowserClient", "Source\WPFBrowserClient\WPFBrowserClient.csproj", "{B5D056C8-6061-4F86-86CA-D1F8B71FD392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
