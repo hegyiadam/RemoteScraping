@@ -2,7 +2,7 @@ name: MasterServer.CI
 on:
   push:
     branches:
-      - 'dev/masterserver'
+      - 'dev/pcclient'
 
 jobs:
   build:
@@ -19,13 +19,13 @@ jobs:
       uses: nuget/setup-nuget@v1
     - name: Restore packages
       run: |
-        cd Master
+        cd BrowserClient
         nuget restore
     - name: Build solution
       run: |
         cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-        .\MSBuild.exe $Env:GITHUB_WORKSPACE\Master
+        .\MSBuild.exe $Env:GITHUB_WORKSPACE\BrowserClient
     - name: Run tests 
       run: |
-        cd Master\Deploy\Tests
-        dotnet vstest Master.Test.MasterServiceTests.dll
+        cd BrowserClient\Deploy\Tests
+        dotnet vstest BrowserClient.Test.WPFBrowserClient.dll
