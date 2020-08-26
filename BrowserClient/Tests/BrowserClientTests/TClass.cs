@@ -15,10 +15,5 @@ namespace BrowserClientTests
         {
             Assert.IsTrue(true);
         }
-        [TestMethod]
-        public void Test2()
-        {
-            Assert.IsTrue(false);
-        }
     }
 }
