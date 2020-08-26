@@ -24,7 +24,7 @@ jobs:
     - name: Build solution
       run: |
         cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
-        .\MSBuild.exe $Env:GITHUB_WORKSPACE\BrowserClient
+        .\MSBuild.exe $Env:GITHUB_WORKSPACE\BrowserClient /p:Platform=x86 
     - name: Run tests 
       run: |
         cd BrowserClient\Deploy\Tests
