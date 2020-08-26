@@ -1,0 +1,31 @@
+name: Logging.CI
+on:
+  push:
+    branches:
+      - 'dev/logging'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Setup Nuget Package manager
+      uses: nuget/setup-nuget@v1
+    - name: Restore packages
+      run: |
+        cd Logging
+        nuget restore
+    - name: Build solution
+      run: |
+        cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+        .\MSBuild.exe $Env:GITHUB_WORKSPACE\Logging
+    - name: Run tests 
+      run: |
+        cd Logging\Deploy\Tests
+        dotnet vstest Logging.Test.Logging.dll
