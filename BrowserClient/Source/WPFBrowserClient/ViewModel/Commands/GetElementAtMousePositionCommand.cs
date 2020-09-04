@@ -1,4 +1,5 @@
-﻿using CefSharp;
+﻿using BrowserManagement;
+using CefSharp;
 using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace WPFBrowserClient.ViewModel.Commands
 {
     public class GetElementAtMousePositionCommand : ICommand
     {
-        private ChromiumWebBrowser chromiumWebBrowser;
+        private IBrowserWrapper Browser;
 
-        public GetElementAtMousePositionCommand(ChromiumWebBrowser chromiumWebBrowser)
+        public GetElementAtMousePositionCommand(IBrowserWrapper browser)
         {
-            this.chromiumWebBrowser = chromiumWebBrowser;
+            Browser = browser;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -29,13 +30,10 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            
-            Thread thread = new Thread(
-                () =>
-                {
-                    string elementOnPos = "document.onclick = function(e) {var x = event.clientX, y = event.clientY, elementMouseIsOver = document.elementFromPoint(x, y);        elementMouseIsOver.style.border = \"thick solid #0000FF\";  };";
-                    chromiumWebBrowser.EvaluateScriptAsync(elementOnPos);
-                });
+            Thread thread = new Thread(() =>
+            {
+                Browser.HighlightControl();
+            });
 
             thread.Start();
         }

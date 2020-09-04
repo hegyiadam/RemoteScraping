@@ -1,4 +1,6 @@
-﻿using CefSharp.Wpf;
+﻿using BrowserManagement;
+using BrowserManagement.Wrappers.CefSharpWrapper;
+using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +24,7 @@ namespace WPFBrowserClient.ViewModel
                 new DisplayableCommand()
                 {
                     Name = "",
-                    Command = new GetElementAtMousePositionCommand(Browser)
+                    Command = new GetElementAtMousePositionCommand(BrowserWrapper)
                 },
                 new DisplayableCommand()
                 {
@@ -37,11 +39,18 @@ namespace WPFBrowserClient.ViewModel
             };
         }
 
-        public ChromiumWebBrowser Browser 
-        { 
+        public ChromiumWebBrowser Browser
+        {
             get
             {
                 return (WindowViewModel.MainFrame.Content as Page).FindName("Browser") as ChromiumWebBrowser;
+            }
+        }
+        public BrowserManagement.IBrowserWrapper BrowserWrapper
+        {
+            get
+            {
+                return BrowserWrapperFactory.CreateBrowserWrapper(Browser);
             }
         }
 

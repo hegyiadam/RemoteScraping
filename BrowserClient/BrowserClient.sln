@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserClient.Test.WPFBrows
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBrowserClient", "Source\WPFBrowserClient\WPFBrowserClient.csproj", "{B5D056C8-6061-4F86-86CA-D1F8B71FD392}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserManagement", "Source\BrowserManagement\BrowserManagement.csproj", "{9594CDE2-90D8-4345-9E26-810B11D55BCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,14 @@ Global
 		{B5D056C8-6061-4F86-86CA-D1F8B71FD392}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5D056C8-6061-4F86-86CA-D1F8B71FD392}.Release|x86.ActiveCfg = Release|x86
 		{B5D056C8-6061-4F86-86CA-D1F8B71FD392}.Release|x86.Build.0 = Release|x86
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Debug|x86.Build.0 = Debug|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Release|x86.ActiveCfg = Release|Any CPU
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +52,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F7E6739D-9BBD-4379-A865-F4092FFBC596} = {272FA475-A658-4682-85D2-F3E97D9911D2}
 		{B5D056C8-6061-4F86-86CA-D1F8B71FD392} = {27961388-1F2F-4C8F-BF6F-585F4A0B81EF}
+		{9594CDE2-90D8-4345-9E26-810B11D55BCB} = {27961388-1F2F-4C8F-BF6F-585F4A0B81EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0ADA218C-8050-47C7-9065-24787604C4FD}
