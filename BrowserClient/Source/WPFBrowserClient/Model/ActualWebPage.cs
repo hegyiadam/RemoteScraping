@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace WPFBrowserClient.Model
 {
-    public class ActualPage : INotifyPropertyChanged
+    public class ActualWebPage : INotifyPropertyChanged
     {
 		public event PropertyChangedEventHandler PropertyChanged;
 		private string url;
 
 
-		private static ActualPage _instance = null;
-		private ActualPage() { }
-		public static ActualPage Instance
+		private static ActualWebPage _instance = null;
+		private ActualWebPage() { }
+		public static ActualWebPage Instance
 		{
 			get
 			{
 				if (_instance == null)
 				{
-					_instance = new ActualPage();
+					_instance = new ActualWebPage();
 				}
 				return _instance;
 			}

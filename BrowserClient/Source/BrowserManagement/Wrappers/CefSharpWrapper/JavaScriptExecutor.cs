@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.Wpf;
+using Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,11 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
 
         private void ExecuteJavaScriptCommand(string javaScriptCommand)
         {
-            Browser.ExecuteScriptAsync(javaScriptCommand);
+            javaScriptCommand.Replace("\r","").Replace("\n","");
+            //Browser.ExecuteScriptAsync(javaScriptCommand);
+            Browser.EvaluateScriptAsync("document.onclick = function (e){    var x = event.clientX,        y = event.clientY,        elementMouseIsOver = document.elementFromPoint(x, y);    elementMouseIsOver.style.border ='thick solid #0000FF';  };");
         }
+
 
         private string ReadJavaScriptFromFile(string javaScriptFilePath)
         {

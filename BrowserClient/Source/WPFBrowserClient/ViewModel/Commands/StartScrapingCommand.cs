@@ -21,6 +21,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
+
             WindowViewModel.MainFrame.Navigate(new SiteScrapingPage());
         }
     }

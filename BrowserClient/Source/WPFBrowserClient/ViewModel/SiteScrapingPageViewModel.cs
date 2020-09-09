@@ -9,21 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using WPFBrowserClient.Model;
+using WPFBrowserClient.View.Pages;
 using WPFBrowserClient.ViewModel.Commands;
 
 namespace WPFBrowserClient.ViewModel
 {
     public class SiteScrapingPageViewModel
     {
-        private ActualPage actualPage = ActualPage.Instance;
+        private ActualWebPage actualPage = ActualWebPage.Instance;
 
-        public SiteScrapingPageViewModel()
+        public SiteScrapingPageViewModel(ChromiumWebBrowser browser)
         {
+            Browser = browser;
             Commands = new ObservableCollection<DisplayableCommand>()
             {
                 new DisplayableCommand()
                 {
-                    Name = "",
+                    Name = "Highlight clicked elements",
                     Command = new GetElementAtMousePositionCommand(BrowserWrapper)
                 },
                 new DisplayableCommand()
@@ -39,13 +41,8 @@ namespace WPFBrowserClient.ViewModel
             };
         }
 
-        public ChromiumWebBrowser Browser
-        {
-            get
-            {
-                return (WindowViewModel.MainFrame.Content as Page).FindName("Browser") as ChromiumWebBrowser;
-            }
-        }
+        public ChromiumWebBrowser Browser { get; set; }
+
         public BrowserManagement.IBrowserWrapper BrowserWrapper
         {
             get

@@ -17,7 +17,7 @@ namespace WPFBrowserClient.ViewModel
     public class WindowViewModel
     {
 
-        public Page ActualPage { get; set; } = new RootSitePage();
+        public static Page ActualPage { get; set; } = new RootSitePage();
 
         public static Frame MainFrame
         {
@@ -36,5 +36,13 @@ namespace WPFBrowserClient.ViewModel
             }
         }
 
+
+        public static Page CurrentPage
+        {
+            get
+            {
+                return WindowViewModel.MainFrame.Content as Page;
+            }
+        }
     }
 }

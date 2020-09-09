@@ -155,7 +155,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\ActualPage.cs" />
+    <Compile Include="Model\ActualWebPage.cs" />
     <Compile Include="Model\ConfigManager.cs" />
     <Compile Include="ViewModel\Commands\GetElementAtMousePositionCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateCommand.cs" />

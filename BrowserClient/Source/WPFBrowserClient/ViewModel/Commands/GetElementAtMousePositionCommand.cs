@@ -30,12 +30,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            Thread thread = new Thread(() =>
-            {
-                Browser.HighlightControl();
-            });
-
-            thread.Start();
+            Browser.HighlightControl();
         }
     }
 }

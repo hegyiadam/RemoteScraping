@@ -12,7 +12,7 @@ namespace WPFBrowserClient.ViewModel
 {
     public class RootSitePageViewModel
     {
-        private ActualPage actualPage = ActualPage.Instance;
+        private ActualWebPage actualPage = ActualWebPage.Instance;
 
         public RootSitePageViewModel()
         {

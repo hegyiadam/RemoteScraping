@@ -46,6 +46,10 @@
     <Reference Include="CefSharp.Wpf">
       <HintPath>..\..\packages\CefSharp.Wpf.83.4.20\CefSharp\x86\CefSharp.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TemporaryResources\Logging\Release\Logging.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

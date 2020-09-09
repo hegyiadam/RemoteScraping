@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CefSharp.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace WPFBrowserClient.View.Pages
         public SiteScrapingPage()
         {
             InitializeComponent();
-            DataContext = new SiteScrapingPageViewModel();
+            ChromiumWebBrowser browser = FindName("browser") as ChromiumWebBrowser;
+            DataContext = new SiteScrapingPageViewModel(browser);
         }
     }
 }
