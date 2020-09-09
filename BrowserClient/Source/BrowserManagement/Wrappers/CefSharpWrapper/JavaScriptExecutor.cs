@@ -28,8 +28,7 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
         private void ExecuteJavaScriptCommand(string javaScriptCommand)
         {
             javaScriptCommand.Replace("\r","").Replace("\n","");
-            //Browser.ExecuteScriptAsync(javaScriptCommand);
-            Browser.EvaluateScriptAsync("document.onclick = function (e){    var x = event.clientX,        y = event.clientY,        elementMouseIsOver = document.elementFromPoint(x, y);    elementMouseIsOver.style.border ='thick solid #0000FF';  };");
+            Browser.ExecuteScriptAsync(javaScriptCommand);
         }
 
 
