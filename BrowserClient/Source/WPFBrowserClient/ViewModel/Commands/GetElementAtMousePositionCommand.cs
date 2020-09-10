@@ -1,5 +1,7 @@
 ﻿using BrowserManagement;
+using CefSharp.Wpf;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -19,13 +21,20 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public async void Execute(object parameter)
         {
-            Browser.GetElementOnMousePosition().ContinueWith(t => {
-                var response = t.Result;
-                if(response.Success && response.Result != null)
+            Browser.GetBrowser<ChromiumWebBrowser>().Focus();
+            Thread thread = new Thread(() =>
+            {
+                Thread.Sleep(2000);
+                Browser.GetElementOnMousePosition().ContinueWith(t =>
                 {
-                    MessageBox.Show((string)response.Result);
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+                    var response = t.Result;
+                    if (response.Success && response.Result != null)
+                    {
+                        MessageBox.Show((string)response.Result);
+                    }
+                });
+            });
+            thread.Start();
         }
     }
 }

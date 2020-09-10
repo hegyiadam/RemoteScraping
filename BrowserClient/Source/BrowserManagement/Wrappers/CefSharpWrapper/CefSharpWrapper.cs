@@ -28,9 +28,17 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
         public CefSharpWrapper(ChromiumWebBrowser browser)
         {
             Browser = browser;
+            browser.FrameLoadEnd += Browser_FrameLoadEnd;
             Thread.Sleep(2000);
             browser.MouseDown += Browser_MouseDown;
         }
+
+        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.ImportJQuery);
+        }
+
+
 
         private void Browser_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

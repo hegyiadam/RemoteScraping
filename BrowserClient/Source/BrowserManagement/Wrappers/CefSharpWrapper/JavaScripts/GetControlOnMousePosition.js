@@ -14,4 +14,4 @@
         }
     }
     return names.join(" > ");
-})(document.elementFromPoint(400, 400));
+})($(':hover').last()[0]);

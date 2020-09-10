@@ -78,6 +78,9 @@
     <Content Include="Wrappers\CefSharpWrapper\JavaScripts\HighlightControl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\ImportJQuery.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
