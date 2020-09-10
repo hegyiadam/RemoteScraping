@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WPFBrowserClient.Model;
 using WPFBrowserClient.View.Pages;
 
 namespace WPFBrowserClient.ViewModel.Commands
@@ -22,7 +23,7 @@ namespace WPFBrowserClient.ViewModel.Commands
         public void Execute(object parameter)
         {
 
-            WindowViewModel.MainFrame.Navigate(new SiteScrapingPage());
+            WindowViewModel.MainFrame.Navigate(PageContainer.Instance.GetPage<SiteScrapingPage>());
         }
     }
 }

@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WPFBrowserClient.CompositionManagement;
 using WPFBrowserClient.Model;
 using WPFBrowserClient.View.Pages;
 using WPFBrowserClient.ViewModel.Commands;
@@ -20,6 +22,7 @@ namespace WPFBrowserClient.ViewModel
     public class SiteScrapingPageViewModel
     {
         private ActualWebPage actualWebPage = ActualWebPage.Instance;
+        private IBrowserWrapper _browserWrapeer = null;
 
         public SiteScrapingPageViewModel(ChromiumWebBrowser browser)
         {
@@ -36,7 +39,11 @@ namespace WPFBrowserClient.ViewModel
         {
             get
             {
-                return BrowserWrapperFactory.CreateBrowserWrapper(Browser);
+                if(_browserWrapeer != null)
+                {
+                    _browserWrapeer = BrowserWrapperFactory.CreateBrowserWrapper(Browser);
+                }
+                return _browserWrapeer;
             }
         }
 
@@ -56,7 +63,7 @@ namespace WPFBrowserClient.ViewModel
 
         private void InitializeCommands()
         {
-            InitializeScrapingCommands();
+            CompositionHandler.Compose(typeof(IScrapingCommand), this);
             Commands = new ObservableCollection<DisplayableCommand>();
             foreach (IScrapingCommand command in ScrapingCommands)
             {
@@ -69,12 +76,5 @@ namespace WPFBrowserClient.ViewModel
             }
         }
 
-        private void InitializeScrapingCommands()
-        {
-            AggregateCatalog catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(IScrapingCommand).Assembly));
-            CompositionContainer container = new CompositionContainer(catalog);
-            container.SatisfyImportsOnce(this);
-        }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFBrowserClient.Model;
 using WPFBrowserClient.ViewModel;
 
 namespace WPFBrowserClient.View.Pages
@@ -20,7 +21,7 @@ namespace WPFBrowserClient.View.Pages
     /// <summary>
     /// Interaction logic for SiteScrapingPage.xaml
     /// </summary>
-    public partial class SiteScrapingPage : Page
+    public partial class SiteScrapingPage : Page, ISingletonPage
     {
         public SiteScrapingPage()
         {

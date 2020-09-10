@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFBrowserClient.Model;
 using WPFBrowserClient.ViewModel;
 
 namespace WPFBrowserClient.View.Pages
@@ -19,7 +20,7 @@ namespace WPFBrowserClient.View.Pages
     /// <summary>
     /// Interaction logic for RootSitePage.xaml
     /// </summary>
-    public partial class RootSitePage : Page
+    public partial class RootSitePage : Page, ISingletonPage
     {
         public RootSitePage()
         {
