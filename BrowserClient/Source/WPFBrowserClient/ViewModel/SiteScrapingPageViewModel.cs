@@ -1,9 +1,12 @@
 ﻿using BrowserManagement;
 using BrowserManagement.Wrappers.CefSharpWrapper;
+using CefSharp;
 using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,30 +19,16 @@ namespace WPFBrowserClient.ViewModel
 {
     public class SiteScrapingPageViewModel
     {
-        private ActualWebPage actualPage = ActualWebPage.Instance;
+        private ActualWebPage actualWebPage = ActualWebPage.Instance;
 
         public SiteScrapingPageViewModel(ChromiumWebBrowser browser)
         {
             Browser = browser;
-            Commands = new ObservableCollection<DisplayableCommand>()
-            {
-                new DisplayableCommand()
-                {
-                    Name = "Highlight clicked elements",
-                    Command = new GetElementAtMousePositionCommand(BrowserWrapper)
-                },
-                new DisplayableCommand()
-                {
-                    Name = "Hello2",
-                    Command = new TestCommand("2")
-                },
-                new DisplayableCommand()
-                {
-                    Name = "Hello3",
-                    Command = new TestCommand("3")
-                },
-            };
+            InitializeCommands();
         }
+
+        [ImportMany]
+        public IScrapingCommand[] ScrapingCommands { get; set; }
 
         public ChromiumWebBrowser Browser { get; set; }
 
@@ -55,14 +44,37 @@ namespace WPFBrowserClient.ViewModel
         {
             get
             {
-                return actualPage.URL;
+                return actualWebPage.URL;
             }
             set
             {
-                actualPage.URL = value;
+                actualWebPage.URL = value;
             }
         }
 
         public ObservableCollection<DisplayableCommand> Commands { get; set; }
+
+        private void InitializeCommands()
+        {
+            InitializeScrapingCommands();
+            Commands = new ObservableCollection<DisplayableCommand>();
+            foreach (IScrapingCommand command in ScrapingCommands)
+            {
+                command.Browser = BrowserWrapper;
+
+                Commands.Add(new DisplayableCommand()
+                {
+                    Command = command
+                });
+            }
+        }
+
+        private void InitializeScrapingCommands()
+        {
+            AggregateCatalog catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(IScrapingCommand).Assembly));
+            CompositionContainer container = new CompositionContainer(catalog);
+            container.SatisfyImportsOnce(this);
+        }
     }
 }

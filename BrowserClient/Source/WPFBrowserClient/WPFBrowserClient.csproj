@@ -94,6 +94,7 @@
       <HintPath>..\..\TemporaryResources\Logging\Release\Logging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\TemporaryResources\Logging\Release\System.Configuration.ConfigurationManager.dll</HintPath>
@@ -157,11 +158,11 @@
     </Compile>
     <Compile Include="Model\ActualWebPage.cs" />
     <Compile Include="Model\ConfigManager.cs" />
+    <Compile Include="ViewModel\Commands\HighlightClickedElement.cs" />
     <Compile Include="ViewModel\Commands\GetElementAtMousePositionCommand.cs" />
-    <Compile Include="ViewModel\Commands\NavigateCommand.cs" />
-    <Compile Include="ViewModel\Commands\RemoveFocusCommand.cs" />
+    <Compile Include="ViewModel\Commands\IScrapingCommand.cs" />
+    <Compile Include="ViewModel\Commands\ShowDevToolsCommand.cs" />
     <Compile Include="ViewModel\Commands\StartScrapingCommand.cs" />
-    <Compile Include="ViewModel\Commands\TestCommand.cs" />
     <Compile Include="ViewModel\DisplayableCommand.cs" />
     <Compile Include="ViewModel\RootSitePageViewModel.cs" />
     <Compile Include="ViewModel\SiteScrapingPageViewModel.cs" />

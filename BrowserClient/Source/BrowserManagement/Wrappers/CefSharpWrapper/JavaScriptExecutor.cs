@@ -24,11 +24,22 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             string javaScriptCommand = ReadJavaScriptFromFile(javaScriptFilePath);
             ExecuteJavaScriptCommand(javaScriptCommand);
         }
+        public Task<JavascriptResponse> EvaluateJavaScriptFileContent(string javaScriptFilePath)
+        {
+            string javaScriptCommand = ReadJavaScriptFromFile(javaScriptFilePath);
+            return EvaluateJavaScriptCommand(javaScriptCommand);
+        }
 
         private void ExecuteJavaScriptCommand(string javaScriptCommand)
         {
-            javaScriptCommand.Replace("\r","").Replace("\n","");
+            javaScriptCommand.Replace("\r", "").Replace("\n", "");
             Browser.ExecuteScriptAsync(javaScriptCommand);
+        }
+        private Task<JavascriptResponse> EvaluateJavaScriptCommand(string javaScriptCommand)
+        {
+            javaScriptCommand.Replace("\r", "").Replace("\n", "");
+            Task<JavascriptResponse> task = Browser.EvaluateScriptAsync(javaScriptCommand);
+            return task;
         }
 
 

@@ -72,6 +72,9 @@
     <Compile Include="Wrappers\CefSharpWrapper\JavaScripts\JavaScriptFile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\GetControlOnMousePosition.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Wrappers\CefSharpWrapper\JavaScripts\HighlightControl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

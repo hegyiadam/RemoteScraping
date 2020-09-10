@@ -1,25 +1,14 @@
 ﻿using BrowserManagement;
-using CefSharp;
-using CefSharp.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace WPFBrowserClient.ViewModel.Commands
 {
-    public class GetElementAtMousePositionCommand : ICommand
+    public class GetElementAtMousePositionCommand : IScrapingCommand
     {
-        private IBrowserWrapper Browser;
+        public IBrowserWrapper Browser { get; set; }
 
-        public GetElementAtMousePositionCommand(IBrowserWrapper browser)
-        {
-            Browser = browser;
-        }
 
         public event EventHandler CanExecuteChanged;
 
@@ -28,9 +17,15 @@ namespace WPFBrowserClient.ViewModel.Commands
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
-            Browser.HighlightControl();
+            Browser.GetElementOnMousePosition().ContinueWith(t => {
+                var response = t.Result;
+                if(response.Success && response.Result != null)
+                {
+                    MessageBox.Show((string)response.Result);
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
     }
 }

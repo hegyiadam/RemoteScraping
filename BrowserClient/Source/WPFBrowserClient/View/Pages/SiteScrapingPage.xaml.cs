@@ -25,6 +25,7 @@ namespace WPFBrowserClient.View.Pages
         public SiteScrapingPage()
         {
             InitializeComponent();
+
             ChromiumWebBrowser browser = FindName("browser") as ChromiumWebBrowser;
             DataContext = new SiteScrapingPageViewModel(browser);
         }
