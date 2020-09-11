@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace BrowserManagement.Wrappers.CefSharpWrapper
 {
     public class CefSharpWrapper : IBrowserWrapper
     {
         private const string INVALID_BROWSER = "Invalid browser type was requested.";
+
+        public event ControlKeyHandler ControlKeyPressed;
 
         private JavaScriptExecutor ScriptExecutor
         {
@@ -30,7 +34,15 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             Browser = browser;
             browser.FrameLoadEnd += Browser_FrameLoadEnd;
             Thread.Sleep(2000);
-            browser.MouseDown += Browser_MouseDown;
+            browser.KeyDown += Browser_KeyDown;
+        }
+
+        private void Browser_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                ControlKeyPressed?.Invoke();
+            }
         }
 
         private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
@@ -39,15 +51,14 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
         }
 
 
-
-        private void Browser_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        public void AutoHighlightControl()
         {
-            MessageBox.Show( e.OriginalSource.ToString());
+            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.AutoHighlightControl);
         }
 
-        public void HighlightControl()
+        public void RemoveAutoHighlightControl()
         {
-            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.HighlightControl);
+            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.RemoveAutoHighlightControl);
         }
 
         public Task<JavascriptResponse> GetElementOnMousePosition()
@@ -56,13 +67,10 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             return response;
         }
 
-        public T GetBrowser<T>() where T : class
+        public Control GetControl()
         {
-            if(typeof(T) != typeof(ChromiumWebBrowser))
-            {
-                throw new InvalidOperationException(INVALID_BROWSER);
-            }
-            return Browser as T;
+            return Browser;
         }
+
     }
 }

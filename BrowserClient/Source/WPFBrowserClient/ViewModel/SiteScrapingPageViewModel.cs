@@ -39,7 +39,7 @@ namespace WPFBrowserClient.ViewModel
         {
             get
             {
-                if(_browserWrapeer != null)
+                if(_browserWrapeer == null)
                 {
                     _browserWrapeer = BrowserWrapperFactory.CreateBrowserWrapper(Browser);
                 }

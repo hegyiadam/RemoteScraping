@@ -35,16 +35,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CefSharp">
-      <HintPath>..\..\packages\CefSharp.Common.83.4.20\CefSharp\x86\CefSharp.dll</HintPath>
+      <HintPath>..\..\packages\CefSharp.Common.84.4.10\CefSharp\x86\CefSharp.dll</HintPath>
     </Reference>
     <Reference Include="CefSharp.BrowserSubprocess.Core">
-      <HintPath>..\..\packages\CefSharp.Common.83.4.20\CefSharp\x86\CefSharp.BrowserSubprocess.Core.dll</HintPath>
+      <HintPath>..\..\packages\CefSharp.Common.84.4.10\CefSharp\x86\CefSharp.BrowserSubprocess.Core.dll</HintPath>
     </Reference>
     <Reference Include="CefSharp.Core">
-      <HintPath>..\..\packages\CefSharp.Common.83.4.20\CefSharp\x86\CefSharp.Core.dll</HintPath>
+      <HintPath>..\..\packages\CefSharp.Common.84.4.10\CefSharp\x86\CefSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="CefSharp.Wpf">
-      <HintPath>..\..\packages\CefSharp.Wpf.83.4.20\CefSharp\x86\CefSharp.Wpf.dll</HintPath>
+      <HintPath>..\..\packages\CefSharp.Wpf.84.4.10\CefSharp\x86\CefSharp.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -72,10 +72,13 @@
     <Compile Include="Wrappers\CefSharpWrapper\JavaScripts\JavaScriptFile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\RemoveAutoHighlightControl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Wrappers\CefSharpWrapper\JavaScripts\GetControlOnMousePosition.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\HighlightControl.js">
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\AutoHighlightControl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Wrappers\CefSharpWrapper\JavaScripts\ImportJQuery.js">

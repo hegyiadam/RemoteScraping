@@ -17,7 +17,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <view:SearchBarUserControl Grid.Row="0"></view:SearchBarUserControl>
-        <!--<wpf:ChromiumWebBrowser x:Name="Browser" Address="{Binding URL, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>-->
+        <wpf:ChromiumWebBrowser x:Name="Browser" Address="{Binding URL, Mode=TwoWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
         <Button Grid.Row="2" VerticalAlignment="Center" Background="LightSeaGreen" Padding="5" FontSize="20" Command="{Binding StartScrapingCommand}">Start Scraping</Button>
     </Grid>
 </Page>

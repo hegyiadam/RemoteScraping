@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BrowserManagement
 {
+
+    public delegate void ControlKeyHandler();
     public interface IBrowserWrapper
     {
-        T GetBrowser<T>() where T : class;
-        void HighlightControl();
+        event ControlKeyHandler ControlKeyPressed;
+        Control GetControl();
+        void AutoHighlightControl();
+        void RemoveAutoHighlightControl();
         Task<JavascriptResponse> GetElementOnMousePosition();
     }
 }

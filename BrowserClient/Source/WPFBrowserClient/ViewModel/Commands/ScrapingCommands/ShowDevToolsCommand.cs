@@ -11,7 +11,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 {
 
 
-	public class ShowDevToolsCommand : IScrapingCommand
+	public class ShowDevToolsCommand //: IScrapingCommand
 	{
 		public IBrowserWrapper Browser { get; set; }
 
@@ -24,7 +24,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
 		public void Execute(object parameter)
 		{
-			Browser.GetBrowser<ChromiumWebBrowser>().ShowDevTools();
+			//Browser.GetBrowser<ChromiumWebBrowser>().ShowDevTools();
 		}
 	}
 

@@ -25,7 +25,7 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            Browser.HighlightControl();
+            Browser.AutoHighlightControl();
         }
     }
 }

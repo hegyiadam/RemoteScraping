@@ -21,10 +21,15 @@ namespace WPFBrowserClient.ViewModel.Commands
 
         public async void Execute(object parameter)
         {
-            Browser.GetBrowser<ChromiumWebBrowser>().Focus();
+            Browser.GetControl().Focus();
+            Browser.AutoHighlightControl();
+            Browser.ControlKeyPressed += BrowserWrapper_ControlKeyPressed;
+        }
+
+        private void BrowserWrapper_ControlKeyPressed()
+        {
             Thread thread = new Thread(() =>
             {
-                Thread.Sleep(2000);
                 Browser.GetElementOnMousePosition().ContinueWith(t =>
                 {
                     var response = t.Result;
@@ -33,6 +38,8 @@ namespace WPFBrowserClient.ViewModel.Commands
                         MessageBox.Show((string)response.Result);
                     }
                 });
+                Browser.RemoveAutoHighlightControl();
+
             });
             thread.Start();
         }
