@@ -1,4 +1,4 @@
-﻿using Controller.Tasks;
+﻿using ComponentInterfaces.Tasks;
 using Scheduler;
 using System;
 using System.Collections.Generic;
@@ -18,5 +18,6 @@ namespace MasterService.ActiveObject
             scheduler.Insert(task);
             return result;
         }
+
     }
 }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Tasks
+namespace PythonComponents
 {
-    public interface ITaskId
+    public class ProcessorFilter : ComponentInterfaces.Processor.IProcessorFilter
     {
-        string Serialize();
 
-        ITaskId Deserialize(string source);
     }
 }

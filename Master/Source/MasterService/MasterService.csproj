@@ -79,6 +79,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestApi.cs" />
+    <Compile Include="Tasks\DownloadTagBySelectorTask.cs" />
+    <Compile Include="Tasks\ProcessorTaskBase.cs" />
+    <Compile Include="Tasks\TaskBase.cs" />
+    <Compile Include="Tasks\TaskId.cs" />
+    <Compile Include="Tasks\TaskIdFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -88,6 +93,10 @@
     <ProjectReference Include="..\ComponentInterfaces\ComponentInterfaces.csproj">
       <Project>{751e7cac-0047-4bf3-b6ad-6a0925f96fd0}</Project>
       <Name>ComponentInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PythonComponents\PythonComponents.csproj">
+      <Project>{229fead7-6e98-4f16-b825-eea1ca0fc33a}</Project>
+      <Name>PythonComponents</Name>
     </ProjectReference>
     <ProjectReference Include="..\Scheduler\Scheduler.csproj">
       <Project>{93B7034F-BD26-4036-AEE5-3D0369AE7D7B}</Project>

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller.Tasks
+namespace ComponentInterfaces.Tasks
 {
     public enum TaskState
     {
+        Initialized,
+        Processing,
+        Ready
     }
 }

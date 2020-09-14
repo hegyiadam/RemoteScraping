@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ComponentInterfaces.Processor
 {
-    public interface IProcessorId
+    public enum ProcessorState
     {
+        Ready,
+        Busy
     }
 }

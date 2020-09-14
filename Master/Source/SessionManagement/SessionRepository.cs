@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Tasks
+namespace SessionManagement.UserHandling
 {
-    public interface ITaskId
+    public class SessionRepository
     {
-        string Serialize();
+        public Session CreateSession()
+        { 
 
-        ITaskId Deserialize(string source);
+        }
     }
 }

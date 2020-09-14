@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{751E7CAC-0047-4BF3-B6AD-6A0925F96FD0}</ProjectGuid>
+    <ProjectGuid>{EC94B627-60A0-418B-9A60-0DC2204232F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ComponentInterfaces</RootNamespace>
-    <AssemblyName>ComponentInterfaces</AssemblyName>
+    <RootNamespace>SessionManagement</RootNamespace>
+    <AssemblyName>SessionManagement</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Deploy\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,16 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Processor\IProcessor.cs" />
-    <Compile Include="Processor\IProcessorFilter.cs" />
-    <Compile Include="Processor\IProcessorId.cs" />
-    <Compile Include="Processor\IProcessorState.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session\ISessionId.cs" />
-    <Compile Include="Tasks\ITask.cs" />
-    <Compile Include="Tasks\ITaskId.cs" />
-    <Compile Include="Tasks\ITaskIdFactory.cs" />
-    <Compile Include="Tasks\TaskState.cs" />
+    <Compile Include="SessionDetails.cs" />
+    <Compile Include="SessionId.cs" />
+    <Compile Include="SessionRepository.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

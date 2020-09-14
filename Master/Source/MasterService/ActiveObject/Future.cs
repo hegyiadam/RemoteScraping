@@ -1,4 +1,4 @@
-﻿using Controller.Tasks;
+﻿using ComponentInterfaces.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +16,29 @@ namespace MasterService.ActiveObject
         }
         private ITask Task { get; set; }
 
-        public TaskState Result
+        public ITaskId Id
+        {
+            get
+            {
+                return Task.Id;
+            }
+        }
+
+        public object Result
+        {
+            get
+            {
+                return Task.Result;
+            }
+
+        }
+
+        public TaskState State
         {
             get
             {
                 return Task.ActualState;
             }
-
         }
 
         public void StateChangeHandler()

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Processor
+namespace PythonComponents
 {
-    public interface IProcessorId
+    public class Processor : ComponentInterfaces.Processor.IProcessor
     {
     }
 }

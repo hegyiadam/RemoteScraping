@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Processor
+namespace SessionManagement
 {
-    public interface IProcessorId
+    public class SessionId
     {
+        public string UserName { get; set; }
     }
 }

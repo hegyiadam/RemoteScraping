@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComponentInterfaces.Processor
 {
-    public interface IProcessorId
+    public interface IProcessorFilter
     {
     }
 }

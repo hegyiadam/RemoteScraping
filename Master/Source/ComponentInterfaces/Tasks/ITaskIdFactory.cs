@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentInterfaces.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ComponentInterfaces.Tasks
 {
-    public interface ITaskId
+    public interface ITaskIdFactory
     {
-        string Serialize();
-
-        ITaskId Deserialize(string source);
+        ITaskId CreateId();
     }
 }

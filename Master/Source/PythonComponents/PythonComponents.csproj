@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Processor.cs" />
+    <Compile Include="ProcessorFilter.cs" />
+    <Compile Include="ProcessorRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComponentInterfaces\ComponentInterfaces.csproj">
+      <Project>{751e7cac-0047-4bf3-b6ad-6a0925f96fd0}</Project>
+      <Name>ComponentInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MasterService.ActiveObject;
+using MasterService.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,35 @@ namespace MasterService
 {
     public class MethodController : ApiController
     {
+        private Proxy proxy = new Proxy();
+        private static Dictionary<string, Future> futures = new Dictionary<string, Future>();
+
         [HttpGet]
-        [ActionName("MethodOne")]
-        public string GetElementById(string id)
+        [ActionName("DownloadTagBySelector")]
+        public Future DownloadTagBySelector(string selector)
         {
-            return id;
+            DownloadTagBySelectorTask task = new DownloadTagBySelectorTask(new PythonComponents.ProcessorFilter())
+            {
+                Selector = selector
+            };
+            Future future = proxy.ProcessRequest(task);
+            futures.Add(future.Id.Serialize(),future);
+            return future;
+        }
+
+        [HttpGet]
+        [ActionName("GetFutureState")]
+        public string GetFutureState(string taskId)
+        {
+            try
+            {
+                Future future = futures[taskId];
+                return future.State.ToString();
+            }
+            catch
+            {
+                return "Resource was not found";
+            }
         }
     }
 }

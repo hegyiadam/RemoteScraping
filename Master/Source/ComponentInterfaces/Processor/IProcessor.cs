@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller.Processor
+namespace ComponentInterfaces.Processor
 {
-    interface IProcessor
+    public interface IProcessor
     {
     }
 }

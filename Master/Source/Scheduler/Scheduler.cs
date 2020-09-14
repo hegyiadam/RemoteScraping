@@ -1,4 +1,5 @@
-﻿using Controller.Tasks;
+﻿using System.Threading;
+using ComponentInterfaces.Tasks;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -11,9 +12,25 @@ namespace Scheduler
 {
 	public class Scheduler
 	{
-		private static readonly ConcurrentQueue<ITask> queue = new ConcurrentQueue<ITask>();
+
+		private readonly ConcurrentQueue<ITask> queue = new ConcurrentQueue<ITask>();
+		private ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+
+
 		private static Scheduler _instance = null;
-		private Scheduler() { }
+		private Scheduler() 
+		{
+			Thread thread = new Thread(() =>
+			{
+				while (true)
+				{
+					manualResetEvent.WaitOne();
+					Dispatch();
+				}
+			});
+			thread.Start();
+		}
+
 		public static Scheduler Instance
 		{
 			get
@@ -29,6 +46,7 @@ namespace Scheduler
 		public void Insert(ITask task)
 		{
 			queue.Enqueue(task);
+			manualResetEvent.Set();
 
 		}
 
@@ -36,11 +54,19 @@ namespace Scheduler
 		{
 			ITask task;
 			queue.TryDequeue(out task);
-			task.CanRun();
-			task.Call();
+			if (task.CanRun())
+			{
+				task.Call();
+				manualResetEvent.Reset();
+			}
+			else
+			{
+				Insert(task);
+			}
 
 		}
 
+		
 
     }
 }
