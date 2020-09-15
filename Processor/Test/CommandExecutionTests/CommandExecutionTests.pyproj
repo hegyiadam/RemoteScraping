@@ -2,16 +2,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>1448083e-3579-44d6-94e9-f969d2755e07</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>Executable.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <ProjectGuid>b097c626-0920-4030-8ba0-1c88f6cbe051</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>ExecutableTests.py</StartupFile>
+    <SearchPath>..\..\Source\Executable</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>CommandExecution</Name>
-    <RootNamespace>Executor</RootNamespace>
+    <Name>CommandExecutionTests</Name>
+    <RootNamespace>CommandExecutionTests</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,13 +20,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Executable.py" />
-    <Compile Include="IExecutable.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Webpage.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="ExecutableTests.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

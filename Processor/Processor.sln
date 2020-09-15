@@ -11,6 +11,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommandExecution", "Source\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Service", "Source\Service\Service.pyproj", "{034002D8-D6D3-4417-92C5-6E17BDAFB3F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessorDesktop", "ProcessorDesktop\ProcessorDesktop.csproj", "{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommandExecutionTests", "Test\CommandExecutionTests\CommandExecutionTests.pyproj", "{B097C626-0920-4030-8BA0-1C88F6CBE051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,12 @@ Global
 		{034002D8-D6D3-4417-92C5-6E17BDAFB3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034002D8-D6D3-4417-92C5-6E17BDAFB3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034002D8-D6D3-4417-92C5-6E17BDAFB3F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B097C626-0920-4030-8BA0-1C88F6CBE051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B097C626-0920-4030-8BA0-1C88F6CBE051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +40,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1448083E-3579-44D6-94E9-F969D2755E07} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
 		{034002D8-D6D3-4417-92C5-6E17BDAFB3F8} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
+		{B2137C3E-FF04-4C61-96FD-70FD39B87CC6} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
+		{B097C626-0920-4030-8BA0-1C88F6CBE051} = {780C0655-6779-4BFC-ADC8-2FF9BD166E01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D48C3CE-C36B-46EF-9405-1E59454BC030}
