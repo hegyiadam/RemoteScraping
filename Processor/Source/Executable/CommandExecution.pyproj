@@ -6,8 +6,7 @@
     <ProjectHome>
     </ProjectHome>
     <StartupFile>Executable.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\..\_Globals</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>CommandExecution</Name>
@@ -24,6 +23,12 @@
   <ItemGroup>
     <Compile Include="Executable.py" />
     <Compile Include="IExecutable.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LocationContainer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResultWriter.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Webpage.py">

@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBlock>
-            
+            <Button Click="Button_Click">Send</Button>
         </TextBlock>
     </Grid>
 </Window>
