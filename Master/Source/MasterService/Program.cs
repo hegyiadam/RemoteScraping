@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace MasterService
 {
@@ -14,6 +13,8 @@ namespace MasterService
         {
             WebApp.Start<RestApi>(AppConfigManager.Instance.ServerAddress);
             Console.WriteLine("REST Api is online!");
+            HubComponents.HubHandler.StartHub();
+            Console.WriteLine("Hub is online!");
             Console.ReadLine();
         }
     }
