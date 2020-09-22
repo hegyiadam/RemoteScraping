@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBrowserClient", "Source\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserManagement", "Source\BrowserManagement\BrowserManagement.csproj", "{9594CDE2-90D8-4345-9E26-810B11D55BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterConnection", "MasterConnection\MasterConnection.csproj", "{F5C085DA-6E8F-4A25-AA79-E40AAEDC8725}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterConnection", "Source\MasterConnection\MasterConnection.csproj", "{F5C085DA-6E8F-4A25-AA79-E40AAEDC8725}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

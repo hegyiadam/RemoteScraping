@@ -87,12 +87,6 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\TemporaryResources\Logging\Release\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Logging">
-      <HintPath>..\..\TemporaryResources\Logging\Release\Logging.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -213,13 +207,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MasterConnection\MasterConnection.csproj">
-      <Project>{F5C085DA-6E8F-4A25-AA79-E40AAEDC8725}</Project>
-      <Name>MasterConnection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BrowserManagement\BrowserManagement.csproj">
       <Project>{9594CDE2-90D8-4345-9E26-810B11D55BCB}</Project>
       <Name>BrowserManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterConnection\MasterConnection.csproj">
+      <Project>{f5c085da-6e8f-4a25-aa79-e40aaedc8725}</Project>
+      <Name>MasterConnection</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
