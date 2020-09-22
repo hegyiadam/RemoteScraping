@@ -27,7 +27,11 @@ namespace HubHandling
 
         public async static void SendCommand()
         {
-             hubProxy.Invoke<string>("DoSomething", "Hello");
+            hubProxy.Invoke<string>("DoSomething", "Hello");
+        }
+        public async static void SubscribeToDownloadSelector(Action<string> downloadSelectorHandler)
+        {
+            hubProxy.On<string>("DownloadTag", selector => downloadSelectorHandler(selector));
         }
     }
 }

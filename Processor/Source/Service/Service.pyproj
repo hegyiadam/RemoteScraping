@@ -18,6 +18,8 @@
     <Name>Service</Name>
     <RootNamespace>RestApiExample</RootNamespace>
     <WebBrowserPort>8800</WebBrowserPort>
+    <IsWindowsApplication>True</IsWindowsApplication>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

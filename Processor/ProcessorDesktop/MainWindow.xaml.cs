@@ -24,13 +24,19 @@ namespace ProcessorDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Executable execution;
         public MainWindow()
         {
             InitializeComponent();
             Closing += CloseHandler;
             HubConnector.Start();
-            Executable execution = new Executable();
-            execution.find_tag_by_css_selector("https://stackoverflow.com/questions/24801548/how-to-use-css-selectors-to-retrieve-specific-links-lying-in-some-class-using-be", "#answer-24801950 > div > div.answercell.post-layout--right > div.s-prose.js-post-body");
+            execution = new Executable();
+            HubConnector.SubscribeToDownloadSelector(downloadSelectorHandler);
+        }
+
+        private void downloadSelectorHandler(string selector)
+        {
+            execution.find_tag_by_css_selector("http://127.0.0.1:5000/", selector);
         }
 
         private void CloseHandler(object sender, CancelEventArgs e)
