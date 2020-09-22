@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\Deploy\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -95,11 +95,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Source\HubHandling\HubHandling.csproj">
+    <ProjectReference Include="..\HubHandling\HubHandling.csproj">
       <Project>{F9869AD7-4292-42EE-A94B-E5CE078101AF}</Project>
       <Name>HubHandling</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Source\PythonExecution\PythonExecution.csproj">
+    <ProjectReference Include="..\PythonExecution\PythonExecution.csproj">
       <Project>{dfb375a8-1cbe-42a4-9b14-17d54d69cc4e}</Project>
       <Name>PythonExecution</Name>
     </ProjectReference>

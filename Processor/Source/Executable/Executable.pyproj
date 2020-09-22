@@ -9,7 +9,7 @@
     <SearchPath>..\..\_Globals</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>CommandExecution</Name>
+    <Name>Executable</Name>
     <RootNamespace>Executor</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

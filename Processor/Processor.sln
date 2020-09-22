@@ -7,17 +7,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{EF2E64
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{780C0655-6779-4BFC-ADC8-2FF9BD166E01}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommandExecution", "Source\Executable\CommandExecution.pyproj", "{1448083E-3579-44D6-94E9-F969D2755E07}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Executable", "Source\Executable\Executable.pyproj", "{1448083E-3579-44D6-94E9-F969D2755E07}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Service", "Source\Service\Service.pyproj", "{034002D8-D6D3-4417-92C5-6E17BDAFB3F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessorDesktop", "ProcessorDesktop\ProcessorDesktop.csproj", "{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessorDesktop", "Source\ProcessorDesktop\ProcessorDesktop.csproj", "{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommandExecutionTests", "Test\CommandExecutionTests\CommandExecutionTests.pyproj", "{B097C626-0920-4030-8BA0-1C88F6CBE051}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonExecution", "Source\PythonExecution\PythonExecution.csproj", "{DFB375A8-1CBE-42A4-9B14-17D54D69CC4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubHandling", "Source\HubHandling\HubHandling.csproj", "{F9869AD7-4292-42EE-A94B-E5CE078101AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Globals", "_Globals", "{CB786D6B-24B7-4BD9-9DDD-31F3268B7BDF}"
+	ProjectSection(SolutionItems) = preProject
+		_Globals\settings.json = _Globals\settings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
