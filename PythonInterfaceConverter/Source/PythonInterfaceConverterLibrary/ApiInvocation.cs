@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary
+namespace PythonInterfaceConverterLibrary
 {
     public static class ApiInvocation
     {
@@ -59,7 +59,7 @@ namespace PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary
                 {
                     for (int i = 1; i < parameters.Count; i++)
                     {
-                        if(parameters is string)
+                        if(parameters[i] is string)
                         {
                             json += ",\"" + parameters[i] + "\"";
                         }

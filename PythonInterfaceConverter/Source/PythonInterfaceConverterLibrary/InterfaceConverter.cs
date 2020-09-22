@@ -1,4 +1,4 @@
-﻿using PythonInterfaceConverter.Source.CommonLibrary;
+﻿using CommonLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary
+namespace PythonInterfaceConverterLibrary
 {
     public static class InterfaceConverter
     {

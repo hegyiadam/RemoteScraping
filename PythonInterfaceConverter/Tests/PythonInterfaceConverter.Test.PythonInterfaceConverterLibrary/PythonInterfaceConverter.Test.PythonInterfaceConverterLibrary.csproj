@@ -76,13 +76,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\CommonLibrary\PythonInterfaceConverter.Source.CommonLibrary.csproj">
+    <ProjectReference Include="..\..\Source\CommonLibrary\CommonLibrary.csproj">
       <Project>{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}</Project>
-      <Name>PythonInterfaceConverter.Source.CommonLibrary</Name>
+      <Name>CommonLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\PythonInterfaceConverterLibrary\PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary.csproj">
+    <ProjectReference Include="..\..\Source\PythonInterfaceConverterLibrary\PythonInterfaceConverterLibrary.csproj">
       <Project>{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}</Project>
-      <Name>PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary</Name>
+      <Name>PythonInterfaceConverterLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PythonInterfaceConverter.Source.CommonLibrary;
-using PythonInterfaceConverter.Source.PythonInterfaceConverter;
+using CommonLibrary;
+using PythonInterfaceConverter;
 
 namespace PythonInterfaceConverter.Test.PythonInterfaceConverter
 {
