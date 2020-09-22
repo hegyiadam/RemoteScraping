@@ -161,6 +161,7 @@
     <Compile Include="Model\ConfigManager.cs" />
     <Compile Include="Model\ISingletonPage.cs" />
     <Compile Include="Model\PageContainer.cs" />
+    <Compile Include="Model\SelectorRequest.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\HighlightClickedElement.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetElementAtMousePositionCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\IScrapingCommand.cs" />
@@ -212,6 +213,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MasterConnection\MasterConnection.csproj">
+      <Project>{F5C085DA-6E8F-4A25-AA79-E40AAEDC8725}</Project>
+      <Name>MasterConnection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BrowserManagement\BrowserManagement.csproj">
       <Project>{9594CDE2-90D8-4345-9E26-810B11D55BCB}</Project>
       <Name>BrowserManagement</Name>

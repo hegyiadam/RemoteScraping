@@ -1,9 +1,11 @@
 ﻿using BrowserManagement;
 using CefSharp.Wpf;
+using MasterConnection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using WPFBrowserClient.Model;
 
 namespace WPFBrowserClient.ViewModel.Commands
 {
@@ -35,11 +37,13 @@ namespace WPFBrowserClient.ViewModel.Commands
                     var response = t.Result;
                     if (response.Success && response.Result != null)
                     {
-                        MessageBox.Show((string)response.Result);
+                        SelectorRequest selectorRequest = new SelectorRequest();
+                        selectorRequest.Selector = (string)response.Result;
+                        MasterConnection.MasterConnection.RunCommand("DownloadTagBySelector",selectorRequest);
                     }
                 });
                 Browser.RemoveAutoHighlightControl();
-
+                Browser.ControlKeyPressed -= BrowserWrapper_ControlKeyPressed;
             });
             thread.Start();
         }
