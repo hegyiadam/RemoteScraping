@@ -13,7 +13,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Service", "Source\Service\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessorDesktop", "Source\ProcessorDesktop\ProcessorDesktop.csproj", "{B2137C3E-FF04-4C61-96FD-70FD39B87CC6}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommandExecutionTests", "Test\CommandExecutionTests\CommandExecutionTests.pyproj", "{B097C626-0920-4030-8BA0-1C88F6CBE051}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Processor.Test.Executable", "Test\ExecutableTests\Processor.Test.Executable.pyproj", "{B097C626-0920-4030-8BA0-1C88F6CBE051}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonExecution", "Source\PythonExecution\PythonExecution.csproj", "{DFB375A8-1CBE-42A4-9B14-17D54D69CC4E}"
 EndProject

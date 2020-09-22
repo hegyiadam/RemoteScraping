@@ -3,12 +3,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b097c626-0920-4030-8ba0-1c88f6cbe051</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <StartupFile>ExecutableTests.py</StartupFile>
     <SearchPath>..\..\Source\Executable</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>CommandExecutionTests</Name>
+    <Name>Processor.Test.Executable</Name>
     <RootNamespace>CommandExecutionTests</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
