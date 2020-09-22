@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Processor
+namespace MasterService
 {
-    public interface IProcessor
+    public class SelectorRequest
     {
-        void DownloadTag(string Selector);
+        public string Selector { get; set; }
     }
 }

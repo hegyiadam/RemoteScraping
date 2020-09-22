@@ -14,13 +14,14 @@ namespace MasterService
         private Proxy proxy = new Proxy();
         private static Dictionary<string, Future> futures = new Dictionary<string, Future>();
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("DownloadTagBySelector")]
-        public Future DownloadTagBySelector(string selector)
+        public Future DownloadTagBySelector([FromBody]SelectorRequest selector)
         {
+            Console.WriteLine(selector.Selector);
             DownloadTagBySelectorTask task = new DownloadTagBySelectorTask(new PythonComponents.ProcessorFilter())
             {
-                Selector = selector
+                Selector = selector.Selector
             };
             Future future = proxy.ProcessRequest(task);
             futures.Add(future.Id.Serialize(),future);

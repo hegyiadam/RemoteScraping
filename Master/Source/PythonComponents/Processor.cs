@@ -8,5 +8,9 @@ namespace PythonComponents
 {
     public class Processor : ComponentInterfaces.Processor.IProcessor
     {
+        public void DownloadTag(string Selector)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

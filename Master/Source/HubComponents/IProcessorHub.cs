@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentInterfaces.Processor
+namespace HubComponents
 {
-    public interface IProcessor
+    public interface IProcessorHub
     {
-        void DownloadTag(string Selector);
+        void DownloadTag(string selector);
     }
 }

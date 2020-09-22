@@ -7,16 +7,29 @@ namespace HubComponents
 {
     public class ProcessorHub : Hub
     {
+        private static IHubContext context 
+        {
+            get
+            {
+                return GlobalHost.ConnectionManager.GetHubContext<ProcessorHub>();
+            }
+        }
+
         #region Methods
         public void Send(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void DoSomething(string param)
+        public static void DoSomething(string param)
         {
             Console.WriteLine(param);
-            Clients.All.addMessage(param);
+            context.Clients.All.addMessage(param);
+        }
+        public static void DownloadTag(string selector)
+        {
+            Console.WriteLine(selector);
+            context.Clients.All.DownloadTag(selector);
         }
         #endregion
 

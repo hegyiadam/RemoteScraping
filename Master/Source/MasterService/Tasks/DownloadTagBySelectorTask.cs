@@ -1,5 +1,6 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
+using HubComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace MasterService.Tasks
 
         public override void Call()
         {
+            ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault().DownloadTag(Selector);
             Result = Selector;
             System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;
