@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PythonInterfaceConverter.Source.CommonLibrary
+namespace CommonLibrary
 {
     static public class StringManipulator
     {

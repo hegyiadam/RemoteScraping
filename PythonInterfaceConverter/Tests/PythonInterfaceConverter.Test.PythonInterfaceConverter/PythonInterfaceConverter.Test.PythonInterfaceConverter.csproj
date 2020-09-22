@@ -74,13 +74,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\CommonLibrary\PythonInterfaceConverter.Source.CommonLibrary.csproj">
+    <ProjectReference Include="..\..\Source\CommonLibrary\CommonLibrary.csproj">
       <Project>{a3c3adf5-c75f-4cfd-9b71-7153db52e84a}</Project>
-      <Name>PythonInterfaceConverter.Source.CommonLibrary</Name>
+      <Name>CommonLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Source\PythonInterfaceConverter\PythonInterfaceConverter.Source.PythonInterfaceConverter.csproj">
+    <ProjectReference Include="..\..\Source\PythonInterfaceConverter\PythonInterfaceConverter.csproj">
       <Project>{5D4E5583-19FC-423C-B4EC-B303F08C813C}</Project>
-      <Name>PythonInterfaceConverter.Source.PythonInterfaceConverter</Name>
+      <Name>PythonInterfaceConverter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

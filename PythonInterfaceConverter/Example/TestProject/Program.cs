@@ -17,7 +17,7 @@ namespace PythonInterfaceConverter.Example.TestProject
             {
                 executable.download_page("Hello");
             }
-            catch(WebException we)
+            catch (WebException we)
             {
                 Console.WriteLine(we.Message);
             }

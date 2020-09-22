@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text;
 
-namespace PythonInterfaceConverter.Source.CommonLibrary
+namespace CommonLibrary
 {
     public class FileManagement
     {

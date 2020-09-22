@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary
+namespace PythonInterfaceConverterLibrary
 {
     public class InterfaceMethodData
     {

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary", "Source\PythonInterfaceConverterLibrary\PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary.csproj", "{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverterLibrary", "Source\PythonInterfaceConverterLibrary\PythonInterfaceConverterLibrary.csproj", "{B2D8DD21-DD1A-4EE3-987A-554847DE6E04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Example.TestProject", "Example\TestProject\PythonInterfaceConverter.Example.TestProject.csproj", "{D6EF9F10-FC48-4172-87EC-1512A6FFD591}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Ex
 		{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A} = {A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.PythonInterfaceConverter", "Source\PythonInterfaceConverter\PythonInterfaceConverter.Source.PythonInterfaceConverter.csproj", "{5D4E5583-19FC-423C-B4EC-B303F08C813C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter", "Source\PythonInterfaceConverter\PythonInterfaceConverter.csproj", "{5D4E5583-19FC-423C-B4EC-B303F08C813C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonInterfaceConverter.Source.CommonLibrary", "Source\CommonLibrary\PythonInterfaceConverter.Source.CommonLibrary.csproj", "{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "Source\CommonLibrary\CommonLibrary.csproj", "{A3C3ADF5-C75F-4CFD-9B71-7153DB52E84A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{52C77E08-6489-4F56-A9BD-FBA9FEFFDCF3}"
 EndProject

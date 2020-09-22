@@ -3,7 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PythonInterfaceConverter.Source.CommonLibrary;
+using CommonLibrary;
 
 namespace PythonInterfaceConverter.Test.CommonLibrary
 {

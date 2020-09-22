@@ -1,4 +1,4 @@
-using PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary;
+using PythonInterfaceConverterLibrary;
 using System.Collections.Generic;
 using System.Reflection;
 

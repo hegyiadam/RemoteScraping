@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PythonInterfaceConverter.Source.CommonLibrary;
-using PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary;
+using CommonLibrary;
+using PythonInterfaceConverterLibrary;
 using System.IO;
 using System.Text.RegularExpressions;
 

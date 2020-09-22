@@ -2,10 +2,10 @@
 using System.Configuration;
 using System.IO;
 using System.Reflection;
-using PythonInterfaceConverter.Source.CommonLibrary;
-using PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary;
+using CommonLibrary;
+using PythonInterfaceConverterLibrary;
 
-namespace PythonInterfaceConverter.Source.PythonInterfaceConverter
+namespace PythonInterfaceConverter
 {
     public class Program
     {
