@@ -9,6 +9,6 @@ for f in files:
 
 picture_number = 100
 for i in range(picture_number):
-    if i%20 = 0:
+    if i%20 == 0:
         time.sleep(5)
     urllib.request.urlretrieve("http://lorempixel.com/300/300", "Thumbnails/"+str(i)+".jpg")
