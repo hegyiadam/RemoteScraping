@@ -59,8 +59,12 @@ class Webpage(object):
             child = parent
         components.reverse()
         return '/%s' % '/'.join(components)
-
+    
     def get_page_numbers(self,page_selector):
         elements = self.get_elements_by_selector(page_selector)
         numbers = [(int(element.get_text())) for element in elements if element.get_text() != '']
         return numbers
+    def get_iteration_links(self,iteration_link_selector):
+        elements = self.get_elements_by_selector(iteration_link_selector)
+        links = [(element['href']) for element in elements]
+        return links

@@ -13,18 +13,10 @@ class Executable(IExecutable):
         webpage = Webpage(url)
         webpage.iterate_through_pages(iteration_number,page_iteration_selector)
         action(webpage,data)
+    def get_iteration_links(url, iteration_selector):
+        webpage = Webpage(url)
+        links = webpage.get_iteration_links(iteration_selector)
+        return links
     
 
-
-webpage = Webpage("http://localhost:5000/")
-print( webpage.get_page_numbers('body > div > ul > li'))
-#webpage.click_on_element(element)
-#print(webpage.get_soup().prettify())
-
-def get_element_by_selector2(webpage,data):
-    print(webpage.get_element_by_selector(data['css_selector']))
-
-url = "http://localhost:5000/"
-selector = 'body > div > ul > li'
-Executable.do_action_on_iteration(url, selector,2,get_element_by_selector2,{'css_selector': "body > div > div > div:nth-child(1) > div.element-text > h3 > a"})
-
+print(Executable.get_iteration_links('http://localhost:5000/','body > div > div > div > div.element-text > h3 > a'))
