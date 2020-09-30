@@ -5,7 +5,7 @@
     <ProjectGuid>1448083e-3579-44d6-94e9-f969d2755e07</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Executable.py</StartupFile>
+    <StartupFile>Webpage.py</StartupFile>
     <SearchPath>..\..\_Globals</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

@@ -1,3 +1,5 @@
+mkdir "../Deploy/_Globals"
+copy settings.json "../Deploy/_Globals/settings.json"
 cd ../Source
 xcopy /E /I Service "../Deploy/PyhtonService/Service"
 xcopy /E /I Executable "../Deploy/PyhtonService/Executable"
