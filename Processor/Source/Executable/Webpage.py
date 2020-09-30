@@ -32,25 +32,26 @@ class Webpage(object):
     def get_elements_by_selector(self,selector):
         return self.soup.select(selector)
 
-    def iterate_through_pages(self,iteration_number,page_selector):
+    def get_page_link_by_number(self,iteration_number,page_selector):
         elements = self.get_elements_by_selector(page_selector)
         next_element = [(element) for element in elements if element.get_text() == str(iteration_number)]
         return next_element[0]
+
+    def iterate_through_pages(self,iteration_number,page_selector):
+        element = self.get_page_link_by_number(iteration_number,page_selector)
+        self.click_on_element(element)
 
     def click_on_element(self, element):
         driver_element = self.browser.find_element_by_xpath(self.xpath_soup(element))
         ActionChains(self.browser).click(driver_element).perform()
         self.soup = BeautifulSoup(self.browser.page_source,"html.parser")
 
-    def get_soup():
+    def get_soup(self):
         return self.soup
     def xpath_soup(self,element):
         components = []
         child = element if element.name else element.parent
         for parent in child.parents:
-            """
-            @type parent: bs4.element.Tag
-            """
             previous = itertools.islice(parent.children, 0, parent.contents.index(child))
             xpath_tag = child.name
             xpath_index = sum(1 for i in previous if i.name == xpath_tag) + 1
@@ -59,8 +60,7 @@ class Webpage(object):
         components.reverse()
         return '/%s' % '/'.join(components)
 
-
-webpage = Webpage("http://localhost:5000/")
-element = webpage.iterate_through_pages(2,'body > div > ul > li')
-webpage.click_on_element(element)
-print(webpage.get_soup().prettify())
+    def get_page_numbers(self,page_selector):
+        elements = self.get_elements_by_selector(page_selector)
+        numbers = [(int(element.get_text())) for element in elements if element.get_text() != '']
+        return numbers
