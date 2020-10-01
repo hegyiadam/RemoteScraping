@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HubHandling\HubHandling.csproj">
-      <Project>{F9869AD7-4292-42EE-A94B-E5CE078101AF}</Project>
+      <Project>{f9869ad7-4292-42ee-a94b-e5ce078101af}</Project>
       <Name>HubHandling</Name>
     </ProjectReference>
     <ProjectReference Include="..\PythonExecution\PythonExecution.csproj">

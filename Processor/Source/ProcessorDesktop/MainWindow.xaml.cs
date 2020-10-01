@@ -31,12 +31,7 @@ namespace ProcessorDesktop
             Closing += CloseHandler;
             HubConnector.Start();
             execution = new Executable();
-            HubConnector.SubscribeToDownloadSelector(downloadSelectorHandler);
-        }
-
-        private void downloadSelectorHandler(string selector)
-        {
-            execution.find_tag_by_css_selector("http://127.0.0.1:5000/", selector);
+            HubConnector.SubscribeToEvent();
         }
 
         private void CloseHandler(object sender, CancelEventArgs e)

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using PythonExecution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,9 +31,10 @@ namespace HubHandling
         {
             hubProxy.Invoke<string>("DoSomething", "Hello");
         }
-        public async static void SubscribeToDownloadSelector(Action<string> downloadSelectorHandler)
+        public async static void SubscribeToEvent()
         {
-            hubProxy.On<string>("DownloadTag", selector => downloadSelectorHandler(selector));
+            new HubCallback(hubProxy);
         }
+
     }
 }

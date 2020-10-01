@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PythonInterfaceConverterLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\PythonInterfaceConverter.Source.PythonInterfaceConverterLibrary.dll</HintPath>
+      <HintPath>Converter\PythonInterfaceConverterLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,9 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Execution.cs" />
-    <Compile Include="IExecution.cs" />
+    <Compile Include="Executable.cs" />
+    <Compile Include="IExecutable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Converter\CommonLibrary.dll" />
+    <Content Include="Converter\PythonInterfaceConverter.exe" />
+    <Content Include="Converter\PythonInterfaceConverterLibrary.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Converter\PythonInterfaceConverter.exe.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)Source\PythonExecution\Converter\PythonInterfaceConverter.exe" full "$(SolutionDir)Source\Executable\IExecutable.py" "$(SolutionDir)Source\PythonExecution\IExecutable.cs" "$(SolutionDir)Source\PythonExecution\Executable.cs" "PythonExecution"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
