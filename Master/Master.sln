@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master.Test.MasterServiceTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HubComponents", "Source\HubComponents\HubComponents.csproj", "{B8FBF1B4-EB0C-44E8-8B79-1B1C98B249E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseManagement", "Source\DatabaseManagement\DatabaseManagement.csproj", "{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{B8FBF1B4-EB0C-44E8-8B79-1B1C98B249E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8FBF1B4-EB0C-44E8-8B79-1B1C98B249E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8FBF1B4-EB0C-44E8-8B79-1B1C98B249E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{229FEAD7-6E98-4F16-B825-EEA1CA0FC33A} = {5AE93162-7E23-44E6-A894-2412A0E79569}
 		{493283C1-7A24-4F40-B70D-A4029CDBBA9C} = {2CECB5D7-B342-4A85-881F-1D49BD1EAF3D}
 		{B8FBF1B4-EB0C-44E8-8B79-1B1C98B249E5} = {5AE93162-7E23-44E6-A894-2412A0E79569}
+		{2F934A8C-E47B-41DE-9C3A-C0A5DF145C71} = {5AE93162-7E23-44E6-A894-2412A0E79569}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1220FD59-7D52-4AEB-8803-3DE0A3D4D39F}

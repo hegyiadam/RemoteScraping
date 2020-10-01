@@ -2,6 +2,7 @@
 using Microsoft.Owin;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using HubComponents.ClientInterface;
 
 namespace HubComponents
 {
@@ -14,6 +15,8 @@ namespace HubComponents
                 return GlobalHost.ConnectionManager.GetHubContext<ProcessorHub>();
             }
         }
+
+
 
         #region Methods
         public void Send(string message)
@@ -29,7 +32,7 @@ namespace HubComponents
         public static void DownloadTag(string selector)
         {
             Console.WriteLine(selector);
-            context.Clients.All.DownloadTag(selector);
+            context.Clients.All.find_tag_by_css_selector("http://localhost:5000/", "body > div > div > div:nth-child(1) > div.element-text > div");
         }
         #endregion
 
@@ -58,6 +61,12 @@ namespace HubComponents
         {
             Console.WriteLine(Context.ConnectionId + " reconnected.");
             return base.OnReconnected();
+        }
+
+        public IExecutable GetExecutableClient()
+        {
+            IExecutable executable = (IExecutable)context.Clients.All;
+            return executable;
         }
         #endregion
     }
