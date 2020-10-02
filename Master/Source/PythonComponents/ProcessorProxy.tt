@@ -1,0 +1,69 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="PythonComponents.ClientInterface" #>
+<#@ output extension=".cs" #>
+<#
+            Type type =  typeof(IExecutable);
+            List<string> methodNames = new List<string>();
+            Dictionary<string,List<string>> parameterTypes = new Dictionary<string,List<string>>();
+            Dictionary<string,List<string>> parameterNames = new Dictionary<string,List<string>>();
+            MethodInfo[] methodInfos = type.GetMethods();
+            foreach(MethodInfo methodInfo in methodInfos)
+            {
+                string methodName = methodInfo.Name;
+                methodNames.Add(methodName);
+                List<string> paramTypes = new List<string>();
+                List<string> paramNames = new List<string>();
+                foreach(ParameterInfo parameterInfo in methodInfo.GetParameters())
+                {
+                    string parameterTypeName = parameterInfo.ParameterType.Name;
+                    string parameterName = parameterInfo.Name;
+                    paramTypes.Add(parameterTypeName);
+                    paramNames.Add(parameterName);
+                }
+                parameterTypes.Add(methodName,paramTypes);
+                parameterNames.Add(methodName,paramNames);
+            }
+#>
+using ComponentInterfaces.Processor;
+using HubComponents.ClientInterface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PythonComponents
+{
+    public static class ProcessorProxy
+    {
+        <#
+        for(int i = 0; i<methodNames.Count ; i++)
+        {
+            string methodName = methodNames[i];
+            string typeList = String.Join(",",parameterTypes[methodName]);
+            string paramList = String.Join(",",parameterNames[methodName]);
+            string parameters = "";
+            for(int j = 0; j<parameterTypes[methodName].Count;j++)
+            {
+                if(j!=0)
+                {
+                    parameters += ",";
+                }
+                parameters += parameterTypes[methodName][j] + " "+ parameterNames[methodName][j];
+            }
+            WriteLine("public static void "+methodName+"(this IProcessor processor, "+parameters+")");
+            WriteLine("{");
+            Write("processor.Client."+methodName+"("+paramList+");\n");
+            WriteLine("}");
+        }
+        #>
+    }
+}

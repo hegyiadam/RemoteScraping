@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Processor\IProcessor.cs" />
     <Compile Include="Processor\IProcessorFilter.cs" />
+    <Compile Include="Processor\IProcessorHub.cs" />
     <Compile Include="Processor\IProcessorId.cs" />
     <Compile Include="Processor\IProcessorState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientInterface\IExecutable.cs" />
     <Compile Include="Processor.cs" />
     <Compile Include="ProcessorFilter.cs" />
+    <Compile Include="ProcessorProxy.cs">
+      <DependentUpon>ProcessorProxy.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ProcessorRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,6 +57,16 @@
       <Project>{751e7cac-0047-4bf3-b6ad-6a0925f96fd0}</Project>
       <Name>ComponentInterfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProcessorProxy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProcessorProxy.cs</LastGenOutput>
+      <CustomToolNamespace>PythonComponents.ClientInterface</CustomToolNamespace>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

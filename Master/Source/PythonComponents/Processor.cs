@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentInterfaces.Processor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,16 @@ namespace PythonComponents
 {
     public class Processor : ComponentInterfaces.Processor.IProcessor
     {
-        public void DownloadTag(string Selector)
+        public dynamic Client
         {
-            throw new NotImplementedException();
+            get
+            {
+                return Hub.GetClient(Id.ConnectionId);
+            }
         }
+
+        public IProcessorId Id { get; set; }
+
+        public IProcessorHub Hub { get; set; }
     }
 }

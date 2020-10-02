@@ -2,11 +2,13 @@
 using Microsoft.Owin;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
-using HubComponents.ClientInterface;
+using PythonComponents;
+using ComponentInterfaces.Processor;
+using PythonComponents.ClientInterface;
 
 namespace HubComponents
 {
-    public class ProcessorHub : Hub
+    public class ProcessorHub : Hub, IProcessorHub
     {
         private static IHubContext context 
         {
@@ -16,7 +18,7 @@ namespace HubComponents
             }
         }
 
-
+        public static dynamic Clients => context.Clients.All;
 
         #region Methods
         public void Send(string message)
@@ -29,7 +31,7 @@ namespace HubComponents
             Console.WriteLine(param);
             context.Clients.All.addMessage(param);
         }
-        public static void DownloadTag(string selector)
+        public void DownloadTag(string selector)
         {
             Console.WriteLine(selector);
             context.Clients.All.find_tag_by_css_selector("http://localhost:5000/", "body > div > div > div:nth-child(1) > div.element-text > div");
@@ -41,6 +43,16 @@ namespace HubComponents
         {
             string clientConnectionId = Context.ConnectionId;
             Console.WriteLine("Client connected with " + clientConnectionId + " connetionId");
+            Processor processor = new Processor()
+            {
+                Id = new ProcessorId()
+                {
+                    ConnectionId = clientConnectionId
+                },
+
+                Hub = this
+            };
+            ProcessorManager.Instance.AddProcessor(processor);
             return base.OnConnected();
         }
 
@@ -67,6 +79,11 @@ namespace HubComponents
         {
             IExecutable executable = (IExecutable)context.Clients.All;
             return executable;
+        }
+
+        public dynamic GetClient(string connectionId)
+        {
+            return context.Clients.Client(connectionId);
         }
         #endregion
     }

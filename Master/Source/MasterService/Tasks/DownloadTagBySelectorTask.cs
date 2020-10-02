@@ -1,11 +1,8 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
 using HubComponents;
-using System;
-using System.Collections.Generic;
+using PythonComponents;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.Tasks
 {
@@ -19,7 +16,7 @@ namespace MasterService.Tasks
 
         public override void Call()
         {
-            ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault().DownloadTag(Selector);
+            ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault().find_tag_by_css_selector("http://localhost:5000",Selector);
             Result = Selector;
             System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;

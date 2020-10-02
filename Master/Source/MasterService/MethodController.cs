@@ -24,7 +24,7 @@ namespace MasterService
                 Selector = selector.Selector
             };
             Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(),future);
+            futures.Add(future.Id.Serialize(), future);
             return future;
         }
 

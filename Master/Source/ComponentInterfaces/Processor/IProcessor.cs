@@ -8,6 +8,8 @@ namespace ComponentInterfaces.Processor
 {
     public interface IProcessor
     {
-        void DownloadTag(string Selector);
+        IProcessorId Id { get; }
+        IProcessorHub Hub { get; }
+        dynamic Client { get; }
     }
 }
