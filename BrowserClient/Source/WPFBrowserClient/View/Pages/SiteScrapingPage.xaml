@@ -41,33 +41,25 @@
                 BorderBrush="Black" 
                 BorderThickness="2" />
         </Grid>
-        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF0D4F8F">
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="{StaticResource DarkBlueColor}">
             <StackPanel>
-                <Grid Height="60" Background="White">
+                <Grid Height="60" Background="{StaticResource WhiteColor}">
                     <Button x:Name="CloseMenuButton" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="CloseMenuButton_Click">
-                        <materialDesign:PackIcon Foreground="#FF0D4F8F" Kind="ArrowLeft" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
                     <Button x:Name="OpenMenuButton"  Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="OpenMenuButton_Click">
-                        <materialDesign:PackIcon Foreground="#FF0D4F8F" Kind="Menu" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="Menu" Width="25" Height="25"/>
                     </Button>
                 </Grid>
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="#FF1285F5" ItemsSource="{Binding Commands}" x:Name="CommandList" LostFocus="CloseMenuButton_Click">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="{StaticResource LightBlueColor}" ItemsSource="{Binding Commands}" x:Name="CommandList">
                     <ListView.ItemTemplate >
                         <DataTemplate >
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Reiterate" Height="25" Width="25" Margin="10" VerticalAlignment="Center"></materialDesign:PackIcon>
                                 <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" Margin="20 10">
-
                                     <TextBlock.InputBindings>
                                         <MouseBinding Command="{Binding Command}" MouseAction="LeftClick" />
-                                        
                                     </TextBlock.InputBindings>
-                                    <TextBlock.Triggers>
-                                        <EventTrigger RoutedEvent="ButtonBase.Click">
-                                            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
-                                        </EventTrigger>
-
-                                    </TextBlock.Triggers>
                                 </TextBlock>
                             </StackPanel>
                         </DataTemplate>
