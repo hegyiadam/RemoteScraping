@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -30,5 +31,19 @@ namespace WPFBrowserClient.View.Pages
             ChromiumWebBrowser browser = FindName("browser") as ChromiumWebBrowser;
             DataContext = new SiteScrapingPageViewModel(browser);
         }
+
+        private void OpenMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenuButton.Visibility = Visibility.Collapsed;
+            CloseMenuButton.Visibility = Visibility.Visible;
+        }
+
+        private void CloseMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            CloseMenuButton.Visibility = Visibility.Collapsed;
+            OpenMenuButton.Visibility = Visibility.Visible;
+
+        }
+
     }
 }

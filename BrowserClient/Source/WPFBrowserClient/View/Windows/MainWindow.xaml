@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPFBrowserClient.View.Pages"
         mc:Ignorable="d"
         Title="Scraper Browser" Height="820" Width="1024">
+
     <Grid>
         <Frame x:Name="mainFrame" Content="{Binding ActualPage}" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
