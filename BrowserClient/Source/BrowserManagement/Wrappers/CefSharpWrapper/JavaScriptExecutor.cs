@@ -29,12 +29,12 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             return EvaluateJavaScriptCommand(javaScriptCommand);
         }
 
-        private void ExecuteJavaScriptCommand(string javaScriptCommand)
+        public void ExecuteJavaScriptCommand(string javaScriptCommand)
         {
             javaScriptCommand.Replace("\r", "").Replace("\n", "");
             Browser.ExecuteScriptAsync(javaScriptCommand);
         }
-        private Task<JavascriptResponse> EvaluateJavaScriptCommand(string javaScriptCommand)
+        public Task<JavascriptResponse> EvaluateJavaScriptCommand(string javaScriptCommand)
         {
             javaScriptCommand.Replace("\r", "").Replace("\n", "");
             Task<JavascriptResponse> task = Browser.EvaluateScriptAsync(javaScriptCommand);
@@ -42,7 +42,7 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
         }
 
 
-        private string ReadJavaScriptFromFile(string javaScriptFilePath)
+        public string ReadJavaScriptFromFile(string javaScriptFilePath)
         {
             ValidateFile(javaScriptFilePath);
 

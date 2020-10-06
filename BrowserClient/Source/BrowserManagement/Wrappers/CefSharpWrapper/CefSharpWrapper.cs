@@ -67,10 +67,29 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             return response;
         }
 
+        public Task<JavascriptResponse> GetSiblingsOnMousePosition()
+        {
+            Task<JavascriptResponse> response = ScriptExecutor.EvaluateJavaScriptFileContent(JavaScriptFile.GetSiblingsOnMousePosition);
+            return response;
+        }
+
         public Control GetControl()
         {
             return Browser;
         }
 
+        public void HighlightControl(string selector)
+        {
+            string validSelector = "\'BODY "+selector.Split(new string[] { "BODY" },StringSplitOptions.None)[1]+"\'";
+            string fileContent = ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.HighlightControl);
+            string command = fileContent.Replace("{0}", validSelector);
+            ScriptExecutor.ExecuteJavaScriptCommand(command);
+        }
+
+        public void RemoveHighlightControl(string selector)
+        {
+            string command = String.Format(ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.RemoveHighlightControl), selector);
+            ScriptExecutor.ExecuteJavaScriptCommand(command);
+        }
     }
 }

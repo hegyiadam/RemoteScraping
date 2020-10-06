@@ -68,6 +68,15 @@
     <Compile Include="Wrappers\CefSharpWrapper\JavaScripts\JavaScriptFile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\RemoveHighlightControl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\HighlightControl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Wrappers\CefSharpWrapper\JavaScripts\GetSiblingsOnMousePosition.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Wrappers\CefSharpWrapper\JavaScripts\RemoveAutoHighlightControl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

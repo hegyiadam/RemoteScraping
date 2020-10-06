@@ -148,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UserControls\QuestionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserControls\SearchBarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,9 +170,11 @@
     <Compile Include="Model\ISingletonPage.cs" />
     <Compile Include="Model\PageContainer.cs" />
     <Compile Include="Model\SelectorRequest.cs" />
+    <Compile Include="ViewModel\Commands\ScrapingCommands\GetClickIteratorCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\HighlightClickedElement.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetElementAtMousePositionCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\IScrapingCommand.cs" />
+    <Compile Include="ViewModel\Commands\ScrapingCommands\QuestionCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\ShowDevToolsCommand.cs" />
     <Compile Include="ViewModel\Commands\StartScrapingCommand.cs" />
     <Compile Include="ViewModel\Commands\DisplayableCommand.cs" />
@@ -180,6 +186,9 @@
     </Compile>
     <Compile Include="View\Pages\SiteScrapingPage.xaml.cs">
       <DependentUpon>SiteScrapingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\QuestionDialog.xaml.cs">
+      <DependentUpon>QuestionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControls\SearchBarUserControl.xaml.cs">
       <DependentUpon>SearchBarUserControl.xaml</DependentUpon>

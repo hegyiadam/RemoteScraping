@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace WPFBrowserClient.ViewModel.Commands
 {
-    public class HighlightClickedElement : IScrapingCommand
+    public class HighlightClickedElement //: IScrapingCommand
     {
         public IBrowserWrapper Browser { get; set; }
 

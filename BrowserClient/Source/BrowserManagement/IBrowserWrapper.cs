@@ -16,6 +16,9 @@ namespace BrowserManagement
         Control GetControl();
         void AutoHighlightControl();
         void RemoveAutoHighlightControl();
+        void HighlightControl(string selector);
+        void RemoveHighlightControl(string selector);
         Task<JavascriptResponse> GetElementOnMousePosition();
+        Task<JavascriptResponse> GetSiblingsOnMousePosition();
     }
 }

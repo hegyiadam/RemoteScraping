@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFBrowserClient.Model;
+using WPFBrowserClient.View.UserControls;
 using WPFBrowserClient.ViewModel;
 
 namespace WPFBrowserClient.View.Pages
@@ -29,8 +30,9 @@ namespace WPFBrowserClient.View.Pages
             InitializeComponent();
 
             ChromiumWebBrowser browser = FindName("browser") as ChromiumWebBrowser;
-            DataContext = new SiteScrapingPageViewModel(browser);
+            DataContext = new SiteScrapingPageViewModel(this,browser);
         }
+
 
         private void OpenMenuButton_Click(object sender, RoutedEventArgs e)
         {

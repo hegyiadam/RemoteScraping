@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using WPFBrowserClient.CompositionManagement;
 using WPFBrowserClient.Model;
 using WPFBrowserClient.View.Pages;
+using WPFBrowserClient.View.UserControls;
 using WPFBrowserClient.ViewModel.Commands;
 
 namespace WPFBrowserClient.ViewModel
@@ -23,11 +24,15 @@ namespace WPFBrowserClient.ViewModel
     {
         private ActualWebPage actualWebPage = ActualWebPage.Instance;
         private IBrowserWrapper _browserWrapeer = null;
+        private SiteScrapingPage _siteScrapingPage;
+        private static SiteScrapingPageViewModel instance;
 
-        public SiteScrapingPageViewModel(ChromiumWebBrowser browser)
+        public SiteScrapingPageViewModel(SiteScrapingPage siteScrapingPage, ChromiumWebBrowser browser)
         {
             Browser = browser;
             InitializeCommands();
+            _siteScrapingPage = siteScrapingPage;
+            instance = this;
         }
 
         [ImportMany]
@@ -76,5 +81,12 @@ namespace WPFBrowserClient.ViewModel
             }
         }
 
+        public static Grid RootGrid
+        {
+            get
+            {
+                return instance._siteScrapingPage.RootGrid;
+            }
+        }
     }
 }

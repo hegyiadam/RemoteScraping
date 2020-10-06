@@ -1,0 +1,1 @@
+﻿$(".scrapeSelection").css('border', 'none');
