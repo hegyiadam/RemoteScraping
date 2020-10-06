@@ -8,6 +8,7 @@ namespace ComponentInterfaces.Session
 {
     public interface ISessionId
     {
+        int SerialNumber { get; set; }
         string Serialize();
 
         ISessionId Deserialize(string source);

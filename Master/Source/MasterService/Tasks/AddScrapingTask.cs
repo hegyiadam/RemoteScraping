@@ -13,7 +13,7 @@ namespace MasterService.Tasks
     public class AddScrapingTask : TaskBase
     {
         public AddScrapingTaskRequest Data{ get; set; }
-        public ITask Task { get; set; }
+        public IProcessorTask Task { get; set; }
 
         public override void Call()
         {

@@ -1,4 +1,5 @@
 ﻿using ComponentInterfaces.Processor;
+using ComponentInterfaces.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MasterService.Tasks
             }
             set
             {
-                processor = value
+                processor = value;
             }
                 
         }

@@ -25,7 +25,7 @@ namespace MasterService.Session
 			}
 		}
 
-		private Dictionary<ISessionId,ISession> Sessions { get; set; }
+		private Dictionary<ISessionId, ISession> Sessions { get; set; } = new Dictionary<ISessionId, ISession>();
 
 		public void AddSession(ISession session)
 		{
