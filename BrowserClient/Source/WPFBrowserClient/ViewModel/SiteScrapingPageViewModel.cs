@@ -5,10 +5,12 @@ using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -20,12 +22,14 @@ using WPFBrowserClient.ViewModel.Commands;
 
 namespace WPFBrowserClient.ViewModel
 {
-    public class SiteScrapingPageViewModel
+    public class SiteScrapingPageViewModel : INotifyPropertyChanged
     {
-        private ActualWebPage actualWebPage = ActualWebPage.Instance;
         private IBrowserWrapper _browserWrapeer = null;
         private SiteScrapingPage _siteScrapingPage;
         private static SiteScrapingPageViewModel instance;
+        private bool menuIsVisible = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public SiteScrapingPageViewModel(SiteScrapingPage siteScrapingPage, ChromiumWebBrowser browser)
         {
@@ -52,17 +56,6 @@ namespace WPFBrowserClient.ViewModel
             }
         }
 
-        public string URL
-        {
-            get
-            {
-                return actualWebPage.URL;
-            }
-            set
-            {
-                actualWebPage.URL = value;
-            }
-        }
 
         public ObservableCollection<DisplayableCommand> Commands { get; set; }
 
@@ -88,5 +81,31 @@ namespace WPFBrowserClient.ViewModel
                 return instance._siteScrapingPage.RootGrid;
             }
         }
+        public bool MenuIsVisible
+        {
+            get
+            {
+                return menuIsVisible;
+            }
+            set
+            {
+                menuIsVisible = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("MenuIsHidden");
+            }
+        }
+        public bool MenuIsHidden
+        {
+            get
+            {
+                return !MenuIsVisible;
+            }
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName]String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

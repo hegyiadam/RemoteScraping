@@ -8,11 +8,14 @@
       xmlns:view="clr-namespace:WPFBrowserClient.View"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:usercontrols="clr-namespace:WPFBrowserClient.View.UserControls"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:command="http://www.galasoft.ch/mvvmlight"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SiteScrapingPage">
 
     <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
@@ -36,32 +39,30 @@
     </Page.Triggers>
     <Grid x:Name="RootGrid">
         <Grid>
-            <wpf:ChromiumWebBrowser 
-                x:Name="browser" 
-                Address="{Binding URL, Mode=TwoWay}" 
-                BorderBrush="Black" 
-                BorderThickness="2" />
+            <usercontrols:BrowserUserControl x:Name="BrowserUserControl" />
         </Grid>
         <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="{StaticResource DarkBlueColor}">
             <StackPanel>
                 <Grid Height="60" Background="{StaticResource WhiteColor}">
-                    <Button x:Name="CloseMenuButton" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="CloseMenuButton_Click">
+                    <Button x:Name="CloseMenuButton" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding Path=MenuIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Click="CloseMenuButton_Click">
                         <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
-                    <Button x:Name="OpenMenuButton"  Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="OpenMenuButton_Click">
+                    <Button x:Name="OpenMenuButton"  Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding Path=MenuIsHidden, Converter={StaticResource BooleanToVisibilityConverter}}" Click="OpenMenuButton_Click">
                         <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="Menu" Width="25" Height="25"/>
                     </Button>
                 </Grid>
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="{StaticResource LightBlueColor}" ItemsSource="{Binding Commands}" x:Name="CommandList">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="{StaticResource LightBlueColor}" ItemsSource="{Binding Commands}" x:Name="CommandList" Visibility="{Binding Path=MenuIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
                     <ListView.ItemTemplate >
                         <DataTemplate >
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <command:EventToCommand  Command="{Binding Command }"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                                 <materialDesign:PackIcon Kind="Reiterate" Height="25" Width="25" Margin="10" VerticalAlignment="Center"></materialDesign:PackIcon>
-                                <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" Margin="20 10">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding Command}" MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
+                                <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

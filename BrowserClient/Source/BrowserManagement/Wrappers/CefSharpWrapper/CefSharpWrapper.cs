@@ -80,10 +80,30 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
 
         public void HighlightControl(string selector)
         {
-            string validSelector = "\'BODY "+selector.Split(new string[] { "BODY" },StringSplitOptions.None)[1]+"\'";
+            string validSelector = ValidateSelector(selector);
             string fileContent = ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.HighlightControl);
             string command = fileContent.Replace("{0}", validSelector);
             ScriptExecutor.ExecuteJavaScriptCommand(command);
+        }
+
+        private string ValidateSelector(string selector)
+        {
+            string result = selector;
+            if (SelectorHasBodyTag(selector))
+            {
+                result = RemoveBodyTag(selector);
+            }
+            return result;
+        }
+
+        private bool SelectorHasBodyTag(string selector)
+        {
+            return selector.ToUpper().Contains("BODY");
+        }
+
+        private string RemoveBodyTag(string selector)
+        {
+            return "\'BODY " + selector.Split(new string[] { "BODY" }, StringSplitOptions.None)[1] + "\'";
         }
 
         public void RemoveHighlightControl(string selector)

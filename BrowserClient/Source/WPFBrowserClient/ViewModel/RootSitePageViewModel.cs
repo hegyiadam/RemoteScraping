@@ -12,11 +12,9 @@ namespace WPFBrowserClient.ViewModel
 {
     public class RootSitePageViewModel
     {
-        private ActualWebPage actualPage = ActualWebPage.Instance;
 
         public RootSitePageViewModel()
         {
-            URL = ConfigManager.Instance.DefaultURL;
         }
 
 
@@ -26,17 +24,6 @@ namespace WPFBrowserClient.ViewModel
             get
             {
                 return new StartScrapingCommand();
-            }
-        }
-        public string URL
-        {
-            get
-            {
-                return actualPage.URL;
-            }
-            set
-            {
-                actualPage.URL = value;
             }
         }
     }

@@ -1,7 +1,9 @@
 ﻿using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,23 +31,33 @@ namespace WPFBrowserClient.View.Pages
         {
             InitializeComponent();
 
-            ChromiumWebBrowser browser = FindName("browser") as ChromiumWebBrowser;
+            ChromiumWebBrowser browser = (FindName("BrowserUserControl") as BrowserUserControl).FindName("Browser") as ChromiumWebBrowser;
             DataContext = new SiteScrapingPageViewModel(this,browser);
+            
+        }
+
+        public SiteScrapingPageViewModel ViewModel
+        {
+            get
+            {
+                return DataContext as SiteScrapingPageViewModel;
+            }
         }
 
 
         private void OpenMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenMenuButton.Visibility = Visibility.Collapsed;
-            CloseMenuButton.Visibility = Visibility.Visible;
+            ViewModel.MenuIsVisible = true;
+            /*OpenMenuButton.Visibility = Visibility.Collapsed;
+            CloseMenuButton.Visibility = Visibility.Visible;*/
         }
 
         private void CloseMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            CloseMenuButton.Visibility = Visibility.Collapsed;
-            OpenMenuButton.Visibility = Visibility.Visible;
+            ViewModel.MenuIsVisible = false;
+           /* CloseMenuButton.Visibility = Visibility.Collapsed;
+            OpenMenuButton.Visibility = Visibility.Visible;*/
 
         }
-
     }
 }

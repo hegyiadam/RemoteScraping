@@ -14,7 +14,10 @@ namespace WPFBrowserClient.Model
 
 
 		private static ActualWebPage _instance = null;
-		private ActualWebPage() { }
+		private ActualWebPage()
+		{
+			URL = ConfigManager.Instance.DefaultURL;
+		}
 		public static ActualWebPage Instance
 		{
 			get

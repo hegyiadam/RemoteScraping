@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CefSharp.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +15,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFBrowserClient.ViewModel;
 
-namespace WPFBrowserClient.View
+namespace WPFBrowserClient.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for SearchBar.xaml
+    /// Interaction logic for BrowserUserControl.xaml
     /// </summary>
-    public partial class SearchBarUserControl : UserControl
+    public partial class BrowserUserControl : UserControl
     {
-        public SearchBarUserControl()
+        public BrowserUserControl()
         {
             InitializeComponent();
-            DataContext = new SearchBarUserControlViewModel();
+            DataContext = new BrowserUserControlViewModel(FindName("Browser") as ChromiumWebBrowser);
         }
     }
 }

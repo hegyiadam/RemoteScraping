@@ -148,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UserControls\BrowserUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserControls\QuestionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +174,9 @@
     <Compile Include="Model\ISingletonPage.cs" />
     <Compile Include="Model\PageContainer.cs" />
     <Compile Include="Model\SelectorRequest.cs" />
+    <Compile Include="ViewModel\BoolToVisibilityCustomConverter.cs" />
+    <Compile Include="ViewModel\BrowserUserControlViewModel.cs" />
+    <Compile Include="ViewModel\Commands\ScrapingCommands\GetNavigationIteratorCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetClickIteratorCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\HighlightClickedElement.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetElementAtMousePositionCommand.cs" />
@@ -179,6 +186,7 @@
     <Compile Include="ViewModel\Commands\StartScrapingCommand.cs" />
     <Compile Include="ViewModel\Commands\DisplayableCommand.cs" />
     <Compile Include="ViewModel\RootSitePageViewModel.cs" />
+    <Compile Include="ViewModel\SearchBarUserControlViewModel.cs" />
     <Compile Include="ViewModel\SiteScrapingPageViewModel.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="View\Pages\RootSitePage.xaml.cs">
@@ -186,6 +194,9 @@
     </Compile>
     <Compile Include="View\Pages\SiteScrapingPage.xaml.cs">
       <DependentUpon>SiteScrapingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\BrowserUserControl.xaml.cs">
+      <DependentUpon>BrowserUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserControls\QuestionDialog.xaml.cs">
       <DependentUpon>QuestionDialog.xaml</DependentUpon>

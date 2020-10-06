@@ -10,6 +10,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="urlTb" Text="{Binding URL, Mode=TwoWay}"  VerticalAlignment="Stretch" Grid.Column="0" VerticalContentAlignment="Center" FontSize="15"/>
+        <TextBox x:Name="urlTb" Text="{Binding URL, Mode=TwoWay}"  VerticalAlignment="Stretch"  VerticalContentAlignment="Center" FontSize="15"/>
     </Grid>
 </UserControl>

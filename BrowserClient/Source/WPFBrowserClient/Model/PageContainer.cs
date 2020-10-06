@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPFBrowserClient.Model
 {
-    public class PageContainer
+    /*public class PageContainer
     {
 
 		private static PageContainer _instance = null;
@@ -42,6 +42,6 @@ namespace WPFBrowserClient.Model
 			throw new DllNotFoundException(typeof(T).AssemblyQualifiedName);
 		}
 
-	}
+	}*/
 
 }
