@@ -3,20 +3,22 @@ using ComponentInterfaces.Tasks;
 using HubComponents;
 using PythonComponents;
 using System.Linq;
+using System.Reflection;
 
 namespace MasterService.Tasks
 {
     public class DownloadTagBySelectorTask : ProcessorTaskBase
     {
-        public DownloadTagBySelectorTask(IProcessorFilter processorFilter) : base(processorFilter)
+        public DownloadTagBySelectorTask(string selector ,IProcessorFilter processorFilter) : base(processorFilter)
         {
+            Selector = selector;
         }
 
-        public string Selector { get; set; }
+        private string Selector { get; set; }
 
         public override void Call()
         {
-            ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault().find_tag_by_css_selector("http://localhost:5000",Selector);
+            Processor.find_tag_by_css_selector(URL,Selector);
             Result = Selector;
             System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;

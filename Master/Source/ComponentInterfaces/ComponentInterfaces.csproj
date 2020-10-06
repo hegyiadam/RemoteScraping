@@ -41,13 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tasks\IIterationTask.cs" />
+    <Compile Include="Tasks\IPageTask.cs" />
     <Compile Include="Processor\IProcessor.cs" />
     <Compile Include="Processor\IProcessorFilter.cs" />
     <Compile Include="Processor\IProcessorHub.cs" />
     <Compile Include="Processor\IProcessorId.cs" />
     <Compile Include="Processor\IProcessorState.cs" />
+    <Compile Include="Tasks\IProcessorTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\ISession.cs" />
     <Compile Include="Session\ISessionId.cs" />
+    <Compile Include="Session\ISessionIdFactory.cs" />
     <Compile Include="Tasks\ITask.cs" />
     <Compile Include="Tasks\ITaskId.cs" />
     <Compile Include="Tasks\ITaskIdFactory.cs" />

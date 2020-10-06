@@ -10,8 +10,6 @@ namespace ComponentInterfaces.Tasks
 
     public interface ITask
     {
-        Processor.IProcessorFilter ProcessorFilter { get; }
-
         ITaskId Id { get; }
 
         event TaskStateChangeHandler StateChangedEvent;

@@ -44,7 +44,6 @@ namespace MasterService.Tasks
             }
         }
 
-        public IProcessorFilter ProcessorFilter { get; protected set; }
 
         public event TaskStateChangeHandler StateChangedEvent;
 

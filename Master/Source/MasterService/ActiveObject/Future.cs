@@ -12,9 +12,16 @@ namespace MasterService.ActiveObject
         public Future(ITask task)
         {
             Task = task;
-            task.StateChangedEvent += StateChangeHandler;
+            task.StateChangedEvent += Task_StateChangedEvent; 
         }
+
+        private void Task_StateChangedEvent()
+        {
+        }
+
         private ITask Task { get; set; }
+
+        public event TaskStateChangeHandler StateChangedEvent;
 
         public ITaskId Id
         {
@@ -39,11 +46,6 @@ namespace MasterService.ActiveObject
             {
                 return Task.ActualState;
             }
-        }
-
-        public void StateChangeHandler()
-        {
-
         }
     }
 }

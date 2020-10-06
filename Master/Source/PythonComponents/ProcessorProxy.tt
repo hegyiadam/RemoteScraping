@@ -12,6 +12,7 @@
 <#
             Type type =  typeof(IExecutable);
             List<string> methodNames = new List<string>();
+            List<string> returnValues = new List<string>();
             Dictionary<string,List<string>> parameterTypes = new Dictionary<string,List<string>>();
             Dictionary<string,List<string>> parameterNames = new Dictionary<string,List<string>>();
             MethodInfo[] methodInfos = type.GetMethods();
@@ -19,6 +20,11 @@
             {
                 string methodName = methodInfo.Name;
                 methodNames.Add(methodName);
+                if(methodInfo.ReturnType.ToString() != "System.Void"){
+                    returnValues.Add(methodInfo.ReturnType.ToString());
+                }else{
+                    returnValues.Add("void"); 
+                }
                 List<string> paramTypes = new List<string>();
                 List<string> paramNames = new List<string>();
                 foreach(ParameterInfo parameterInfo in methodInfo.GetParameters())
@@ -48,6 +54,7 @@ namespace PythonComponents
         for(int i = 0; i<methodNames.Count ; i++)
         {
             string methodName = methodNames[i];
+            string returnType = returnValues[i];
             string typeList = String.Join(",",parameterTypes[methodName]);
             string paramList = String.Join(",",parameterNames[methodName]);
             string parameters = "";
@@ -59,9 +66,13 @@ namespace PythonComponents
                 }
                 parameters += parameterTypes[methodName][j] + " "+ parameterNames[methodName][j];
             }
-            WriteLine("public static void "+methodName+"(this IProcessor processor, "+parameters+")");
+            WriteLine("public static "+returnType+" "+methodName+"(this IProcessor processor, "+parameters+")");
             WriteLine("{");
-            Write("processor.Client."+methodName+"("+paramList+");\n");
+            if(returnType != "void"){
+                Write("return processor.Client."+methodName+"("+paramList+");\n");
+            }else{
+                Write("processor.Client."+methodName+"("+paramList+");\n");
+            }
             WriteLine("}");
         }
         #>

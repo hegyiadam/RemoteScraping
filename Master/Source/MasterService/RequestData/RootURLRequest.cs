@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterService
+namespace MasterService.RequestDatas
 {
-    public class SelectorRequest
+    public class RootURLRequest
     {
-        public string Selector { get; set; }
+        public string URL { get; set; }
     }
 }

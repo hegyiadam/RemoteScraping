@@ -76,10 +76,26 @@
     <Compile Include="MethodController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestData\AddScrapingTaskRequest.cs" />
+    <Compile Include="RequestData\ExecuteSessionRequest.cs" />
+    <Compile Include="RequestData\LinkIterationRequest.cs" />
+    <Compile Include="RequestData\PageIterationRequest.cs" />
+    <Compile Include="RequestData\RootURLRequest.cs" />
     <Compile Include="RestApi.cs" />
-    <Compile Include="SelectorRequest.cs" />
+    <Compile Include="RequestData\DownloadTagBySelectorRequest.cs" />
+    <Compile Include="Session\Session.cs" />
+    <Compile Include="Session\SessionId.cs" />
+    <Compile Include="Session\SessionIdFactory.cs" />
+    <Compile Include="Session\SessionRepository.cs" />
+    <Compile Include="Tasks\AddLinkIterationTask.cs" />
+    <Compile Include="Tasks\AddPageIterationTask.cs" />
+    <Compile Include="Tasks\AddScrapingTask.cs" />
     <Compile Include="Tasks\DownloadTagBySelectorTask.cs" />
+    <Compile Include="Tasks\ExecuteSessionTask.cs" />
+    <Compile Include="Tasks\LinkIterationTask.cs" />
+    <Compile Include="Tasks\PageIterationTask.cs" />
     <Compile Include="Tasks\ProcessorTaskBase.cs" />
+    <Compile Include="Tasks\SetRootUrlTask.cs" />
     <Compile Include="Tasks\TaskBase.cs" />
     <Compile Include="Tasks\TaskId.cs" />
     <Compile Include="Tasks\TaskIdFactory.cs" />
@@ -105,6 +121,9 @@
       <Project>{93B7034F-BD26-4036-AEE5-3D0369AE7D7B}</Project>
       <Name>Scheduler</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResponseData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
