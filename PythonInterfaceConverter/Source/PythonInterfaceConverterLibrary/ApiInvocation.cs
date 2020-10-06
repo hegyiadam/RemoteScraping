@@ -11,13 +11,13 @@ namespace PythonInterfaceConverterLibrary
 {
     public static class ApiInvocation
     {
-        public static void RunCommandOnPython(string methodName, List<object> parameters)
+        public static string RunCommandOnPython(string methodName, List<object> parameters)
         {
             string url = GetUrlAddressForMethod(methodName);
             string json = CreateJsonFromParameters(parameters);
             HttpWebRequest request = CreateJsonPostRequest(url, json);
             string result = GetResponseFromRequest(request);
-
+            return result;
         }
 
         private static string GetResponseFromRequest(HttpWebRequest request)

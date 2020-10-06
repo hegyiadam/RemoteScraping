@@ -22,5 +22,13 @@ namespace TestNamespace
             parameters.Add(second_para);
             ApiInvocation.RunCommandOnPython(methodName, parameters);
         }
+        public string TestMethod3(string first_param, string second_para)
+        {
+            string methodName = MethodInfo.GetCurrentMethod().Name;
+            List<object> parameters = new List<object>();
+            parameters.Add(first_param);
+            parameters.Add(second_para);
+            return ApiInvocation.RunCommandOnPython(methodName, parameters);
+        }
     }
 }

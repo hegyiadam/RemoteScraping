@@ -86,6 +86,11 @@ namespace PythonInterfaceConverter.Test.PythonInterfaceConverterLibrary
                         Name = "TestMethod2",
                         Parameters = new System.Collections.Generic.List<string>(){ "first_param", "second_para"}
                     },
+                    new InterfaceMethodData()
+                    {
+                        Name = "TestMethod3_return",
+                        Parameters = new System.Collections.Generic.List<string>(){ "first_param", "second_para"}
+                    },
                 }
             };
         }

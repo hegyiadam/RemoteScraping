@@ -14,7 +14,16 @@ namespace PythonInterfaceConverterLibrary
         internal string GetInterfacePlainText()
         {
             List<InterfaceMethodParameterData> parameterDatas = GetParameters();
-            return "\t\tvoid " + Name + "(" + ParametersPlainText(parameterDatas) + ");\n";
+
+            if (Name.Contains("_return"))
+            {
+                return "\t\tstring " + Name.Replace("_return", "") + "(" + ParametersPlainText(parameterDatas) + ");\n";
+            }
+            else
+            {
+                return "\t\tvoid " + Name + "(" + ParametersPlainText(parameterDatas) + ");\n";
+
+            }
         }
 
         internal string GetImplementationPlainText()
@@ -22,14 +31,29 @@ namespace PythonInterfaceConverterLibrary
             string tabPrefix2 = "\t\t";
             string tabPrefix3 = "\t\t\t";
             List<InterfaceMethodParameterData> parameterDatas = GetParameters();
-            string result = tabPrefix2 + "public void " + Name + "(" + ParametersPlainText(parameterDatas) + ")\n\t\t{\n";
+            string result = "";
+            if (Name.Contains("_return"))
+            {
+                result += tabPrefix2 + "public string " + Name.Replace("_return", "") + "(" + ParametersPlainText(parameterDatas) + ")\n\t\t{\n";
+            }
+            else
+            {
+                result += tabPrefix2 + "public void " + Name + "(" + ParametersPlainText(parameterDatas) + ")\n\t\t{\n";
+            }
             result += tabPrefix3+"string methodName = MethodInfo.GetCurrentMethod().Name;\n";
             result += tabPrefix3+"List<object> parameters = new List<object>();\n";
             foreach(InterfaceMethodParameterData param in parameterDatas)
             {
                 result += tabPrefix3 + "parameters.Add("+param.Name+");\n";
             }
-            result += tabPrefix3 + "ApiInvocation.RunCommandOnPython(methodName, parameters);\n";
+            if (Name.Contains("_return"))
+            {
+                result += tabPrefix3 + "return ApiInvocation.RunCommandOnPython(methodName, parameters);\n";
+            }
+            else
+            {
+                result += tabPrefix3 + "ApiInvocation.RunCommandOnPython(methodName, parameters);\n";
+            }
             result += tabPrefix2 + "}\n";
             return result;
         }

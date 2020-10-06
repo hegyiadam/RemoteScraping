@@ -13,5 +13,12 @@ namespace PythonInterfaceConverter.Example.TestProject
 			parameters.Add(url);
 			ApiInvocation.RunCommandOnPython(methodName, parameters);
 		}
+		public string download_page2(string url)
+		{
+			string methodName = MethodInfo.GetCurrentMethod().Name;
+			List<object> parameters = new List<object>();
+			parameters.Add(url);
+			return ApiInvocation.RunCommandOnPython(methodName, parameters);
+		}
 	}
 }
