@@ -15,6 +15,37 @@ namespace HubHandling
         private static HubConnection hubConnection;
         private static IHubProxy hubProxy;
 
+
+        private static HubConnector _instance = null;
+        private HubConnector() { }
+        public static HubConnector Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new HubConnector();
+                }
+                return _instance;
+            }
+        }
+
+        public HubConnection Connection 
+        {
+            get
+            {
+                return hubConnection;
+            }
+        }
+
+        public IHubProxy Proxy
+        {
+            get
+            {
+                return hubProxy;
+            }
+        }
+
         public async static void Start()
         {
             hubConnection = new HubConnection("http://localhost:8080//");
@@ -29,7 +60,7 @@ namespace HubHandling
 
         public async static void SendCommand()
         {
-            hubProxy.Invoke<string>("DoSomething", "Hello");
+            hubProxy.Invoke<string>("Send", "Hello");
         }
         public async static void SubscribeToEvent()
         {

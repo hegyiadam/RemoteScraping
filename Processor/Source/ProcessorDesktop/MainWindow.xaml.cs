@@ -30,6 +30,7 @@ namespace ProcessorDesktop
             InitializeComponent();
             Closing += CloseHandler;
             HubConnector.Start();
+
             execution = new Executable();
             HubConnector.SubscribeToEvent();
         }

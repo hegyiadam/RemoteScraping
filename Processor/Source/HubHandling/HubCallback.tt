@@ -12,6 +12,7 @@
 <#
             Type type =  typeof(IExecutable);
             List<string> methodNames = new List<string>();
+            List<bool> returnValues = new List<bool>();
             Dictionary<string,List<string>> parameterTypes = new Dictionary<string,List<string>>();
             Dictionary<string,List<string>> parameterNames = new Dictionary<string,List<string>>();
             MethodInfo[] methodInfos = type.GetMethods();
@@ -19,6 +20,11 @@
             {
                 string methodName = methodInfo.Name;
                 methodNames.Add(methodName);
+                if(methodInfo.ReturnType.ToString() != "System.Void"){
+                    returnValues.Add(true);
+                }else{
+                    returnValues.Add(false); 
+                }
                 List<string> paramTypes = new List<string>();
                 List<string> paramNames = new List<string>();
                 foreach(ParameterInfo parameterInfo in methodInfo.GetParameters())
@@ -56,12 +62,23 @@ namespace HubHandling
         for(int i = 0; i<methodNames.Count ; i++)
         {
             string methodName = methodNames[i];
+            bool returnType = returnValues[i];
             string typeList = String.Join(",",parameterTypes[methodName]);
             string paramList = String.Join(",",parameterNames[methodName]);
             WriteLine("public void "+methodName+"()");
             WriteLine("{");
             WriteLine("Executable executable = new Executable();");
-            Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => executable."+methodName+"("+paramList+"));\n");
+            
+            if(returnType){
+                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => \n");
+                Write("{\n");
+                Write("var response = executable."+methodName+"("+paramList+");\n");
+                Write("HubConnector.Instance.Proxy.Invoke<string>(\"SendResult\",new object[]{\""+methodName+"_result\", response});\n");
+                Write("");
+                Write("});\n");
+            }else{
+                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => executable."+methodName+"("+paramList+"));\n");
+            }
             WriteLine("}");
         }
         #>
