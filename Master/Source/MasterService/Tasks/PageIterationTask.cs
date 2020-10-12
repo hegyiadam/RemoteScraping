@@ -24,8 +24,14 @@ namespace MasterService.Tasks
         public override void Call()
         {
             ActualState = TaskState.Processing;
+            Processor.get_page_numbers(URL, Selector);
+            Action<string> action = (data) => ProcessResult(data);
+            ProcessorManager.Instance.AddResultListener("get_page_numbers_result", action, Processor.Id);
+        }
 
-            int[] pageNumers = JsonConvert.DeserializeObject<int[]>(Processor.get_page_numbers(URL, Selector).ToString());
+        private void ProcessResult(string data)
+        {
+            int[] pageNumers = JsonConvert.DeserializeObject<int[]>(data);
 
 
             foreach (IProcessorTask nextTask in NextTasks)
@@ -42,6 +48,7 @@ namespace MasterService.Tasks
             System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;
         }
+
         private IProcessor GetNextProcessor()
         {
             return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();

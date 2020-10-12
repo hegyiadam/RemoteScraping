@@ -1,5 +1,6 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
+using HubComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace MasterService.Tasks
         public int PageNumber { get; set; }
         public string URL { get; set; }
 
-        PythonComponents.ProcessorRepo processorRepo = PythonComponents.ProcessorRepo.Instance;
+        ProcessorManager processorRepo = ProcessorManager.Instance;
         public ProcessorTaskBase(ComponentInterfaces.Processor.IProcessorFilter processorFilter)
         {
             ProcessorFilter = processorFilter;

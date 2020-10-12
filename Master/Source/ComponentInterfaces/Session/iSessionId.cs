@@ -11,6 +11,7 @@ namespace ComponentInterfaces.Session
         int SerialNumber { get; set; }
         string Serialize();
 
+        bool EqualsTo(ISessionId sessionId);
         ISessionId Deserialize(string source);
     }
 }

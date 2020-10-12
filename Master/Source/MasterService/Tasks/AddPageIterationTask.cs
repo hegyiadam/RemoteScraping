@@ -1,5 +1,6 @@
 ﻿using ComponentInterfaces.Session;
 using MasterService.RequestData;
+using MasterService.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace MasterService.Tasks
         public override void Call()
         {
             ActualState = ComponentInterfaces.Tasks.TaskState.Processing;
-            ISession session = Session.SessionRepository.Instance.GetSession(Data.SessionId);
+            ISession session = Session.SessionRepository.Instance.GetSession(new SessionId() { 
+                SerialNumber = Data.SessionId.SerialNumber
+            });
             session.AddIterationTask(new PageIterationTask(Data.Selector, new PythonComponents.ProcessorFilter()));
             ActualState = ComponentInterfaces.Tasks.TaskState.Ready;
         }

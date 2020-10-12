@@ -30,7 +30,10 @@ namespace MasterService.Tasks
             set
             {
                 actualState = value;
-                StateChangedEvent();
+                if(StateChangedEvent != null)
+                {
+                    StateChangedEvent();
+                }
             }
         }
 

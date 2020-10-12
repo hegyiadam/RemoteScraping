@@ -34,7 +34,8 @@ namespace MasterService.Session
 		
 		public ISession GetSession(ISessionId sessionId) 
 		{
-			return Sessions[sessionId];
+			
+			return Sessions.Where(session => session.Key.EqualsTo(sessionId)).FirstOrDefault().Value;
 		}
 
 	}

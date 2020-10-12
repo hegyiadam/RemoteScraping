@@ -1,13 +1,18 @@
 ﻿using MasterService.ActiveObject;
 using MasterService.RequestData;
 using MasterService.RequestDatas;
+using MasterService.Session;
 using MasterService.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace MasterService
@@ -29,7 +34,7 @@ namespace MasterService
         }
         [HttpPost]
         [ActionName("PageIteration")]
-        public Future PageIteration([FromBody]PageIterationRequest pageIterationRequest)
+        public Future PageIteration(PageIterationRequest pageIterationRequest)
         {
             AddPageIterationTask task = new AddPageIterationTask()
             {
@@ -58,6 +63,13 @@ namespace MasterService
             DownloadTagBySelectorTask scrapingTask = new DownloadTagBySelectorTask(selector.Selector, new PythonComponents.ProcessorFilter());
             AddScrapingTask task = new AddScrapingTask()
             {
+                Data = new AddScrapingTaskRequest()
+                {
+                    SessionId = new SessionId()
+                    {
+                        SerialNumber = selector.SessionId.SerialNumber
+                    }
+                },
                 Task = scrapingTask
             };
             Future future = proxy.ProcessRequest(task);
@@ -70,38 +82,45 @@ namespace MasterService
         {
             ExecuteSessionTask task = new ExecuteSessionTask()
             {
-                SessionId = executeSessionRequest.SessionId
+                SessionId = new SessionId()
+                {
+                    SerialNumber = executeSessionRequest.SessionId.SerialNumber
+                }
             };
             Future future = proxy.ProcessRequest(task);
             futures.Add(future.Id.Serialize(), future);
             return future;
         }
-        [HttpGet]
+        [HttpPost]
         [ActionName("GetFutureState")]
-        public string GetFutureState(string taskId)
+        public MasterService.RequestData.DAO.TaskStateDAO GetFutureState([FromBody] GetFutureStateRequest getFutureStateRequest)
         {
             try
             {
-                Future future = futures[taskId];
-                return future.State.ToString();
+                Future future = futures[getFutureStateRequest.Id];
+                MasterService.RequestData.DAO.TaskStateDAO taskStateDAO = new MasterService.RequestData.DAO.TaskStateDAO()
+                {
+                    State = future.State.ToString()
+                };
+                return taskStateDAO;
             }
             catch
             {
-                return "Resource was not found";
+                return null;
             }
         }
-        [HttpGet]
+        [HttpPost]
         [ActionName("GetFutureResult")]
-        public string GetFutureResult(string taskId)
+        public JObject GetFutureResult([FromBody] GetFutureStateRequest getFutureStateRequest)
         {
             try
             {
-                Future future = futures[taskId];
-                return JsonConvert.SerializeObject(future.Result);
+                Future future = futures[getFutureStateRequest.Id];
+                return JObject.FromObject(future.Result);
             }
             catch
             {
-                return "Resource was not found";
+                return JObject.FromObject("Resource was not found");
             }
         }
         

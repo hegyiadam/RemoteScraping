@@ -1,4 +1,5 @@
 ﻿using ComponentInterfaces.Session;
+using MasterService.RequestData.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace MasterService.RequestData
 {
     public class DownloadTagBySelectorRequest : AddScrapingTaskRequest
     {
+        public SessionIdDAO SessionId { get; set; }
         public string Selector { get; set; }
     }
 }

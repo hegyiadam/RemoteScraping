@@ -20,17 +20,22 @@ namespace HubComponents
 
         public static dynamic Clients => context.Clients.All;
 
-        #region Methods
-        public void Send(string message)
+        public static void SubscribeToEvent(string name, Action<string> action, IProcessor processor)
         {
-            Console.WriteLine(message);
+            /**(processor.Client).On<string>(name, (data) => 
+            {
+                action(data);
+            });*/
+
         }
 
-        public static void DoSomething(string param)
+        #region Methods
+        public void SendResult(string methodName, string result)
         {
-            Console.WriteLine(param);
-            context.Clients.All.addMessage(param);
+            IProcessorId processorId = ProcessorManager.Instance.GetProcessorId(Context.ConnectionId);
+            ProcessorManager.Instance.ResultTriggered(methodName, result,processorId);
         }
+
         public void DownloadTag(string selector)
         {
             Console.WriteLine(selector);

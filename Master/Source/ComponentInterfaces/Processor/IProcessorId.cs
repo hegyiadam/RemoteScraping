@@ -8,6 +8,7 @@ namespace ComponentInterfaces.Processor
 {
     public interface IProcessorId
     {
+        bool EqualsTo(IProcessorId processorId);
         string ConnectionId { get; set; }
     }
 }

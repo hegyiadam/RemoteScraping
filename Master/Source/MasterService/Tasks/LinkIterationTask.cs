@@ -27,11 +27,14 @@ namespace MasterService.Tasks
             string[] links = null;
             if (PageNumber != null)
             {
-                links = JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links2(URL,PageNumber.ToString(), Selector).ToString());
+                //TODO
+                links = null;//JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links2(URL,PageNumber.ToString(), Selector).ToString());
             }
             else
             {
-                links = JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links(URL, Selector).ToString());
+
+                //TODO
+                links = null;// JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links(URL, Selector).ToString());
             }
 
             foreach(IProcessorTask nextTask in NextTasks)

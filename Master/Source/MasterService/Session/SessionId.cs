@@ -23,5 +23,10 @@ namespace MasterService.Session
                 SerialNumber = int.Parse(source)
             };
         }
+
+        public bool EqualsTo(ISessionId sessionId)
+        {
+            return sessionId.SerialNumber == SerialNumber;
+        }
     }
 }
