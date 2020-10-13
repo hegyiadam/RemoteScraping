@@ -24,20 +24,23 @@ namespace MasterService.Tasks
         public override void Call()
         {
             ActualState = TaskState.Processing;
-            string[] links = null;
             if (PageNumber != null)
             {
-                //TODO
-                links = null;//JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links2(URL,PageNumber.ToString(), Selector).ToString());
+                Processor.get_iteration_links2(URL, PageSelector, PageNumber.ToString(), Selector);
+                ProcessorManager.Instance.AddResultListener("get_iteration_links2_result", resultProcessing, Processor.Id);
             }
             else
             {
-
-                //TODO
-                links = null;// JsonConvert.DeserializeObject<string[]>(Processor.get_iteration_links(URL, Selector).ToString());
+                Processor.get_iteration_links(URL, Selector);
+                ProcessorManager.Instance.AddResultListener("get_iteration_links_result", resultProcessing, Processor.Id);
             }
+        }
 
-            foreach(IProcessorTask nextTask in NextTasks)
+        private void resultProcessing(string result)
+        {
+            string[] links = JsonConvert.DeserializeObject<string[]>(result);
+
+            foreach (IProcessorTask nextTask in NextTasks)
             {
                 for (int i = 0; i < links.Length; i++)
                 {
@@ -51,6 +54,8 @@ namespace MasterService.Tasks
             System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;
         }
+
+
         private IProcessor GetNextProcessor()
         {
             return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();

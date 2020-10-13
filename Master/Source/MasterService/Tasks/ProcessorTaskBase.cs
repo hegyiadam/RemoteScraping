@@ -31,6 +31,7 @@ namespace MasterService.Tasks
         }
 
         public int PageNumber { get; set; }
+        public string PageSelector { get; set; }
         public string URL { get; set; }
 
         ProcessorManager processorRepo = ProcessorManager.Instance;

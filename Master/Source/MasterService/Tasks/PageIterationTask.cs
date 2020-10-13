@@ -40,6 +40,7 @@ namespace MasterService.Tasks
                 {
                     IProcessor processor = GetNextProcessor();
                     nextTask.PageNumber = pageNumers[i];
+                    nextTask.PageSelector = Selector;
                     nextTask.Processor = processor;
                     nextTask.Call();
                 }

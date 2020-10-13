@@ -9,6 +9,7 @@ namespace ComponentInterfaces.Tasks
 {
     public interface IPageTask : ITask
     {
+        string PageSelector { get; set; }
         int PageNumber { get; set; }
     }
 }

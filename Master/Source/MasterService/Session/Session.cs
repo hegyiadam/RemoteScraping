@@ -27,20 +27,20 @@ namespace MasterService.Session
             {
                 throw new InvalidOperationException();
             }
-            _iterationTasks.Add(task);
             if(_iterationTasks.Count != 0)
             {
                 _iterationTasks.Last().NextTasks.Add(task);
             }
+            _iterationTasks.Add(task);
         }
 
         public void AddScrapingTask(IProcessorTask task)
         {
-            _scrapingTask.Add(task);
             if (_iterationTasks.Count != 0)
             {
                 _iterationTasks.Last().NextTasks.Add(task);
             }
+            _scrapingTask.Add(task);
         }
 
         public void Execute()

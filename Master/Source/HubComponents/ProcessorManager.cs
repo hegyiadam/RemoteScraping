@@ -12,7 +12,7 @@ namespace HubComponents
     public class ProcessorManager
     {
 		private List<IProcessor> processors = new List<IProcessor>();
-		private Dictionary<ResultKey, Action<string>> resultListeners = new Dictionary<ResultKey, Action<string>>();
+		private Dictionary<ResultKey, Stack<Action<string>>> resultListeners = new Dictionary<ResultKey, Stack<Action<string>>>();
  
 		private static ProcessorManager _instance = null;
 		private ProcessorManager() { }
@@ -50,8 +50,18 @@ namespace HubComponents
         public void AddResultListener(string methodName, Action<string> action, IProcessorId processorId)
         {
 			ResultKey resultKey = CreateResultKey(methodName, processorId);
+            try
+            {
+				KeyValuePair<ResultKey, Stack<Action<string>>> listeners = FindResultListener(resultKey);
+				listeners.Value.Push(action);
 
-			resultListeners.Add(resultKey, action);
+            }
+			catch(InvalidOperationException e)
+            {
+				Stack<Action<string>> stack  = new Stack<Action<string>>();
+				resultListeners.Add(resultKey, stack);
+				stack.Push(action);
+            }
 		}
 
 
@@ -59,20 +69,24 @@ namespace HubComponents
 		{
 			ResultKey resultKey = CreateResultKey(methodName, processorId);
 			
-			KeyValuePair<ResultKey, Action<string>> listener = FindResultListener(resultKey); //resultListeners.Where(keyValuePair => keyValuePair.Key.Equals(processorId)).FirstOrDefault();
-			listener.Value(result);
-			resultListeners.Remove(listener.Key);
+			KeyValuePair<ResultKey, Stack<Action<string>>> listener = FindResultListener(resultKey);
+			Action<string> resultListener = listener.Value.Pop();
+			resultListener(result);
+			if(listener.Value.Count == 0)
+            {
+				resultListeners.Remove(listener.Key);
+            }
         }
 
-        private KeyValuePair<ResultKey, Action<string>> FindResultListener(ResultKey resultKey)
-        {
-			return resultListeners.Where(listeners => 
-												listeners.Key.ProcessorId.EqualsTo(resultKey.ProcessorId) 
+		private KeyValuePair<ResultKey, Stack<Action<string>>> FindResultListener(ResultKey resultKey)
+		{
+			return resultListeners.Where(listeners =>
+												listeners.Key.ProcessorId.EqualsTo(resultKey.ProcessorId)
 												&& listeners.Key.MethodName.Equals(resultKey.MethodName))
-												.FirstOrDefault();
+												.First();
 		}
 
-        private struct ResultKey
+		private struct ResultKey
         {
 			public IProcessorId ProcessorId;
 			public string MethodName;
