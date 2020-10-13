@@ -6,6 +6,8 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="HubHandling" #>
+<#@ assembly name="$(TargetDir)HubHandling.dll" #>
 <#@ import namespace="PythonExecution" #>
 <#@ assembly name="$(TargetDir)PythonExecution.dll" #>
 <#@ output extension=".cs" #>
@@ -72,12 +74,22 @@ namespace HubHandling
             if(returnType){
                 Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => \n");
                 Write("{\n");
+                Write("ExecutionStack.Insert(()=>{\n");
+                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
                 Write("var response = executable."+methodName+"("+paramList+");\n");
                 Write("HubConnector.Instance.Proxy.Invoke<string>(\"SendResult\",new object[]{\""+methodName+"_result\", response});\n");
+                WriteLine("ExecutionTracker.FinishExecution(\""+methodName+"\");");
+                Write("},\""+methodName+"\",new object[]{"+paramList+"});\n");
                 Write("");
                 Write("});\n");
             }else{
-                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => executable."+methodName+"("+paramList+"));\n");
+                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => \n");
+                Write("{\n");
+                Write("ExecutionStack.Insert(()=>{\n");
+                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
+                WriteLine("executable."+methodName+"("+paramList+");");
+                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
+                Write("},\""+methodName+"\",new object[]{"+paramList+"});});\n");
             }
             WriteLine("}");
         }

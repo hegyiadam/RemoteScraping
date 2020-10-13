@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HubHandling;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,9 @@ namespace ProcessorDesktop
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            ExecutionStack.StartExecution(this.Dispatcher);
+        }
     }
 }

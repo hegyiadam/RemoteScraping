@@ -17,7 +17,9 @@ namespace HubHandling
 
 
         private static HubConnector _instance = null;
-        private HubConnector() { }
+        private HubConnector()
+        {
+        }
         public static HubConnector Instance
         {
             get
@@ -51,6 +53,14 @@ namespace HubHandling
             hubConnection = new HubConnection("http://localhost:8080//");
             hubProxy = hubConnection.CreateHubProxy("ProcessorHub");
             hubConnection.Start().Wait();
+        }
+
+        public static bool Connected 
+        {
+            get
+            {
+                return hubConnection!=null && hubConnection.State == ConnectionState.Connected;
+            }
         }
 
         public static void Stop()
