@@ -12,5 +12,5 @@ def commandExecution(command):
     
     func = getattr(Executable, command)
     print(request_body["params"])
-    
-    return str(func(*request_body["params"]))
+    result = func(*request_body["params"])
+    return str(result)

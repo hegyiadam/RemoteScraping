@@ -39,6 +39,10 @@ namespace ProcessorDesktop
             execution = new Executable();
             ViewModel = new MainWindowViewModel();
             DataContext = ViewModel;
+            HubConnector.Start();
+            HubConnector.SubscribeToEvent();
+            ViewModel.UpdateMasterConnectionState();
+            ViewModel.DetectProcessor();
         }
 
         private void CloseHandler(object sender, CancelEventArgs e)
@@ -55,17 +59,27 @@ namespace ProcessorDesktop
 
         private void MasterConnection_Click(object sender, RoutedEventArgs e)
         {
-            if (HubConnector.Connected)
+            new Thread(() =>
             {
-                HubConnector.Stop();
-                ViewModel.UpdateMasterConnectionState();
-            }
-            else
-            {
-                HubConnector.Start();
-                HubConnector.SubscribeToEvent();
-                ViewModel.UpdateMasterConnectionState();
-            }
+
+                if (HubConnector.Connected)
+                {
+                    HubConnector.Stop();
+                    ViewModel.UpdateMasterConnectionState();
+                }
+                else
+                {
+                    try
+                    {
+                        HubConnector.Start();
+                        HubConnector.SubscribeToEvent();
+                        ViewModel.UpdateMasterConnectionState();
+                    }
+                    catch
+                    {
+                    }
+                }
+            }).Start();
         }
 
 

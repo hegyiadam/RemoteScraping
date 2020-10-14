@@ -6,9 +6,8 @@ class ResultWriter(object):
         file_path = LocationContainer.get_result_location() +"\\"+ result_file_name
         ResultWriter.write_to_file(file_path,str(result))
     def write_to_file(path, content):
-        f = open(path, "a")
-        f.write(content)
-        f.close()
+        with open(path, "a") as f:
+            f.write(content)
     def get_result(filename):
         file_path = LocationContainer.get_result_location() +"\\"+ filename
         f = open(file_path,) 

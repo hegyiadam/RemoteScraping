@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
+from urllib.parse import urljoin
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -67,4 +68,10 @@ class Webpage(object):
     def get_iteration_links(self,iteration_link_selector):
         elements = self.get_elements_by_selector(iteration_link_selector)
         links = [(element['href']) for element in elements]
-        return links
+        fulllinks = []
+        for link in links:
+            if link.startswith('/') :
+                fulllinks.append(urljoin(self.page_url,link))
+            else:
+                fulllinks.append(link)
+        return fulllinks
