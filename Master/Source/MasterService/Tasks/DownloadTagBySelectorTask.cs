@@ -4,6 +4,7 @@ using HubComponents;
 using PythonComponents;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace MasterService.Tasks
 {
@@ -18,10 +19,17 @@ namespace MasterService.Tasks
 
         public override void Call()
         {
-            Processor.find_tag_by_css_selector(URL,Selector);
+            new Thread(() =>
+            {
+                Processor.find_tag_by_css_selector(URL, Selector);
+            }).Start();
             Result = Selector;
-            System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;
+        }
+
+        public override object Clone()
+        {
+            return new DownloadTagBySelectorTask(Selector, ProcessorFilter);
         }
     }
 }

@@ -44,5 +44,7 @@ namespace MasterService.Tasks
         {
             return processorRepo.GetProcessors(ProcessorFilter).Count != 0;
         }
+
+        public abstract object Clone();
     }
 }

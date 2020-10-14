@@ -44,14 +44,14 @@ namespace MasterService.Tasks
             {
                 for (int i = 0; i < links.Length; i++)
                 {
+                    IProcessorTask nextTaskInstance = (IProcessorTask)nextTask.Clone();
                     IProcessor processor = GetNextProcessor();
-                    nextTask.URL = links[i];
-                    nextTask.Processor = processor;
-                    nextTask.Call();
+                    nextTaskInstance.URL = links[i];
+                    nextTaskInstance.Processor = processor;
+                    Scheduler.Scheduler.Instance.Insert(nextTaskInstance);
                 }
             }
             Result = Selector;
-            System.Threading.Thread.Sleep(10000);
             ActualState = TaskState.Ready;
         }
 
@@ -59,6 +59,13 @@ namespace MasterService.Tasks
         private IProcessor GetNextProcessor()
         {
             return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();
+        }
+
+        public override object Clone()
+        {
+            LinkIterationTask clone = new LinkIterationTask(Selector, ProcessorFilter);
+            clone.NextTasks.AddRange(NextTasks);
+            return clone;
         }
     }
 }

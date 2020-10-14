@@ -38,11 +38,13 @@ namespace MasterService.Tasks
             {
                 for (int i = 0; i < pageNumers.Length; i++)
                 {
+                    IProcessorTask nextTaskInstance = (IProcessorTask)nextTask.Clone();
                     IProcessor processor = GetNextProcessor();
-                    nextTask.PageNumber = pageNumers[i];
-                    nextTask.PageSelector = Selector;
-                    nextTask.Processor = processor;
-                    nextTask.Call();
+                    nextTaskInstance.URL = URL;
+                    nextTaskInstance.PageNumber = pageNumers[i];
+                    nextTaskInstance.PageSelector = Selector;
+                    nextTaskInstance.Processor = processor;
+                    Scheduler.Scheduler.Instance.Insert(nextTaskInstance);
                 }
             }
             Result = Selector;
@@ -55,5 +57,11 @@ namespace MasterService.Tasks
             return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();
         }
 
+        public override object Clone()
+        {
+            PageIterationTask clone = new PageIterationTask(Selector, ProcessorFilter);
+            clone.NextTasks.AddRange(NextTasks);
+            return clone;
+        }
     }
 }

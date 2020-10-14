@@ -12,10 +12,8 @@ namespace Scheduler
 {
 	public class Scheduler
 	{
-
 		private readonly ConcurrentQueue<ITask> queue = new ConcurrentQueue<ITask>();
 		private ManualResetEvent manualResetEvent = new ManualResetEvent(false);
-
 
 		private static Scheduler _instance = null;
 		private Scheduler() 
@@ -24,7 +22,10 @@ namespace Scheduler
 			{
 				while (true)
 				{
-					manualResetEvent.WaitOne();
+                    if (queue.IsEmpty)
+                    {
+						manualResetEvent.WaitOne();
+                    }
 					Dispatch();
 				}
 			});
@@ -65,8 +66,5 @@ namespace Scheduler
 			}
 
 		}
-
-		
-
     }
 }
