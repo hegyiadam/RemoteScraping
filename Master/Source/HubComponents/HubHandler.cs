@@ -15,7 +15,7 @@ namespace HubComponents
         {
             using (WebApp.Start(URL))
             {
-                Console.WriteLine("Server runing on {0}", URL);
+                Console.WriteLine("HUB Server running on {0}", URL);
                 Console.ReadLine();
             }
         }
