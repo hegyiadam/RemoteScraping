@@ -26,7 +26,6 @@ class Webpage(object):
     def get_content(self):
         return self.html
 
-    
     def get_element_by_selector(self,selector):
         return self.soup.select_one(selector)
     
@@ -49,6 +48,7 @@ class Webpage(object):
 
     def get_soup(self):
         return self.soup
+
     def xpath_soup(self,element):
         components = []
         child = element if element.name else element.parent
@@ -65,6 +65,7 @@ class Webpage(object):
         elements = self.get_elements_by_selector(page_selector)
         numbers = [(int(element.get_text())) for element in elements if element.get_text() != '']
         return numbers
+
     def get_iteration_links(self,iteration_link_selector):
         elements = self.get_elements_by_selector(iteration_link_selector)
         links = [(element['href']) for element in elements]
