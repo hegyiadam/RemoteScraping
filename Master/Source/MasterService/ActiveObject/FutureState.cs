@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterService.RequestData.DAO
+namespace MasterService.ActiveObject
 {
-    public class TaskStateDAO
+    public enum FutureState
     {
-        public string State { get; set; }
+        Initialized,
+        Processing,
+        Ready
     }
 }

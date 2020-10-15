@@ -9,9 +9,12 @@ namespace MasterService.ActiveObject
 {
     public class Future
     {
+        private FutureId id;
         public Future(ITask task)
         {
             Task = task;
+            id = new FutureId();
+            id.ParseTaskId(task.Id);
             task.StateChangedEvent += Task_StateChangedEvent; 
         }
 
@@ -23,11 +26,11 @@ namespace MasterService.ActiveObject
 
         public event TaskStateChangeHandler StateChangedEvent;
 
-        public ITaskId Id
+        public FutureId Id
         {
             get
             {
-                return Task.Id;
+                return id;
             }
         }
 
@@ -40,12 +43,17 @@ namespace MasterService.ActiveObject
 
         }
 
-        public TaskState State
+        public FutureState State
         {
             get
             {
-                return Task.ActualState;
+                return ConvertTaskStateToFutureState(Task.ActualState);
             }
+        }
+
+        private FutureState ConvertTaskStateToFutureState(TaskState actualState)
+        {
+            return (FutureState)Enum.Parse(typeof(FutureState),Enum.GetName(typeof(TaskState), actualState));
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using MasterService.ActiveObject;
+﻿using ComponentInterfaces.Tasks;
+using MasterService.ActiveObject;
 using MasterService.RequestData;
+using MasterService.RequestData.DAO;
 using MasterService.RequestDatas;
 using MasterService.Session;
 using MasterService.Tasks;
@@ -9,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +23,7 @@ namespace MasterService
     public class MethodController : ApiController
     {
         private Proxy proxy = new Proxy();
-        private static Dictionary<string, Future> futures = new Dictionary<string, Future>();
+        private static IFutureRepository futureRepository = IMDBFutureRepository.Instance;
 
         [HttpPost]
         [ActionName("RootUrl")]
@@ -28,8 +31,7 @@ namespace MasterService
         {
             Console.WriteLine(rootUrl.URL);
             SetRootUrlTask task = new SetRootUrlTask(rootUrl.URL);
-            Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(), future);
+            Future future = CreateFuture(task);
             return future;
         }
         [HttpPost]
@@ -40,10 +42,11 @@ namespace MasterService
             {
                 Data = pageIterationRequest
             };
-            Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(), future);
+            Future future = CreateFuture(task);
             return future;
         }
+
+
         [HttpPost]
         [ActionName("LinkIteration")]
         public Future LinkIteration([FromBody]LinkIterationRequest linkIterationRequest)
@@ -52,8 +55,7 @@ namespace MasterService
             {
                 Data = linkIterationRequest
             };
-            Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(), future);
+            Future future = CreateFuture(task);
             return future;
         }
         [HttpPost]
@@ -72,8 +74,7 @@ namespace MasterService
                 },
                 Task = scrapingTask
             };
-            Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(), future);
+            Future future = CreateFuture(task);
             return future;
         }
         [HttpPost]
@@ -87,35 +88,31 @@ namespace MasterService
                     SerialNumber = executeSessionRequest.SessionId.SerialNumber
                 }
             };
-            Future future = proxy.ProcessRequest(task);
-            futures.Add(future.Id.Serialize(), future);
+            Future future = CreateFuture(task);
             return future;
         }
         [HttpPost]
         [ActionName("GetFutureState")]
-        public MasterService.RequestData.DAO.TaskStateDAO GetFutureState([FromBody] GetFutureStateRequest getFutureStateRequest)
+        public FutureStateDAO GetFutureState([FromBody] FutureId futureId)
         {
             try
             {
-                Future future = futures[getFutureStateRequest.Id];
-                MasterService.RequestData.DAO.TaskStateDAO taskStateDAO = new MasterService.RequestData.DAO.TaskStateDAO()
-                {
-                    State = future.State.ToString()
-                };
-                return taskStateDAO;
+                Future future = futureRepository.GetFuture(futureId);
+                MasterService.RequestData.DAO.FutureStateDAO futureStateDAO = new MasterService.RequestData.DAO.FutureStateDAO(future.State);
+                return new FutureStateDAO(future.State);
             }
             catch
             {
-                return null;
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, "Future was not found"));
             }
         }
         [HttpPost]
         [ActionName("GetFutureResult")]
-        public JObject GetFutureResult([FromBody] GetFutureStateRequest getFutureStateRequest)
+        public JObject GetFutureResult([FromBody] FutureId futureId)
         {
             try
             {
-                Future future = futures[getFutureStateRequest.Id];
+                Future future = futureRepository.GetFuture(futureId);
                 return JObject.FromObject(future.Result);
             }
             catch
@@ -123,6 +120,13 @@ namespace MasterService
                 return JObject.FromObject("Resource was not found");
             }
         }
-        
+
+        private Future CreateFuture(ITask task)
+        {
+            Future future = proxy.ProcessRequest(task);
+            futureRepository.RegisterFuture(future);
+            return future;
+        }
+
     }
 }

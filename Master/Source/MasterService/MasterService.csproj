@@ -85,6 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveObject\Future.cs" />
+    <Compile Include="ActiveObject\FutureId.cs" />
+    <Compile Include="ActiveObject\FutureState.cs" />
+    <Compile Include="ActiveObject\IMDBFutureRepository.cs" />
+    <Compile Include="ActiveObject\IFutureRepository.cs" />
+    <Compile Include="ActiveObject\IFutureRepositoryConfig.cs" />
+    <Compile Include="ActiveObject\IMDBFutureRepositoryConfig.cs" />
     <Compile Include="ActiveObject\Proxy.cs" />
     <Compile Include="AppConfigManager.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
@@ -93,7 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestData\AddScrapingTaskRequest.cs" />
     <Compile Include="RequestData\DAO\SessionIdDAO.cs" />
-    <Compile Include="RequestData\DAO\TaskStateDAO.cs" />
+    <Compile Include="RequestData\DAO\FutureStateDAO.cs" />
     <Compile Include="RequestData\ExecuteSessionRequest.cs" />
     <Compile Include="RequestData\GetFutureStateRequest.cs" />
     <Compile Include="RequestData\LinkIterationRequest.cs" />
