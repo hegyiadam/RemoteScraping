@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,11 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterCommands\CommandScheduler.cs" />
+    <Compile Include="MasterCommands\FutureHandling.cs" />
+    <Compile Include="MasterCommands\FutureState.cs" />
+    <Compile Include="MasterCommands\IMasterCommand.cs" />
+    <Compile Include="MasterCommands\SessionContainer.cs" />
+    <Compile Include="MasterCommands\SwaggerGenerated\ApiClient.cs" />
     <Compile Include="MasterConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

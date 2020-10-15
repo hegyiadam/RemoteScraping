@@ -176,6 +176,7 @@
     <Compile Include="Model\SelectorRequest.cs" />
     <Compile Include="ViewModel\BoolToVisibilityCustomConverter.cs" />
     <Compile Include="ViewModel\BrowserUserControlViewModel.cs" />
+    <Compile Include="ViewModel\Commands\ScrapingCommands\ExecuteScraping.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetNavigationIteratorCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\GetClickIteratorCommand.cs" />
     <Compile Include="ViewModel\Commands\ScrapingCommands\HighlightClickedElement.cs" />

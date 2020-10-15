@@ -1,7 +1,10 @@
 ﻿using BrowserManagement;
 using CefSharp.Wpf;
 using MasterConnection;
+using MasterConnection.MasterCommands;
+using MasterConnection.MasterCommands.SwaggerGenerated;
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,7 +48,9 @@ namespace WPFBrowserClient.ViewModel.Commands
                         questionDialog = new QuestionDialog("Do you want to iterate through these elements?",(answere) => {
                             if (answere)
                             {
-                                MessageBox.Show("Answere was yes");
+                                MethodClient methodClient = new MethodClient(new HttpClient());
+                                LinkIterationRequest linkIterationRequest = new LinkIterationRequest() { Selector = (string)response.Result, SessionId = SessionContainer.Instance.ID };
+                                methodClient.LinkIterationAsync(linkIterationRequest);
                             }
                             rootGrid.Children.Remove(questionDialog);
                             Browser.RemoveAutoHighlightControl();

@@ -24,6 +24,7 @@ namespace WPFBrowserClient.ViewModel.Commands
         {
 
             WindowViewModel.MainFrame.Navigate(new SiteScrapingPage());
+
         }
     }
 }

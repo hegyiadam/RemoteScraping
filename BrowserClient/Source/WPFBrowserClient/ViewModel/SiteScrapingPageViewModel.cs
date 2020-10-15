@@ -2,6 +2,7 @@
 using BrowserManagement.Wrappers.CefSharpWrapper;
 using CefSharp;
 using CefSharp.Wpf;
+using MasterConnection.MasterCommands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,6 +38,7 @@ namespace WPFBrowserClient.ViewModel
             InitializeCommands();
             _siteScrapingPage = siteScrapingPage;
             instance = this;
+            SessionContainer.Instance.CreateNewSession(ActualWebPage.Instance.URL);
         }
 
         [ImportMany]

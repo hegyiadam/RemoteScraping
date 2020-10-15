@@ -1,7 +1,10 @@
 ﻿using BrowserManagement;
 using CefSharp.Wpf;
 using MasterConnection;
+using MasterConnection.MasterCommands;
+using MasterConnection.MasterCommands.SwaggerGenerated;
 using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,7 +42,11 @@ namespace WPFBrowserClient.ViewModel.Commands
                     {
                         SelectorRequest selectorRequest = new SelectorRequest();
                         selectorRequest.Selector = (string)response.Result;
-                        MasterConnection.MasterConnection.RunCommand("DownloadTagBySelector",selectorRequest);
+                        MethodClient methodClient = new MethodClient(new HttpClient());
+                        DownloadTagBySelectorRequest downloadTagBySelectorRequest = new DownloadTagBySelectorRequest();
+                        downloadTagBySelectorRequest.Selector = (string)response.Result;
+                        downloadTagBySelectorRequest.SessionId = SessionContainer.Instance.ID;
+                        methodClient.DownloadTagBySelectorAsync(downloadTagBySelectorRequest);
                     }
                 });
                 Browser.RemoveAutoHighlightControl();
