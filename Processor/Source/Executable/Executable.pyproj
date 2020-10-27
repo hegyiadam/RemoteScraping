@@ -31,9 +31,15 @@
     <Compile Include="ResultWriter.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Webpage.py">
+    <Compile Include="Scrapers\AnalizerScrapers.py" />
+    <Compile Include="Scrapers\CollectorScrapers.py" />
+    <Compile Include="Scrapers\IterationScrapers.py" />
+    <Compile Include="Scrapers\Webpage.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scrapers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
