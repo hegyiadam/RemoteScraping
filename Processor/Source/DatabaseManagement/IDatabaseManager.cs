@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace DatabaseManagement
     {
         void MergeCurrentResults(string by,string sessionId);
 
-        void GetResult(string byKey, string byValue);
+        List<JObject> GetResult(string byKey, string byValue);
 
         void CreateNewSession(Dictionary<string,string> sessionDetails);
     }

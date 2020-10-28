@@ -49,12 +49,8 @@ namespace HubHandling
         {
             _hubProxy.On<String>("get_session_result", (sessionId) =>
             {
-                ExecutionStack.Insert(() => {
-                    ExecutionTracker.StartExecution("session_finished");
-                    databaseManager.MergeCurrentResults("Url", sessionId);
-                    HubConnector.Instance.Proxy.Invoke<string>("SendResult", new object[] { "get_session_result_result", response });
-                    ExecutionTracker.StartExecution("session_finished");
-                }, "session_finished", new object[] { sessionId });
+                List<JObject> results = databaseManager.GetResult("SessionId", sessionId);
+                HubConnector.Instance.Proxy.Invoke<string>("SendResult", new object[] { "get_session_result_result", results });
             });
         }
     }
