@@ -57,12 +57,17 @@
       <DependentUpon>HubCallback.tt</DependentUpon>
     </Compile>
     <Compile Include="HubConnector.cs" />
+    <Compile Include="HubManagmentCallback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DatabaseManagement\DatabaseManagement.csproj">
+      <Project>{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}</Project>
+      <Name>DatabaseManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PythonExecution\PythonExecution.csproj">
       <Project>{DFB375A8-1CBE-42A4-9B14-17D54D69CC4E}</Project>
       <Name>PythonExecution</Name>

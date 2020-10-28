@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Globals", "_Globals", "{CB
 		_Globals\settings.json = _Globals\settings.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseManagement", "Source\DatabaseManagement\DatabaseManagement.csproj", "{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{F9869AD7-4292-42EE-A94B-E5CE078101AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9869AD7-4292-42EE-A94B-E5CE078101AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9869AD7-4292-42EE-A94B-E5CE078101AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C50D2B5-006F-4376-BD53-C56DD1F87FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{B097C626-0920-4030-8BA0-1C88F6CBE051} = {780C0655-6779-4BFC-ADC8-2FF9BD166E01}
 		{DFB375A8-1CBE-42A4-9B14-17D54D69CC4E} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
 		{F9869AD7-4292-42EE-A94B-E5CE078101AF} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
+		{9C50D2B5-006F-4376-BD53-C56DD1F87FAC} = {EF2E646B-CE15-4746-B2E8-19FB6238BA01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D48C3CE-C36B-46EF-9405-1E59454BC030}

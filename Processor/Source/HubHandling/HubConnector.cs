@@ -75,6 +75,7 @@ namespace HubHandling
         public async static void SubscribeToEvent()
         {
             new HubCallback(hubProxy);
+            new HubManagmentCallback(hubProxy);
         }
 
     }

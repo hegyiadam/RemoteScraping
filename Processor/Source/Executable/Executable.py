@@ -12,7 +12,12 @@ class Executable(IExecutable):
 
     def find_tag_by_css_selector_using_webpage(webpage, css_selector):
         result = webpage.get_element_by_selector(css_selector).get_text()
-        content = "\nURL: " + webpage.page_url + "\nContent:\n" + result
+        url = str(webpage.page_url)
+        content = {
+            "Url": url,
+            "Content":result
+        }
+       
         ResultWriter.print_result(content)
 
     def get_page_numbers(url, page_iteration_selector):
