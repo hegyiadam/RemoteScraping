@@ -10,27 +10,30 @@
 <#@ import namespace="PythonComponents.ClientInterface" #>
 <#@ output extension=".cs" #>
 <#
-            Type type =  typeof(IExecutable);
-            List<string> methodNames = new List<string>();
-            Dictionary<string,List<string>> parameterTypes = new Dictionary<string,List<string>>();
-            Dictionary<string,List<string>> parameterNames = new Dictionary<string,List<string>>();
-            MethodInfo[] methodInfos = type.GetMethods();
-            foreach(MethodInfo methodInfo in methodInfos)
+    Type[] types = new Type[]{typeof(IExecutable),typeof(IManagement)};
+    List<string> methodNames = new List<string>();
+    Dictionary<string,List<string>> parameterTypes = new Dictionary<string,List<string>>();
+    Dictionary<string,List<string>> parameterNames = new Dictionary<string,List<string>>();
+    foreach(Type type in types)
+    {
+        MethodInfo[] methodInfos = type.GetMethods();
+        foreach(MethodInfo methodInfo in methodInfos)
+        {
+            string methodName = methodInfo.Name;
+            methodNames.Add(methodName);
+            List<string> paramTypes = new List<string>();
+            List<string> paramNames = new List<string>();
+            foreach(ParameterInfo parameterInfo in methodInfo.GetParameters())
             {
-                string methodName = methodInfo.Name;
-                methodNames.Add(methodName);
-                List<string> paramTypes = new List<string>();
-                List<string> paramNames = new List<string>();
-                foreach(ParameterInfo parameterInfo in methodInfo.GetParameters())
-                {
-                    string parameterTypeName = parameterInfo.ParameterType.Name;
-                    string parameterName = parameterInfo.Name;
-                    paramTypes.Add(parameterTypeName);
-                    paramNames.Add(parameterName);
-                }
-                parameterTypes.Add(methodName,paramTypes);
-                parameterNames.Add(methodName,paramNames);
+                string parameterTypeName = parameterInfo.ParameterType.Name;
+                string parameterName = parameterInfo.Name;
+                paramTypes.Add(parameterTypeName);
+                paramNames.Add(parameterName);
             }
+            parameterTypes.Add(methodName,paramTypes);
+            parameterNames.Add(methodName,paramNames);
+        }
+    }
 #>
 using ComponentInterfaces.Processor;
 using System;
@@ -58,7 +61,11 @@ namespace PythonComponents
                 }
                 parameters += parameterTypes[methodName][j] + " "+ parameterNames[methodName][j];
             }
-            WriteLine("public static void "+methodName+"(this IProcessor processor, "+parameters+")");
+            if(parameters!="")
+            {
+                parameters = ", "+parameters;
+            }
+            WriteLine("public static void "+methodName+"(this IProcessor processor"+parameters+")");
             WriteLine("{");
             Write("processor.Client."+methodName+"("+paramList+");\n");
             WriteLine("}");

@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -81,7 +82,7 @@ namespace MasterService
         [ActionName("ExecuteSession")]
         public Future ExecuteSession([FromBody]ExecuteSessionRequest executeSessionRequest)
         {
-            ExecuteSessionTask task = new ExecuteSessionTask()
+            ExecuteSessionTask task = new ExecuteSessionTask(new PythonComponents.ProcessorFilter())
             {
                 SessionId = new SessionId()
                 {

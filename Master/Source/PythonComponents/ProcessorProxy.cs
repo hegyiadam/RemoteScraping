@@ -29,5 +29,13 @@ public static void get_iteration_links2(this IProcessor processor, String url,St
 {
 processor.Client.get_iteration_links2(url,page_iteration_selector,iteration_number,iteration_selector);
 }
+public static void session_started(this IProcessor processor, String sessionId)
+{
+processor.Client.session_started(sessionId);
+}
+public static void session_finished(this IProcessor processor, String sessionId)
+{
+processor.Client.session_finished(sessionId);
+}
     }
 }

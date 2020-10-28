@@ -116,11 +116,13 @@
     <Compile Include="Tasks\AddScrapingTask.cs" />
     <Compile Include="Tasks\DownloadTagBySelectorTask.cs" />
     <Compile Include="Tasks\ExecuteSessionTask.cs" />
+    <Compile Include="Tasks\FinishSessionTask.cs" />
     <Compile Include="Tasks\LinkIterationTask.cs" />
     <Compile Include="Tasks\PageIterationTask.cs" />
     <Compile Include="Tasks\ProcessorTaskBase.cs" />
     <Compile Include="Tasks\SetRootUrlTask.cs" />
     <Compile Include="Tasks\TaskBase.cs" />
+    <Compile Include="Tasks\TaskBatch.cs" />
     <Compile Include="Tasks\TaskId.cs" />
     <Compile Include="Tasks\TaskIdFactory.cs" />
   </ItemGroup>

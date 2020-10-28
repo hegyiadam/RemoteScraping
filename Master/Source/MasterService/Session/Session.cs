@@ -1,6 +1,7 @@
 ﻿using ComponentInterfaces.Session;
 using ComponentInterfaces.Tasks;
 using MasterService.Tasks;
+using PythonComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,9 @@ namespace MasterService.Session
         public void Execute()
         {
             ValidateSession();
-            if(_iterationTasks.Count != 0)
+            if (_iterationTasks.Count != 0)
             {
+                _iterationTasks.Last().NextTasks.Add(new FinishSessionTask(new ProcessorFilter()) {SessionId = Id });
                 IIterationTask firstIterationTask = _iterationTasks[0];
                 firstIterationTask.URL = _rootUrl;
                 if (firstIterationTask.CanRun())

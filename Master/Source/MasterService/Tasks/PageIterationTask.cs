@@ -34,12 +34,12 @@ namespace MasterService.Tasks
             int[] pageNumers = JsonConvert.DeserializeObject<int[]>(data);
 
 
-            foreach (IProcessorTask nextTask in NextTasks)
+            for (int i = 0; i < pageNumers.Length; i++)
             {
-                for (int i = 0; i < pageNumers.Length; i++)
+                IProcessor processor = GetNextProcessor();
+                foreach (IProcessorTask nextTask in NextTasks)
                 {
                     IProcessorTask nextTaskInstance = (IProcessorTask)nextTask.Clone();
-                    IProcessor processor = GetNextProcessor();
                     nextTaskInstance.URL = URL;
                     nextTaskInstance.PageNumber = pageNumers[i];
                     nextTaskInstance.PageSelector = Selector;

@@ -39,18 +39,19 @@ namespace MasterService.Tasks
         private void resultProcessing(string result)
         {
             string[] links = JsonConvert.DeserializeObject<string[]>(result);
-
-            foreach (IProcessorTask nextTask in NextTasks)
+            TaskBatch taskBatch = new TaskBatch();
+            for (int i = 0; i < links.Length; i++)
             {
-                for (int i = 0; i < links.Length; i++)
+                IProcessor processor = GetNextProcessor();
+                foreach (IProcessorTask nextTask in NextTasks)
                 {
                     IProcessorTask nextTaskInstance = (IProcessorTask)nextTask.Clone();
-                    IProcessor processor = GetNextProcessor();
                     nextTaskInstance.URL = links[i];
                     nextTaskInstance.Processor = processor;
-                    Scheduler.Scheduler.Instance.Insert(nextTaskInstance);
+                    taskBatch.Tasks.Add(nextTaskInstance);
                 }
             }
+            Scheduler.Scheduler.Instance.Insert(taskBatch);
             Result = Selector;
             ActualState = TaskState.Ready;
         }
