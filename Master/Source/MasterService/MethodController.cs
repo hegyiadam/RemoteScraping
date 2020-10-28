@@ -121,6 +121,26 @@ namespace MasterService
                 return JObject.FromObject("Resource was not found");
             }
         }
+        [HttpPost]
+        [ActionName("GetResult")]
+        public Future GetFutureResult([FromBody] GetResultRequest getResultRequest)
+        {
+            GetResultTask task = new GetResultTask(new PythonComponents.ProcessorFilter())
+            {
+                SessionId = new SessionId()
+                {
+                    SerialNumber = getResultRequest.SessionId.SerialNumber
+                }
+            };
+            Future future = CreateFuture(task);
+            return future;
+        }
+        [HttpGet]
+        [ActionName("GetSessionData")]
+        public List<SessionData> GetSessionData()
+        {
+            return SessionRepository.Instance.GetAllSessionData();
+        }
 
         private Future CreateFuture(ITask task)
         {

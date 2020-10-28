@@ -37,5 +37,9 @@ public static void session_finished(this IProcessor processor, String sessionId)
 {
 processor.Client.session_finished(sessionId);
 }
+public static void get_session_result(this IProcessor processor, String sessionId)
+{
+processor.Client.get_session_result(sessionId);
+}
     }
 }

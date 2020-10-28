@@ -1,4 +1,6 @@
 ﻿using ComponentInterfaces.Session;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,18 @@ using System.Threading.Tasks;
 
 namespace MasterService.Session
 {
-    public class SessionRepository 
-    {
+    public class SessionRepository
+	{
+		IMongoCollection<BsonDocument> mastersessiondataCollection;
 
 		private static SessionRepository _instance = null;
 		
-		private SessionRepository() { }
+		private SessionRepository()
+		{
+			MongoClient mongoClient = new MongoClient("mongodb://localhost:27017/");
+			IMongoDatabase mongoDatabase = mongoClient.GetDatabase("RemoteScrape");
+			mastersessiondataCollection = mongoDatabase.GetCollection<BsonDocument>("mastersessiondata");
+		}
 		public static SessionRepository Instance
 		{
 			get
@@ -30,6 +38,13 @@ namespace MasterService.Session
 		public void AddSession(ISession session)
 		{
 			Sessions.Add(session.Id, session);
+			string date = DateTime.Now.ToString();
+			SessionData sessionData = new SessionData()
+			{
+				SessionId = session.Id.Serialize(),
+				Date = date
+			};
+			mastersessiondataCollection.InsertOne(sessionData.ToBson());
 		}
 		
 		public ISession GetSession(ISessionId sessionId) 
@@ -38,5 +53,10 @@ namespace MasterService.Session
 			return Sessions.Where(session => session.Key.EqualsTo(sessionId)).FirstOrDefault().Value;
 		}
 
+		public List<SessionData> GetAllSessionData()
+        {
+			return mastersessiondataCollection.Find<BsonDocument>(_ => true).ToList().Select(e => SessionData.Parse(e)).ToList();
+
+		}
 	}
 }
