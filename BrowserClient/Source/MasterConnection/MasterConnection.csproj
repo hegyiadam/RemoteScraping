@@ -51,7 +51,6 @@
     <Compile Include="MasterCommands\IMasterCommand.cs" />
     <Compile Include="MasterCommands\SessionContainer.cs" />
     <Compile Include="MasterCommands\SwaggerGenerated\ApiClient.cs" />
-    <Compile Include="MasterConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

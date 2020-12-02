@@ -33,20 +33,20 @@ namespace MasterConnection.MasterCommands
                 URL = url
             };
             methodClient.RootUrlAsync(rootURLRequest).ContinueWith((result) =>
-            {
-                FutureId futureId = result.Result.Id;
-                SessionIdDAO sessionIdDAO = null;
-                while (sessionIdDAO == null)
-                {
-                    string currentState = FutureHandling.GetState(futureId);
-                    if (currentState == FutureState.READY)
-                    {
-                        JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
-                        sessionIdDAO = (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
-                    }
-                }
-                ID = sessionIdDAO;
-            });
+             {
+                 FutureId futureId = result.Result.Id;
+                 SessionIdDAO sessionIdDAO = null;
+                 while (sessionIdDAO == null)
+                 {
+                     string currentState = FutureHandling.GetState(futureId);
+                     if (currentState == FutureState.READY)
+                     {
+                         JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
+                         sessionIdDAO = (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
+                     }
+                 }
+                 ID = sessionIdDAO;
+             });
         }
 
         public SessionIdDAO ID { get; set; }

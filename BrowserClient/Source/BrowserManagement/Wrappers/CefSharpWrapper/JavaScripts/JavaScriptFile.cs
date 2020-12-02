@@ -8,7 +8,7 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper.JavaScripts
 {
     public static class JavaScriptFile
     {
-        public const string BasePath = @"Wrappers\CefSharpWrapper\JavaScripts\";
+        public const string BasePath = @"C:\WS\others\RemoteScrapingBranches\pcclient\BrowserClient\Deploy\Wrappers\CefSharpWrapper\JavaScripts\";
         public const string AutoHighlightControl = BasePath + "AutoHighlightControl.js";
         public const string HighlightControl = BasePath + "HighlightControl.js";
         public const string RemoveHighlightControl = BasePath + "RemoveHighlightControl.js";
