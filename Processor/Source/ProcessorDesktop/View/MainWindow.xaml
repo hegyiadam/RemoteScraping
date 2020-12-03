@@ -51,10 +51,10 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Button x:Name="MasterConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=MasterConnected, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="MasterConnection_Click"  >Master connection</Button>
+                        <Button x:Name="MasterConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=ConnectedToMaster, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="MasterConnection_Click"  >Master connection</Button>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Button x:Name="ProcessorConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=ProcessorServerIsActiver, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="ProcessorConnection_Click">Detect processor</Button>
+                        <Button x:Name="ProcessorConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=ProcessorServerIsActive, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="ProcessorConnection_Click">Detect processor</Button>
                     </Grid>
                 </Grid>
 

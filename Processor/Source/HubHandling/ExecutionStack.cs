@@ -11,62 +11,83 @@ using System.Windows.Threading;
 
 namespace HubHandling
 {
-	public class ExecutionStack
+	public static partial class ExecutionStack
 	{
-		public class MethodCall
-        {
-			public string MethodName { get; set; }
-			public string Parameters { get; set; }
-        }
-		private static readonly ConcurrentQueue<Action> queue = new ConcurrentQueue<Action>();
+		private static readonly ConcurrentQueue<Action> _actions = new ConcurrentQueue<Action>();
+		private static readonly ManualResetEvent _manualResetEvent = new ManualResetEvent(false);
 		private static Dispatcher _dispatcher;
-		public static readonly ObservableCollection<MethodCall> methodCalls = new ObservableCollection<MethodCall>();
-		private static ManualResetEvent manualResetEvent = new ManualResetEvent(false);
 
-		public static void Insert(Action action, string functionName, object[] parameters)
-		{
-			queue.Enqueue(action);
-			_dispatcher.Invoke((Action)delegate
-			{
-				methodCalls.Add(new MethodCall()
-				{
-					MethodName = functionName,
-					Parameters = String.Join(",", parameters)
-				});
-			});
-			
-			manualResetEvent.Set();
+        public static ObservableCollection<MethodCall> MethodCalls { get; } = new ObservableCollection<MethodCall>();
 
-		}
-
-		public static void StartExecution(Dispatcher dispatcher)
+        public static void StartExecution(Dispatcher dispatcher)
 		{
 			_dispatcher = dispatcher;
-			new Thread(() =>
-			{
-				while (true)
-				{
-					if (queue.IsEmpty)
-					{
-						manualResetEvent.WaitOne();
-						Action action;
-						queue.TryDequeue(out action);
-						action();
-					}
-                    else
-                    {
-						Action action;
-						queue.TryDequeue(out action);
-						action();
-					}
-					_dispatcher.Invoke((Action)delegate
-					{
-						methodCalls.RemoveAt(0);
-					});
-					manualResetEvent.Reset();
-				}
-			}).Start();
+			new Thread(ExecutionLoop).Start();
 
 		}
-	}
+        public static void Insert(Action action, string functionName, object[] parameters)
+        {
+            AddToActions(action);
+            AddToMethodCalls(functionName, parameters);
+
+
+            _manualResetEvent.Set();
+        }
+
+        private static void AddToMethodCalls(string functionName, object[] parameters)
+        {
+            MethodCall newMethodCall = new MethodCall(functionName, parameters);
+
+            //To avoid UI blocking
+            _dispatcher.Invoke(() =>
+            {
+                MethodCalls.Add(newMethodCall);
+            });
+        }
+
+        private static void AddToActions(Action action)
+        {
+            _actions.Enqueue(action);
+        }
+
+        private static void ExecutionLoop()
+        {
+            while (true)
+            {
+                if (_actions.IsEmpty)
+                {
+                    _manualResetEvent.WaitOne();
+                }
+                else
+                {
+                    ExecuteMethodFirstCall();
+                    _manualResetEvent.Reset();
+                }
+            }
+        }
+
+        private static void ExecuteMethodFirstCall()
+        {
+            MethodCall firstMethodCall = GetFirstMethodCall();
+            _actions.TryDequeue(out Action action);
+            ExecutionTracker.StartExecution(firstMethodCall.MethodName);
+            action();
+            ExecutionTracker.FinishExecution(firstMethodCall.MethodName);
+
+            UpdateMethodCalls();
+        }
+
+        private static MethodCall GetFirstMethodCall()
+        {
+            return MethodCalls[0];
+        }
+
+        private static void UpdateMethodCalls()
+        {
+            _dispatcher.Invoke(() =>
+            {
+                MethodCalls.RemoveAt(0);
+            });
+        }
+    }
 }

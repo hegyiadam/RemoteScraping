@@ -8,9 +8,6 @@ from Executable import Executable
 @app.route('/run/<command>', methods=['POST'])
 def commandExecution(command):
     request_body = request.get_json()
-    exec = Executable()
-    
-    func = getattr(Executable, command)
-    print(request_body["params"])
-    result = func(*request_body["params"])
+    method = getattr(Executable, command)
+    result = method(*request_body["params"])
     return str(result)

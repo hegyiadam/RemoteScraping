@@ -22,10 +22,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Executable.py" />
+    <Compile Include="FileHandler.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IExecutable.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LocationContainer.py">
+    <Compile Include="ConfigurationContainer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IResultHandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MongoHandler.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ResultWriter.py">

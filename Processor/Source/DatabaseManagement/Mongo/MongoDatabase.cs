@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -40,46 +41,58 @@ namespace DatabaseManagement.Mongo
 
         }
 
-        public void MergeCurrentResults(string by, string sessionId)
+public void MergeCurrentResults(string by, SessionId sessionId)
+{
+    List<BsonValue> filterValues = currentResultCollection.Find(_ => true)
+        .ToList()
+        .Select(element => element.GetValue(by))
+        .Distinct()
+        .ToList();
+    
+    foreach (BsonValue value in filterValues)
+    {
+        String filterValue = value.AsString;
+        FilterDefinition<BsonDocument> currentFilter = 
+            Builders<BsonDocument>.Filter.Eq(by, filterValue);
+        List<BsonDocument> documents = 
+            currentResultCollection.Find(currentFilter).ToList();
+
+        BsonDocument newResult = new BsonDocument();
+        foreach (BsonDocument bsonElement in documents)
         {
-            List<BsonValue> filterValues = currentResultCollection.Find(_ => true).ToList().Select(element => element.GetValue(by)).Distinct().ToList();// .Find<BsonDocument>(element => element.GetValue(by)).ToList();
-            
-            foreach (BsonValue value in filterValues)
-            {
-                String filterValue = value.AsString;
-                FilterDefinition<BsonDocument> currentFilter = Builders<BsonDocument>.Filter.Eq(by, filterValue);
-                List<BsonDocument> documents = currentResultCollection.Find(currentFilter).ToList();
-
-                BsonDocument newResult = new BsonDocument();
-                foreach (BsonDocument bsonElement in documents)
-                {
-                    newResult.Merge(bsonElement);
-                }
-                newResult.Add("SessionId", sessionId);
-
-                CreateResult(newResult);
-            }
-            currentResultCollection.DeleteMany(_=>true);
+            newResult.Merge(bsonElement);
         }
+        newResult.Add("SessionId", sessionId.Id);
 
-        public List<JObject> GetResult(string byKey,string byValue)
+        CreateResult(newResult);
+    }
+    currentResultCollection.DeleteMany(_=>true);
+}
+
+        public string GetResult(SessionId sessionId)
         {
-            FilterDefinition<BsonDocument> currentFilter = Builders<BsonDocument>.Filter.Eq(byKey, byValue);
-            List<BsonDocument> documents = currentResultCollection.Find(currentFilter).ToList();
+            FilterDefinition<BsonDocument> currentFilter = Builders<BsonDocument>.Filter.Eq("SessionId", sessionId.Id);
+            List<BsonDocument> documents = resultCollection.Find(currentFilter).ToList();
             List<JObject> jObjects = new List<JObject>();
             foreach(BsonDocument document in documents)
             {
-                jObjects.Add(new JObject(document.ToJson()));
+                document.Remove("_id");
+                document.Remove("SessionId");
+                jObjects.Add(JObject.Parse(document.ToJson()));
             }
-            return jObjects;
+            return JsonConvert.SerializeObject(jObjects);
         }
 
-        public void CreateNewSession(Dictionary<string, string> sessionDetails)
+        public void CreateNewSession(SessionId sessionId)
         {
             currentResultCollection.DeleteMany(_ => true);
-            BsonDocument document = new BsonDocument();
-            document.AddRange(sessionDetails);
+            BsonDocument document = CreateSessionIdDocument(sessionId); 
             currentResultCollection.InsertOne(document);
+        }
+
+        private BsonDocument CreateSessionIdDocument(SessionId sessionId)
+        {
+            return new BsonDocument(new BsonElement("SessionId", sessionId.Id));
         }
 
         public void CreateResult(BsonDocument result)

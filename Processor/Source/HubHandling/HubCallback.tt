@@ -72,24 +72,20 @@ namespace HubHandling
             WriteLine("Executable executable = new Executable();");
             
             if(returnType){
-                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => \n");
-                Write("{\n");
-                Write("ExecutionStack.Insert(()=>{\n");
-                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
-                Write("var response = executable."+methodName+"("+paramList+");\n");
-                Write("HubConnector.Instance.Proxy.Invoke<string>(\"SendResult\",new object[]{\""+methodName+"_result\", response});\n");
-                WriteLine("ExecutionTracker.FinishExecution(\""+methodName+"\");");
-                Write("},\""+methodName+"\",new object[]{"+paramList+"});\n");
-                Write("");
-                Write("});\n");
+                WriteLine("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => ");
+                WriteLine("{");
+                WriteLine("ExecutionStack.Insert(()=>{");
+                WriteLine("var response = executable."+methodName+"("+paramList+");");
+                WriteLine("HubConnector.Instance.Proxy.Invoke<string>(\"SendResult\",new object[]{\""+methodName+"_result\", response});");
+                WriteLine("},\""+methodName+"\",new object[]{"+paramList+"});");
+                WriteLine("");
+                WriteLine("});");
             }else{
-                Write("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => \n");
-                Write("{\n");
-                Write("ExecutionStack.Insert(()=>{\n");
-                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
-                WriteLine("executable."+methodName+"("+paramList+");");
-                WriteLine("ExecutionTracker.StartExecution(\""+methodName+"\");");
-                Write("},\""+methodName+"\",new object[]{"+paramList+"});});\n");
+WriteLine("_hubProxy.On<"+typeList+">(\""+methodName+"\", ("+paramList+") => ");
+WriteLine("{");
+WriteLine("ExecutionStack.Insert(()=>{");
+WriteLine("executable."+methodName+"("+paramList+");");
+WriteLine("},\""+methodName+"\",new object[]{"+paramList+"});});");
             }
             WriteLine("}");
         }

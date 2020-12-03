@@ -27,62 +27,22 @@ namespace ProcessorDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Executable execution;
-
         public MainWindowViewModel ViewModel { get; }
 
         public MainWindow()
         {
             InitializeComponent();
-            Closing += CloseHandler;
 
-            execution = new Executable();
             ViewModel = new MainWindowViewModel();
             DataContext = ViewModel;
-            HubConnector.Start();
-            HubConnector.SubscribeToEvent();
-            ViewModel.UpdateMasterConnectionState();
-            ViewModel.DetectProcessor();
-        }
-
-        private void CloseHandler(object sender, CancelEventArgs e)
-        {
-            HubConnector.Stop();
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            HubConnector.SendCommand();
+            Closing += ViewModel.CloseHandler;
+            ViewModel.StartHandler();
         }
 
         private void MasterConnection_Click(object sender, RoutedEventArgs e)
         {
-            new Thread(() =>
-            {
-
-                if (HubConnector.Connected)
-                {
-                    HubConnector.Stop();
-                    ViewModel.UpdateMasterConnectionState();
-                }
-                else
-                {
-                    try
-                    {
-                        HubConnector.Start();
-                        HubConnector.SubscribeToEvent();
-                        ViewModel.UpdateMasterConnectionState();
-                    }
-                    catch
-                    {
-                    }
-                }
-            }).Start();
+            ViewModel.ConnectToMaster();
         }
-
-
 
         private void ProcessorConnection_Click(object sender, RoutedEventArgs e)
         {

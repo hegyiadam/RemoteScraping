@@ -17,8 +17,8 @@ class Executable(IExecutable):
             "Url": url,
             "Content":result
         }
-       
-        ResultWriter.print_result(content)
+        result_writer = ResultWriter()
+        result_writer.print_result(content)
 
     def get_page_numbers(url, page_iteration_selector):
         webpage = Webpage(url)

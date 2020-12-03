@@ -1,3 +1,8 @@
 {
-   "result_location":"C:\\ScrapingResults"
+  "file_result_location": "C:\\ScrapingResults",
+  "mongo_result_location": {
+    "connection_string": "mongodb://localhost:27017/",
+    "database_name": "RemoteScrape",
+    "collection_name": "currentsessionresults"
+  } 
 }

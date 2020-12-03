@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDatabaseManager.cs" />
+    <Compile Include="SessionId.cs" />
     <Compile Include="Mongo\MongoDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

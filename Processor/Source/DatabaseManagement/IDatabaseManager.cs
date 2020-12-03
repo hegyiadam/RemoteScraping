@@ -10,10 +10,10 @@ namespace DatabaseManagement
 {
     public interface IDatabaseManager : IDisposable
     {
-        void MergeCurrentResults(string by,string sessionId);
+        void MergeCurrentResults(string by, SessionId sessionId);
 
-        List<JObject> GetResult(string byKey, string byValue);
+        string GetResult(SessionId sessionId);
 
-        void CreateNewSession(Dictionary<string,string> sessionDetails);
+        void CreateNewSession(SessionId id);
     }
 }

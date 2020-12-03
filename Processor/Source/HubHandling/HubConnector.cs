@@ -2,6 +2,7 @@
 using PythonExecution;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -11,15 +12,15 @@ namespace HubHandling
 {
     public class HubConnector
     {
-        private const string exitCommand = "exit";
-        private static HubConnection hubConnection;
-        private static IHubProxy hubProxy;
-
+        private const string HUB_SERVER_URL = "http://localhost:8080//";
+        private const string HUB_NAME = "ProcessorHub";
 
         private static HubConnector _instance = null;
+
         private HubConnector()
         {
         }
+
         public static HubConnector Instance
         {
             get
@@ -32,51 +33,28 @@ namespace HubHandling
             }
         }
 
-        public HubConnection Connection 
+        public HubConnection Connection { get; private set; }
+
+        public IHubProxy Proxy { get; private set; }
+
+        public bool Connected => Connection?.State == ConnectionState.Connected;
+
+        public Task Start()
         {
-            get
-            {
-                return hubConnection;
-            }
+            Connection = new HubConnection(HUB_SERVER_URL);
+            Proxy = Connection.CreateHubProxy(HUB_NAME);
+            return Connection.Start();
         }
 
-        public IHubProxy Proxy
+        public void Stop()
         {
-            get
-            {
-                return hubProxy;
-            }
+            Connection.Dispose();
         }
 
-        public async static void Start()
+        public void SubscribeToEvent()
         {
-            hubConnection = new HubConnection("http://localhost:8080//");
-            hubProxy = hubConnection.CreateHubProxy("ProcessorHub");
-            hubConnection.Start().Wait();
+            new HubCallback(Proxy);
+            new HubManagmentCallback(Proxy);
         }
-
-        public static bool Connected 
-        {
-            get
-            {
-                return hubConnection!=null && hubConnection.State == ConnectionState.Connected;
-            }
-        }
-
-        public static void Stop()
-        {
-            hubConnection.Dispose();
-        }
-
-        public async static void SendCommand()
-        {
-            hubProxy.Invoke<string>("Send", "Hello");
-        }
-        public async static void SubscribeToEvent()
-        {
-            new HubCallback(hubProxy);
-            new HubManagmentCallback(hubProxy);
-        }
-
     }
 }
