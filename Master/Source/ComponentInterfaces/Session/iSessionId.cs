@@ -12,6 +12,6 @@ namespace ComponentInterfaces.Session
         string Serialize();
 
         bool EqualsTo(ISessionId sessionId);
-        ISessionId Deserialize(string source);
+        void Deserialize(string source);
     }
 }

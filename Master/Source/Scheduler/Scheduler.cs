@@ -18,17 +18,17 @@ namespace Scheduler
 		private static Scheduler _instance = null;
 		private Scheduler() 
 		{
-			Thread thread = new Thread(() =>
-			{
-				while (true)
-				{
-                    if (queue.IsEmpty)
-                    {
-						manualResetEvent.WaitOne();
-                    }
-					Dispatch();
-				}
-			});
+Thread thread = new Thread(() =>
+{
+	while (true)
+	{
+        if (queue.IsEmpty)
+        {
+			manualResetEvent.WaitOne();
+        }
+		Dispatch();
+	}
+});
 			thread.Start();
 		}
 

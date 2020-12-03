@@ -16,12 +16,9 @@ namespace MasterService.Session
             return SerialNumber.ToString();
         }
 
-        public ISessionId Deserialize(string source)
+        public void Deserialize(string source)
         {
-            return new SessionId()
-            {
-                SerialNumber = int.Parse(source)
-            };
+            SerialNumber = int.Parse(source);
         }
 
         public bool EqualsTo(ISessionId sessionId)

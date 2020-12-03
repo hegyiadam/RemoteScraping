@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PythonComponents;
 
 namespace MasterService.Tasks
 {
@@ -16,11 +17,12 @@ namespace MasterService.Tasks
         public override void Call()
         {
             ActualState = ComponentInterfaces.Tasks.TaskState.Processing;
-            ISession session = Session.SessionRepository.Instance.GetSession(new SessionId()
+            ISession session = sessionRepository.GetSession(new SessionId()
             {
                 SerialNumber = Data.SessionId.SerialNumber
             });
-            session.AddIterationTask(new LinkIterationTask(Data.Selector, new PythonComponents.ProcessorFilter()));
+            PythonComponents.ProcessorFilter filter = new PythonComponents.ProcessorFilter();
+            session.AddIterationTask(new LinkIterationTask(Data.Selector, filter));
             ActualState = ComponentInterfaces.Tasks.TaskState.Ready;
         }
     }

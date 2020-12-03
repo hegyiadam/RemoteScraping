@@ -20,7 +20,7 @@ namespace MasterService.Tasks
 
 
             ActualState = ComponentInterfaces.Tasks.TaskState.Processing;
-            ISession session = Session.SessionRepository.Instance.GetSession(Data.SessionId);
+            ISession session = sessionRepository.GetSession(Data.SessionId);
             session.AddScrapingTask(Task);
             ActualState = ComponentInterfaces.Tasks.TaskState.Ready;
         }

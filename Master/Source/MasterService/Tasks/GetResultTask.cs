@@ -16,8 +16,6 @@ namespace MasterService.Tasks
     {
         public ISessionId SessionId { get; set; }
 
-        public object Result { get; set; }
-
         public GetResultTask(IProcessorFilter processorFilter) : base(processorFilter)
         {
         }
@@ -27,14 +25,13 @@ namespace MasterService.Tasks
             foreach (IProcessor process in GetAllProcessors())
             {
                 process.get_session_result(SessionId.Serialize());
-                Action<string> action = (data) => ResultHandling(data);
-                ProcessorManager.Instance.AddResultListener("get_session_result_result", action, Processor.Id);
+                ProcessorManager.Instance.AddResultListener("get_session_result_result", ResultHandling, Processor.Id);
             }
         }
 
         private void ResultHandling(string data)
         {
-            Result = data;
+            Result = "{\"results\":"+data+"}";
         }
 
         private IList<IProcessor> GetAllProcessors()

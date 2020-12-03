@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MasterService
 {
@@ -59,25 +60,29 @@ namespace MasterService
             Future future = CreateFuture(task);
             return future;
         }
-        [HttpPost]
-        [ActionName("DownloadTagBySelector")]
-        public Future DownloadTagBySelector([FromBody]DownloadTagBySelectorRequest selector)
+[HttpPost]
+[ActionName("DownloadTagBySelector")]
+public Future DownloadTagBySelector
+                    ([FromBody] DownloadTagBySelectorRequest selector)
+{
+    DownloadTagBySelectorTask scrapingTask = 
+        new DownloadTagBySelectorTask(
+            selector.Selector, 
+            new PythonComponents.ProcessorFilter());
+    AddScrapingTask task = new AddScrapingTask()
+    {
+        Data = new AddScrapingTaskRequest()
         {
-            DownloadTagBySelectorTask scrapingTask = new DownloadTagBySelectorTask(selector.Selector, new PythonComponents.ProcessorFilter());
-            AddScrapingTask task = new AddScrapingTask()
+            SessionId = new SessionId()
             {
-                Data = new AddScrapingTaskRequest()
-                {
-                    SessionId = new SessionId()
-                    {
-                        SerialNumber = selector.SessionId.SerialNumber
-                    }
-                },
-                Task = scrapingTask
-            };
-            Future future = CreateFuture(task);
-            return future;
-        }
+                SerialNumber = selector.SessionId.SerialNumber
+            }
+        },
+        Task = scrapingTask
+    };
+    Future future = CreateFuture(task);
+    return future;
+}
         [HttpPost]
         [ActionName("ExecuteSession")]
         public Future ExecuteSession([FromBody]ExecuteSessionRequest executeSessionRequest)
@@ -108,12 +113,19 @@ namespace MasterService
             }
         }
         [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [ActionName("GetFutureResult")]
         public JObject GetFutureResult([FromBody] FutureId futureId)
         {
             try
             {
                 Future future = futureRepository.GetFuture(futureId);
+                if(future.Result is string)
+                {
+                    string result = future.Result as string;
+                    JObject jObject =  JObject.Parse(result);
+                    return jObject;
+                }
                 return JObject.FromObject(future.Result);
             }
             catch
@@ -122,20 +134,21 @@ namespace MasterService
             }
         }
         [HttpPost]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [ActionName("GetResult")]
-        public Future GetFutureResult([FromBody] GetResultRequest getResultRequest)
+        public Future GetResult([FromBody] string sessionIdString)
         {
+            SessionId sessionId = new SessionId();
+            sessionId.Deserialize(sessionIdString);
             GetResultTask task = new GetResultTask(new PythonComponents.ProcessorFilter())
             {
-                SessionId = new SessionId()
-                {
-                    SerialNumber = getResultRequest.SessionId.SerialNumber
-                }
+                SessionId = sessionId
             };
             Future future = CreateFuture(task);
             return future;
         }
         [HttpGet]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [ActionName("GetSessionData")]
         public List<SessionData> GetSessionData()
         {

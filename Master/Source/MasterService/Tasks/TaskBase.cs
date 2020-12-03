@@ -10,6 +10,7 @@ namespace MasterService.Tasks
 {
     public abstract class TaskBase : ITask
     {
+        public Session.ISessionRepository sessionRepository = Session.SessionRepository.Instance;
         ITaskIdFactory taskIdFactory = TaskIdFactory.Instance;
         ITaskId taskId;
 

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MasterService.Session
 {
-    public class SessionRepository
+    public class SessionRepository : ISessionRepository
 	{
-		IMongoCollection<BsonDocument> mastersessiondataCollection;
+		public IMongoCollection<BsonDocument> mastersessiondataCollection;
 
 		private static SessionRepository _instance = null;
 		
@@ -58,5 +58,15 @@ namespace MasterService.Session
 			return mastersessiondataCollection.Find<BsonDocument>(_ => true).ToList().Select(e => SessionData.Parse(e)).ToList();
 
 		}
+	}
+
+    public interface ISessionRepository
+    {
+
+		void AddSession(ISession session);
+
+		ISession GetSession(ISessionId sessionId);
+
+		List<SessionData> GetAllSessionData();
 	}
 }
