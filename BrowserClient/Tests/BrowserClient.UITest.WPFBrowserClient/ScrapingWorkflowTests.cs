@@ -3,8 +3,10 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -14,6 +16,8 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.VisualStudio.TestTools.UITesting.WpfControls;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
 using Point = System.Drawing.Point;
 
@@ -26,35 +30,99 @@ namespace CodedUITestProject1
     [CodedUITest]
     public class ScrapingWorkflowTests
     {
+
         private const string PROCESSNAME = "WPFBrowserClient.exe";
         private UIScraperBrowserWindow window;
         private readonly Point PAGE_SELECTOR_POSITION = new Point(500, 730);
         private readonly Point LINK_SELECTOR_POSITION = new Point(500, 470);
         private readonly Point TAG_POSITION = new Point(500, 370);
+        private TestContext testContextInstance;
+        private UIMap map;
+        private string sessionId;
         private const int ServerPort = 3333;
 
         public ScrapingWorkflowTests()
         {
             StartApplication();
-
-            Mouse.MouseMoveSpeed = 10000;
         }
 
-        private void StartApplication()
+        public string MasterComponentLauncherPath => ConfigurationManager.AppSettings["MasterComponentLauncherPath"];
+        public string ProcessorComponentLauncherPath => ConfigurationManager.AppSettings["ProcessorComponentLauncherPath"];
+        public string BrowserComponentLauncherPath => ConfigurationManager.AppSettings["BrowserComponentLauncherPath"];
+        
+        public TestContext TestContext
         {
-            Process.Start(@"C:\WS\others\RemoteScrapingBranches\pcclient\BrowserClient\Deploy\" + PROCESSNAME);
-            Thread.Sleep(2000);
-            window = new UIScraperBrowserWindow();
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
         }
+
+        public UIMap UIMap
+        {
+            get
+            {
+                if (this.map == null)
+                {
+                    this.map = new UIMap();
+                }
+
+                return this.map;
+            }
+        }
+
+
 
         [TestMethod]
         public void Scenario1_Test()
         {
+            int expectedResultCount = 10;
+
             ClickOnStartWebScraping();
             NavigationIteration();
             ClickIteration();
             GetElementAtMousePosition();
             ExecuteScraping();
+            WaitForResult();
+
+            int numberOfResults = GetNumberOfResults();
+            Assert.AreEqual(expectedResultCount, numberOfResults);
+        }
+
+        private void StartApplication()
+        {
+            sessionId = GetLastSessionId();
+            Process.Start(MasterComponentLauncherPath);
+            Thread.Sleep(2000);
+            Process.Start(ProcessorComponentLauncherPath);
+            Thread.Sleep(2000);
+            Process.Start(BrowserComponentLauncherPath);
+            Thread.Sleep(2000);
+            window = new UIScraperBrowserWindow();
+        }
+
+        private string GetLastSessionId()
+        {
+            MongoClient mongoClient = new MongoClient("mongodb://localhost:27017/");
+            IMongoDatabase mongoDatabase = mongoClient.GetDatabase("RemoteScrape");
+            IMongoCollection<BsonDocument> masteridCollection = mongoDatabase.GetCollection<BsonDocument>("masterids");
+            return masteridCollection.Find<BsonDocument>(_ => true).ToList().Last()["Id"].ToString();
+        }
+        private void WaitForResult()
+        {
+            Thread.Sleep(120000);
+        }
+
+        private int GetNumberOfResults()
+        {
+            MongoClient mongoClient = new MongoClient("mongodb://localhost:27017/");
+            IMongoDatabase mongoDatabase = mongoClient.GetDatabase("RemoteScrape");
+            IMongoCollection<BsonDocument> resultCollection = mongoDatabase.GetCollection<BsonDocument>("result");
+            return Convert.ToInt32(resultCollection.Find(x => x["SessionId"] == sessionId).Count());
         }
 
 
@@ -152,34 +220,6 @@ namespace CodedUITestProject1
             Thread.Sleep(2000);
             Mouse.Click(window.UIMainFramePane.UIStartScrapingButton, ModifierKeys.None);
         }
-
-
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-        private TestContext testContextInstance;
-
-        public UIMap UIMap
-        {
-            get
-            {
-                if (this.map == null)
-                {
-                    this.map = new UIMap();
-                }
-
-                return this.map;
-            }
-        }
-
-        private UIMap map;
     }
+
 }
