@@ -15,7 +15,7 @@ namespace MasterConnection.MasterCommands.SwaggerGenerated
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.8.2.0 (NJsonSchema v10.2.1.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class MethodClient
+    public partial class MethodClient : IMethodClient
     {
         private string _baseUrl = "http://localhost:3333";
         private System.Net.Http.HttpClient _httpClient;
@@ -49,7 +49,7 @@ namespace MasterConnection.MasterCommands.SwaggerGenerated
 
         /// <returns>OK</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<Future> RootUrlAsync(RootURLRequest rootUrl)
+        public virtual System.Threading.Tasks.Task<Future> RootUrlAsync(RootURLRequest rootUrl)
         {
             return RootUrlAsync(rootUrl, System.Threading.CancellationToken.None);
         }

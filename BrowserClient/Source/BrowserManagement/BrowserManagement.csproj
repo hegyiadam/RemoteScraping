@@ -63,7 +63,9 @@
     <Compile Include="BrowserWrapperFactory.cs" />
     <Compile Include="IBrowserWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\CefSharpWrapper\CefSharpProxy.cs" />
     <Compile Include="Wrappers\CefSharpWrapper\CefSharpWrapper.cs" />
+    <Compile Include="Wrappers\CefSharpWrapper\IJavaScriptExecutorBrowser.cs" />
     <Compile Include="Wrappers\CefSharpWrapper\JavaScriptExecutor.cs" />
     <Compile Include="Wrappers\CefSharpWrapper\JavaScripts\JavaScriptFile.cs" />
   </ItemGroup>

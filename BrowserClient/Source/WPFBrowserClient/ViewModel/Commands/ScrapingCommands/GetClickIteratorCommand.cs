@@ -48,9 +48,7 @@ namespace WPFBrowserClient.ViewModel.Commands
                         questionDialog = new QuestionDialog("Do you want to iterate through these elements?",(answere) => {
                             if (answere)
                             {
-                                MethodClient methodClient = new MethodClient(new HttpClient());
-                                LinkIterationRequest linkIterationRequest = new LinkIterationRequest() { Selector = (string)response.Result, SessionId = SessionContainer.Instance.ID };
-                                methodClient.LinkIterationAsync(linkIterationRequest);
+                                CreateLinkIterationRequest((string)response.Result);
                             }
                             rootGrid.Children.Remove(questionDialog);
                             Browser.RemoveAutoHighlightControl();
@@ -61,6 +59,13 @@ namespace WPFBrowserClient.ViewModel.Commands
                 }
                 Browser.ControlKeyPressed -= BrowserWrapper_ControlKeyPressed;
             });
+        }
+
+        public void CreateLinkIterationRequest(string selector)
+        {
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            LinkIterationRequest linkIterationRequest = new LinkIterationRequest() { Selector = selector, SessionId = SessionContainer.Instance.ID };
+            methodClient.LinkIterationAsync(linkIterationRequest);
         }
     }
 }

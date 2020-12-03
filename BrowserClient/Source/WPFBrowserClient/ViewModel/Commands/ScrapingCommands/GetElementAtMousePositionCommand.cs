@@ -40,19 +40,25 @@ namespace WPFBrowserClient.ViewModel.Commands
                     var response = t.Result;
                     if (response.Success && response.Result != null)
                     {
-                        SelectorRequest selectorRequest = new SelectorRequest();
-                        selectorRequest.Selector = (string)response.Result;
-                        MethodClient methodClient = new MethodClient(new HttpClient());
-                        DownloadTagBySelectorRequest downloadTagBySelectorRequest = new DownloadTagBySelectorRequest();
-                        downloadTagBySelectorRequest.Selector = (string)response.Result;
-                        downloadTagBySelectorRequest.SessionId = SessionContainer.Instance.ID;
-                        methodClient.DownloadTagBySelectorAsync(downloadTagBySelectorRequest);
+                        CreateScrapingRequest((string)response.Result);
                     }
                 });
                 Browser.RemoveAutoHighlightControl();
                 Browser.ControlKeyPressed -= BrowserWrapper_ControlKeyPressed;
             });
             thread.Start();
+        }
+
+        public void CreateScrapingRequest(string selector)
+        {
+
+            SelectorRequest selectorRequest = new SelectorRequest();
+            selectorRequest.Selector = selector;
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            DownloadTagBySelectorRequest downloadTagBySelectorRequest = new DownloadTagBySelectorRequest();
+            downloadTagBySelectorRequest.Selector = selector;
+            downloadTagBySelectorRequest.SessionId = SessionContainer.Instance.ID;
+            methodClient.DownloadTagBySelectorAsync(downloadTagBySelectorRequest);
         }
     }
 }

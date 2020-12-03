@@ -4,13 +4,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.VisualStudio.TestTools.UITesting.WpfControls;
 using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
+using Point = System.Drawing.Point;
 
 
 namespace CodedUITestProject1
@@ -19,36 +24,39 @@ namespace CodedUITestProject1
     /// Summary description for CodedUITest1
     /// </summary>
     [CodedUITest]
-    public class CodedUITest1
+    public class ScrapingWorkflowTests
     {
         private const string PROCESSNAME = "WPFBrowserClient.exe";
         private UIScraperBrowserWindow window;
         private readonly Point PAGE_SELECTOR_POSITION = new Point(500, 730);
         private readonly Point LINK_SELECTOR_POSITION = new Point(500, 470);
         private readonly Point TAG_POSITION = new Point(500, 370);
+        private const int ServerPort = 3333;
 
-        public CodedUITest1()
+        public ScrapingWorkflowTests()
         {
             StartApplication();
+
             Mouse.MouseMoveSpeed = 10000;
         }
 
         private void StartApplication()
         {
             Process.Start(@"C:\WS\others\RemoteScrapingBranches\pcclient\BrowserClient\Deploy\" + PROCESSNAME);
+            Thread.Sleep(2000);
             window = new UIScraperBrowserWindow();
         }
 
         [TestMethod]
-        public void CodedUITestMethod1()
+        public void Scenario1_Test()
         {
-            Thread.Sleep(2000);
             ClickOnStartWebScraping();
             NavigationIteration();
             ClickIteration();
             GetElementAtMousePosition();
             ExecuteScraping();
         }
+
 
         private void ExecuteScraping()
         {

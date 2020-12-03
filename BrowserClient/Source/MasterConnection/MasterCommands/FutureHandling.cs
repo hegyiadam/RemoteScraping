@@ -13,7 +13,7 @@ namespace MasterConnection.MasterCommands
     {
         public static string GetState(FutureId futureId)
         {
-            MethodClient methodClient = new MethodClient(new HttpClient());
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
             string currentState = methodClient.GetFutureStateAsync(futureId).Result.State;
             return currentState;
         }

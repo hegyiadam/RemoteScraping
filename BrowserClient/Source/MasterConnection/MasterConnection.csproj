@@ -49,6 +49,8 @@
     <Compile Include="MasterCommands\FutureHandling.cs" />
     <Compile Include="MasterCommands\FutureState.cs" />
     <Compile Include="MasterCommands\IMasterCommand.cs" />
+    <Compile Include="MasterCommands\IMethodClient.cs" />
+    <Compile Include="MasterCommands\ProtocolClient.cs" />
     <Compile Include="MasterCommands\SessionContainer.cs" />
     <Compile Include="MasterCommands\SwaggerGenerated\ApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

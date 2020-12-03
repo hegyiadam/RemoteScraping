@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CE91C3F-F7D3-4D68-889C-D6F5FC99EE6B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPFBrowserClient.Tests</RootNamespace>
+    <AssemblyName>WPFBrowserClient.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Deploy\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Pex.Framework, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Moq, Version=4.15.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.15.2\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\BrowserManagement\BrowserManagement.csproj">
+      <Project>{9594CDE2-90D8-4345-9E26-810B11D55BCB}</Project>
+      <Name>BrowserManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\MasterConnection\MasterConnection.csproj">
+      <Project>{F5C085DA-6E8F-4A25-AA79-E40AAEDC8725}</Project>
+      <Name>MasterConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\WPFBrowserClient\WPFBrowserClient.csproj">
+      <Project>{B5D056C8-6061-4F86-86CA-D1F8B71FD392}</Project>
+      <Name>WPFBrowserClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BoolToVisibilityCustomConverterTest.ConvertBackTest.g.cs">
+      <DependentUpon>BoolToVisibilityCustomConverterTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BoolToVisibilityCustomConverterTest.ConvertTest.g.cs">
+      <DependentUpon>BoolToVisibilityCustomConverterTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BoolToVisibilityCustomConverterTest.cs" />
+    <Compile Include="ExecuteScrapingTest.cs" />
+    <Compile Include="ExecuteScrapingTest.ExecuteTest.g.cs">
+      <DependentUpon>ExecuteScrapingTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetClickIteratorCommandTest.CanExecuteTest.g.cs">
+      <DependentUpon>GetClickIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetClickIteratorCommandTest.CreateLinkIterationRequestTest.g.cs">
+      <DependentUpon>GetClickIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetClickIteratorCommandTest.cs" />
+    <Compile Include="GetClickIteratorCommandTest.ExecuteTest.g.cs">
+      <DependentUpon>GetClickIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetElementAtMousePositionCommandTest.CanExecuteTest.g.cs">
+      <DependentUpon>GetElementAtMousePositionCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetElementAtMousePositionCommandTest.CreateScrapingRequestTest.g.cs">
+      <DependentUpon>GetElementAtMousePositionCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetElementAtMousePositionCommandTest.cs" />
+    <Compile Include="GetElementAtMousePositionCommandTest.ExecuteTest.g.cs">
+      <DependentUpon>GetElementAtMousePositionCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetNavigationIteratorCommandTest.CanExecuteTest.g.cs">
+      <DependentUpon>GetNavigationIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetNavigationIteratorCommandTest.CreatePageIterationRequestTest.g.cs">
+      <DependentUpon>GetNavigationIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetNavigationIteratorCommandTest.cs" />
+    <Compile Include="GetNavigationIteratorCommandTest.ExecuteTest.g.cs">
+      <DependentUpon>GetNavigationIteratorCommandTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="TestClassBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

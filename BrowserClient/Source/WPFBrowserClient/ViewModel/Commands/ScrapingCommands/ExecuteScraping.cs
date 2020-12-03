@@ -23,7 +23,7 @@ namespace WPFBrowserClient.ViewModel.Commands.ScrapingCommands
 
         public void Execute(object parameter)
         {
-            MethodClient methodClient = new MethodClient(new HttpClient());
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
             ExecuteSessionRequest executeSessionRequest = new ExecuteSessionRequest() { SessionId = SessionContainer.Instance.ID };
             methodClient.ExecuteSessionAsync(executeSessionRequest);
         }

@@ -11,12 +11,18 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
 {
     public class JavaScriptExecutor
     {
-        public ChromiumWebBrowser Browser { get; set; }
-
         public JavaScriptExecutor(ChromiumWebBrowser browser)
+        {
+            Browser = new CefSharpProxy(browser);
+
+        }
+
+        public JavaScriptExecutor(IJavaScriptExecutorBrowser browser)
         {
             Browser = browser;
         }
+
+        public IJavaScriptExecutorBrowser Browser { get; set; }
 
         public void ExecuteJavaScriptFileContent(string javaScriptFilePath)
         {

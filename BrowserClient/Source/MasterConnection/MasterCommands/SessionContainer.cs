@@ -27,12 +27,7 @@ namespace MasterConnection.MasterCommands
         }
         public void CreateNewSession(string url)
         {
-            MethodClient methodClient = new MethodClient(new System.Net.Http.HttpClient());
-            RootURLRequest rootURLRequest = new RootURLRequest()
-            {
-                URL = url
-            };
-            methodClient.RootUrlAsync(rootURLRequest).ContinueWith((result) =>
+            CreateRootUrlRequest(url).ContinueWith((result) =>
              {
                  FutureId futureId = result.Result.Id;
                  SessionIdDAO sessionIdDAO = null;
@@ -41,12 +36,28 @@ namespace MasterConnection.MasterCommands
                      string currentState = FutureHandling.GetState(futureId);
                      if (currentState == FutureState.READY)
                      {
-                         JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
-                         sessionIdDAO = (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
+                         sessionIdDAO = GetFutureResult(futureId);
                      }
                  }
                  ID = sessionIdDAO;
              });
+        }
+
+        public SessionIdDAO GetFutureResult(FutureId futureId)
+        {
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
+            return (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
+        }
+
+        public Task<Future> CreateRootUrlRequest(string url)
+        {
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            RootURLRequest rootURLRequest = new RootURLRequest()
+            {
+                URL = url
+            };
+            return methodClient.RootUrlAsync(rootURLRequest);
         }
 
         public SessionIdDAO ID { get; set; }
