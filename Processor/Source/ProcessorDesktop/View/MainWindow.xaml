@@ -7,48 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <local1:BoolToColorConverter x:Key="boolToColorConverter"/>
+        <local1:BoolToColorConverter x:Key="boolToColorConverter" />
     </Window.Resources>
     <Grid>
         <Grid Grid.Row="0" ScrollViewer.CanContentScroll="True">
             <ListView ItemsSource="{Binding MethodCalls}" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Black" HorizontalContentAlignment="Center">
-                <ListView.ItemTemplate >
-                    <DataTemplate >
-                        <StackPanel Orientation="Vertical"  >
-                            <TextBlock Text="{Binding MethodName}"/>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding MethodName}" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
                                         Parameters
                                 </TextBlock>
-                                <TextBlock Text="{Binding Parameters}"/>
+                                <TextBlock Text="{Binding Parameters}" />
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
         </Grid>
-        <Grid Grid.Row="1" VerticalAlignment="Bottom" Background="#FF0A83B0" >
-            <Grid Margin="5" >
+        <Grid Grid.Row="1" VerticalAlignment="Bottom" Background="#FF0A83B0">
+            <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <StackPanel Orientation="Vertical" >
-                        <TextBlock Text="{Binding CommandName}" Foreground="White"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding CommandName}" Foreground="White" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="White">
-                                    State: 
+                                    State:
                             </TextBlock>
-                            <TextBlock Text="{Binding StateOfCommand}" Foreground="White"/>
+                            <TextBlock Text="{Binding StateOfCommand}" Foreground="White" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1" Margin="10">
-                    <Grid.ColumnDefinitions >
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Button x:Name="MasterConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=ConnectedToMaster, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="MasterConnection_Click"  >Master connection</Button>
@@ -57,7 +56,6 @@
                         <Button x:Name="ProcessorConnection" Padding="5" HorizontalContentAlignment="Center" Background="{Binding Path=ProcessorServerIsActive, Converter={StaticResource boolToColorConverter}}" Foreground="White" Click="ProcessorConnection_Click">Detect processor</Button>
                     </Grid>
                 </Grid>
-
             </Grid>
         </Grid>
         <!--<Button Click="Button_Click"></Button>-->

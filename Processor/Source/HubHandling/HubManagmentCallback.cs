@@ -1,19 +1,15 @@
 ﻿using DatabaseManagement;
 using DatabaseManagement.Mongo;
-using Microsoft.AspNet.SignalR.Client;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace HubHandling
 {
     public class HubManagmentCallback
     {
-        IHubProxy _hubProxy;
-        IDatabaseManager databaseManager = MongoDatabase.Instance;
+        private IHubProxy _hubProxy;
+        private IDatabaseManager databaseManager = MongoDatabase.Instance;
+
         public HubManagmentCallback(IHubProxy hubProxy)
         {
             _hubProxy = hubProxy;
@@ -22,16 +18,16 @@ namespace HubHandling
             GetSessionResults();
         }
 
-        public void SessionStartedCallback()
+        public void GetSessionResults()
         {
-            _hubProxy.On<String>("session_started", (sessionId) =>
+            _hubProxy.On<String>("get_session_result", (sessionId) =>
             {
-                ExecutionStack.Insert(() => {
-                    databaseManager.CreateNewSession(new SessionId()
-                    {
-                        Id = sessionId
-                    });
-                }, "session_started", new object[] { sessionId });
+                string results = databaseManager.GetResult(new SessionId()
+                {
+                    Id = sessionId
+                });
+
+                HubConnector.Instance.Proxy.Invoke<string>("SendResult", new object[] { "get_session_result_result", results });
             });
         }
 
@@ -39,7 +35,8 @@ namespace HubHandling
         {
             _hubProxy.On<String>("session_finished", (sessionId) =>
             {
-                ExecutionStack.Insert(() => {
+                ExecutionStack.Insert(() =>
+                {
                     databaseManager.MergeCurrentResults("Url", new SessionId()
                     {
                         Id = sessionId
@@ -48,16 +45,17 @@ namespace HubHandling
             });
         }
 
-        public void GetSessionResults()
+        public void SessionStartedCallback()
         {
-            _hubProxy.On<String>("get_session_result", (sessionId) =>
+            _hubProxy.On<String>("session_started", (sessionId) =>
             {
-                string results = databaseManager.GetResult(new SessionId()
+                ExecutionStack.Insert(() =>
                 {
-                    Id =  sessionId
-                });
-
-                HubConnector.Instance.Proxy.Invoke<string>("SendResult", new object[] { "get_session_result_result", results });
+                    databaseManager.CreateNewSession(new SessionId()
+                    {
+                        Id = sessionId
+                    });
+                }, "session_started", new object[] { sessionId });
             });
         }
     }

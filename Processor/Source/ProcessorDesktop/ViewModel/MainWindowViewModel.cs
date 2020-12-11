@@ -1,45 +1,29 @@
 ﻿using HubHandling;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using static HubHandling.ExecutionStack;
 
 namespace ProcessorDesktop.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private const int PROCESSOR_PORT = 8800;
+
         private string _commandName = "";
+
         private string _stateOfCommand;
 
         public MainWindowViewModel()
         {
             ExecutionTracker.ExecutionEnded += Instance_ExecutionEnded;
-            ExecutionTracker.ExecutionStarted += Instance_ExecutionStarted; 
+            ExecutionTracker.ExecutionStarted += Instance_ExecutionStarted;
         }
 
-        public ObservableCollection<MethodCall> MethodCalls => ExecutionStack.MethodCalls;
-
-        public string StateOfCommand
-        {
-            get => _stateOfCommand;
-            set
-            {
-                _stateOfCommand = value; 
-                OnPropertyChanged();
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string CommandName
         {
@@ -51,32 +35,32 @@ namespace ProcessorDesktop.ViewModel
             }
         }
 
-        
+        public bool ConnectedToMaster => HubConnector.Instance.Connected;
+        public ObservableCollection<MethodCall> MethodCalls => ExecutionStack.MethodCalls;
 
-        private void Instance_ExecutionStarted(string commandName)
+        public bool ProcessorServerIsActive
         {
-            CommandName = commandName;
-            StateOfCommand = "Started";
+            get
+            {
+                IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
+                IPEndPoint[] endPoints = properties.GetActiveTcpListeners();
+                return endPoints.Any(endpoint => endpoint.Port == PROCESSOR_PORT);
+            }
         }
 
-        private void Instance_ExecutionEnded(string commandName)
+        public string StateOfCommand
         {
-            CommandName = commandName;
-            StateOfCommand = "Finished";
+            get => _stateOfCommand;
+            set
+            {
+                _stateOfCommand = value;
+                OnPropertyChanged();
+            }
         }
-
-
 
         public void CloseHandler(object sender, CancelEventArgs e)
         {
             HubConnector.Instance.Stop();
-        }
-
-        public void StartHandler()
-        {
-            ConnectToMaster();
-            DetectProcessor();
-            UpdateMasterConnectionState();
         }
 
         public void ConnectToMaster()
@@ -99,27 +83,35 @@ namespace ProcessorDesktop.ViewModel
             OnPropertyChanged("ProcessorServerIsActive");
         }
 
-        private void UpdateMasterConnectionState()
+        public void StartHandler()
         {
-            OnPropertyChanged("ConnectedToMaster");
+            ConnectToMaster();
+            DetectProcessor();
+            UpdateMasterConnectionState();
         }
 
-protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-{
-    PropertyChangedEventHandler handler = PropertyChanged;
-    handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-}
-
-        public bool ConnectedToMaster => HubConnector.Instance.Connected;
-
-        public bool ProcessorServerIsActive
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            get
-            {
-                IPGlobalProperties properties = IPGlobalProperties.GetIPGlobalProperties();
-                IPEndPoint[] endPoints = properties.GetActiveTcpListeners();
-                return endPoints.Any(endpoint => endpoint.Port == PROCESSOR_PORT);
-            }
+            PropertyChangedEventHandler handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void DisconnectFromHub()
+        {
+            HubConnector.Instance.Stop();
+            UpdateMasterConnectionState();
+        }
+
+        private void Instance_ExecutionEnded(string commandName)
+        {
+            CommandName = commandName;
+            StateOfCommand = "Finished";
+        }
+
+        private void Instance_ExecutionStarted(string commandName)
+        {
+            CommandName = commandName;
+            StateOfCommand = "Started";
         }
 
         private void TryToConnectToHub()
@@ -135,11 +127,9 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
             }
         }
 
-        private void DisconnectFromHub()
+        private void UpdateMasterConnectionState()
         {
-            HubConnector.Instance.Stop();
-            UpdateMasterConnectionState();
+            OnPropertyChanged("ConnectedToMaster");
         }
-
     }
 }

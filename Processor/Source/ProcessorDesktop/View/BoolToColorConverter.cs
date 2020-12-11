@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -12,9 +8,8 @@ namespace ProcessorDesktop.View
     [ValueConversion(typeof(bool), typeof(SolidColorBrush))]
     public class BoolToColorConverter : IValueConverter
     {
-        private readonly Color redColor = Color.FromRgb(201, 28, 28);
         private readonly Color greenColor = Color.FromRgb(51, 201, 28);
-
+        private readonly Color redColor = Color.FromRgb(201, 28, 28);
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -25,7 +20,6 @@ namespace ProcessorDesktop.View
             }
             return new SolidColorBrush(redColor);
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

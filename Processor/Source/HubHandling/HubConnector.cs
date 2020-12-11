@@ -1,20 +1,12 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using PythonExecution;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition.Hosting;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace HubHandling
 {
     public class HubConnector
     {
-        private const string HUB_SERVER_URL = "http://localhost:8080//";
         private const string HUB_NAME = "ProcessorHub";
-
+        private const string HUB_SERVER_URL = "http://localhost:8080//";
         private static HubConnector _instance = null;
 
         private HubConnector()
@@ -33,11 +25,10 @@ namespace HubHandling
             }
         }
 
+        public bool Connected => Connection?.State == ConnectionState.Connected;
         public HubConnection Connection { get; private set; }
 
         public IHubProxy Proxy { get; private set; }
-
-        public bool Connected => Connection?.State == ConnectionState.Connected;
 
         public Task Start()
         {

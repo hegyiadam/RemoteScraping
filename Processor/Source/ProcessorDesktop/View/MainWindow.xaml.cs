@@ -1,24 +1,5 @@
-﻿using HubHandling;
-using ProcessorDesktop.ViewModel;
-using PythonExecution;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using ProcessorDesktop.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProcessorDesktop
 {
@@ -27,8 +8,6 @@ namespace ProcessorDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindowViewModel ViewModel { get; }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -38,6 +17,8 @@ namespace ProcessorDesktop
             Closing += ViewModel.CloseHandler;
             ViewModel.StartHandler();
         }
+
+        public MainWindowViewModel ViewModel { get; }
 
         private void MasterConnection_Click(object sender, RoutedEventArgs e)
         {
