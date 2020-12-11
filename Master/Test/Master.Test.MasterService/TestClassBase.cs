@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ComponentInterfaces.Session;
+﻿using ComponentInterfaces.Session;
 using MasterService.Session;
 using Moq;
 

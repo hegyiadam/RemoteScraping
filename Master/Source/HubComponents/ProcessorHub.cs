@@ -1,16 +1,17 @@
-﻿using System;
-using Microsoft.Owin;
+﻿using ComponentInterfaces.Processor;
 using Microsoft.AspNet.SignalR;
-using System.Threading.Tasks;
 using PythonComponents;
-using ComponentInterfaces.Processor;
 using PythonComponents.ClientInterface;
+using System;
+using System.Threading.Tasks;
 
 namespace HubComponents
 {
     public class ProcessorHub : Hub, IProcessorHub
     {
-        private static IHubContext context 
+        public static dynamic Clients => context.Clients.All;
+
+        private static IHubContext context
         {
             get
             {
@@ -18,32 +19,43 @@ namespace HubComponents
             }
         }
 
-        public static dynamic Clients => context.Clients.All;
-
         public static void SubscribeToEvent(string name, Action<string> action, IProcessor processor)
         {
-            /**(processor.Client).On<string>(name, (data) => 
+            /**(processor.Client).On<string>(name, (data) =>
             {
                 action(data);
             });*/
-
         }
 
         #region Methods
-        public void SendResult(string methodName, string result)
-        {
-            IProcessorId processorId = ProcessorManager.Instance.GetProcessorId(Context.ConnectionId);
-            ProcessorManager.Instance.ResultTriggered(methodName, result,processorId);
-        }
 
         public void DownloadTag(string selector)
         {
             Console.WriteLine(selector);
             context.Clients.All.find_tag_by_css_selector("http://localhost:5000/", "body > div > div > div:nth-child(1) > div.element-text > div");
         }
-        #endregion
+
+        public void SendResult(string methodName, string result)
+        {
+            IProcessorId processorId = ProcessorManager.Instance.GetProcessorId(Context.ConnectionId);
+            ProcessorManager.Instance.ResultTriggered(methodName, result, processorId);
+        }
+
+        #endregion Methods
 
         #region Connection Related
+
+        public dynamic GetClient(string connectionId)
+        {
+            return context.Clients.Client(connectionId);
+        }
+
+        public IExecutable GetExecutableClient()
+        {
+            IExecutable executable = (IExecutable)context.Clients.All;
+            return executable;
+        }
+
         public override Task OnConnected()
         {
             string clientConnectionId = Context.ConnectionId;
@@ -80,17 +92,6 @@ namespace HubComponents
             return base.OnReconnected();
         }
 
-        public IExecutable GetExecutableClient()
-        {
-            IExecutable executable = (IExecutable)context.Clients.All;
-            return executable;
-        }
-
-        public dynamic GetClient(string connectionId)
-        {
-            return context.Clients.Client(connectionId);
-        }
-        #endregion
+        #endregion Connection Related
     }
-
 }

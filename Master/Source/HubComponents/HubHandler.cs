@@ -1,9 +1,5 @@
 ﻿using Microsoft.Owin.Hosting;
 using System;
-using Microsoft.Owin;
-using System.Threading;
-using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.AspNet.SignalR;
 
 namespace HubComponents
 {
@@ -19,6 +15,5 @@ namespace HubComponents
                 Console.ReadLine();
             }
         }
-
     }
 }

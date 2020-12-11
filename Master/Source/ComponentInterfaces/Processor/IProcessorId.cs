@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ComponentInterfaces.Processor
+﻿namespace ComponentInterfaces.Processor
 {
     public interface IProcessorId
     {
-        bool EqualsTo(IProcessorId processorId);
         string ConnectionId { get; set; }
+
+        bool EqualsTo(IProcessorId processorId);
     }
 }

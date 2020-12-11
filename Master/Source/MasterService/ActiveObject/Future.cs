@@ -1,28 +1,19 @@
 ﻿using ComponentInterfaces.Tasks;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.ActiveObject
 {
     public class Future
     {
         private FutureId id;
+
         public Future(ITask task)
         {
             Task = task;
             id = new FutureId();
             id.ParseTaskId(task.Id);
-            task.StateChangedEvent += Task_StateChangedEvent; 
+            task.StateChangedEvent += Task_StateChangedEvent;
         }
-
-        private void Task_StateChangedEvent()
-        {
-        }
-
-        private ITask Task { get; set; }
 
         public event TaskStateChangeHandler StateChangedEvent;
 
@@ -40,7 +31,6 @@ namespace MasterService.ActiveObject
             {
                 return Task.Result;
             }
-
         }
 
         public FutureState State
@@ -51,9 +41,15 @@ namespace MasterService.ActiveObject
             }
         }
 
+        private ITask Task { get; set; }
+
         private FutureState ConvertTaskStateToFutureState(TaskState actualState)
         {
-            return (FutureState)Enum.Parse(typeof(FutureState),Enum.GetName(typeof(TaskState), actualState));
+            return (FutureState)Enum.Parse(typeof(FutureState), Enum.GetName(typeof(TaskState), actualState));
+        }
+
+        private void Task_StateChangedEvent()
+        {
         }
     }
 }

@@ -5,22 +5,21 @@ using PythonComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.Session
 {
     public class Session : ISession
     {
-        private string _rootUrl;
         private List<IIterationTask> _iterationTasks = new List<IIterationTask>();
+        private string _rootUrl;
         private List<IProcessorTask> _scrapingTask = new List<IProcessorTask>();
-        public ISessionId Id { get; set; }
 
         public Session()
         {
             Id = SessionIdFactory.Instance.CreateId();
         }
+
+        public ISessionId Id { get; set; }
 
         public void AddIterationTask(IIterationTask task)
         {
@@ -28,7 +27,7 @@ namespace MasterService.Session
             {
                 throw new InvalidOperationException();
             }
-            if(_iterationTasks.Count != 0)
+            if (_iterationTasks.Count != 0)
             {
                 _iterationTasks.Last().NextTasks.Add(task);
             }
@@ -49,7 +48,7 @@ namespace MasterService.Session
             ValidateSession();
             if (_iterationTasks.Count != 0)
             {
-                _iterationTasks.Last().NextTasks.Add(new FinishSessionTask(new ProcessorFilter()) {SessionId = Id });
+                _iterationTasks.Last().NextTasks.Add(new FinishSessionTask(new ProcessorFilter()) { SessionId = Id });
                 IIterationTask firstIterationTask = _iterationTasks[0];
                 firstIterationTask.URL = _rootUrl;
                 if (firstIterationTask.CanRun())
@@ -59,19 +58,17 @@ namespace MasterService.Session
             }
         }
 
-        private void ValidateSession()
-        {
-            if(_scrapingTask.Count == 0)
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
         public void SetRootUrl(string url)
         {
             _rootUrl = url;
         }
 
-
+        private void ValidateSession()
+        {
+            if (_scrapingTask.Count == 0)
+            {
+                throw new InvalidOperationException();
+            }
+        }
     }
 }

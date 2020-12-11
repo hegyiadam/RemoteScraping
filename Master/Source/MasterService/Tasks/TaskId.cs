@@ -1,9 +1,4 @@
 ﻿using ComponentInterfaces.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.Tasks
 {
@@ -11,17 +6,17 @@ namespace MasterService.Tasks
     {
         public int Id { get; set; }
 
-        public string Serialize()
-        {
-            return Id.ToString();
-        }
-
         public ITaskId Deserialize(string source)
         {
             return new TaskId()
             {
                 Id = int.Parse(source)
             };
+        }
+
+        public string Serialize()
+        {
+            return Id.ToString();
         }
     }
 }

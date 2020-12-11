@@ -1,16 +1,11 @@
 ﻿using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.Session
 {
     public class SessionData
     {
-        public string SessionId { get; set; }
         public string Date { get; set; }
+        public string SessionId { get; set; }
 
         public static SessionData Parse(BsonDocument bson)
         {

@@ -2,23 +2,17 @@
 using ComponentInterfaces.Session;
 using HubComponents;
 using PythonComponents;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 
 namespace MasterService.Tasks
 {
     public class GetResultTask : ProcessorTaskBase
     {
-        public ISessionId SessionId { get; set; }
-
         public GetResultTask(IProcessorFilter processorFilter) : base(processorFilter)
         {
         }
+
+        public ISessionId SessionId { get; set; }
 
         public override void Call()
         {
@@ -29,9 +23,12 @@ namespace MasterService.Tasks
             }
         }
 
-        private void ResultHandling(string data)
+        public override object Clone()
         {
-            Result = "{\"results\":"+data+"}";
+            return new GetResultTask(ProcessorFilter)
+            {
+                SessionId = SessionId
+            };
         }
 
         private IList<IProcessor> GetAllProcessors()
@@ -39,12 +36,9 @@ namespace MasterService.Tasks
             return ProcessorManager.Instance.GetProcessors(ProcessorFilter);
         }
 
-        public override object Clone()
+        private void ResultHandling(string data)
         {
-            return new GetResultTask(ProcessorFilter) 
-            {
-                SessionId = SessionId
-            };
+            Result = "{\"results\":" + data + "}";
         }
     }
 }

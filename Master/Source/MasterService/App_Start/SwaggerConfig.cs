@@ -1,7 +1,7 @@
-using System.Web.Http;
-using WebActivatorEx;
 using MasterService;
 using Swashbuckle.Application;
+using System.Web;
+using System.Web.Http;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -61,7 +61,7 @@ namespace MasterService
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -251,6 +251,7 @@ namespace MasterService
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
         }
+
         /*private static string GetXmlCommentsPath()
         {
             return System.AppDomain.CurrentDomain.BaseDirectory + @"\bin\MasterService.XML";

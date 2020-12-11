@@ -1,44 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace MasterService
 {
     public class AppConfigManager
     {
-		private static AppConfigManager _instance = null;
-		private AppConfigManager() { }
-		public static AppConfigManager Instance
-		{
-			get
-			{
-				if (_instance == null)
-				{
-					_instance = new AppConfigManager();
-				}
-				return _instance;
-			}
-		}
+        private static AppConfigManager _instance = null;
 
-		public string ServerAddress 
-		{
-			get
-			{
-				string protocol = ConfigurationManager.AppSettings["protocol"];
-				string ip = ConfigurationManager.AppSettings["ip"];
-				string port = ConfigurationManager.AppSettings["port"];
+        private AppConfigManager()
+        {
+        }
 
-				string protocolSeparator = "://";
-				string portSeparator = ":";
-				string separator = "/";
+        public static AppConfigManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new AppConfigManager();
+                }
+                return _instance;
+            }
+        }
 
-				string address = protocol + protocolSeparator + ip + portSeparator + port + separator;
+        public string ServerAddress
+        {
+            get
+            {
+                string protocol = ConfigurationManager.AppSettings["protocol"];
+                string ip = ConfigurationManager.AppSettings["ip"];
+                string port = ConfigurationManager.AppSettings["port"];
 
-				return address;
-			}
-		}
-	}
+                string protocolSeparator = "://";
+                string portSeparator = ":";
+                string separator = "/";
+
+                string address = protocol + protocolSeparator + ip + portSeparator + port + separator;
+
+                return address;
+            }
+        }
+    }
 }

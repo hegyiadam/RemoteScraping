@@ -1,26 +1,23 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
+using HubComponents;
 using Newtonsoft.Json;
-using System;
+using PythonComponents;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ComponentInterfaces.Tasks;
-using PythonComponents;
-using HubComponents;
 
 namespace MasterService.Tasks
 {
     public class LinkIterationTask : ProcessorTaskBase, IIterationTask
     {
-        public string Selector { get; set; }
-        public List<IProcessorTask> NextTasks { get; } = new List<IProcessorTask>();
-
         public LinkIterationTask(string selector, IProcessorFilter processorFilter) : base(processorFilter)
         {
             Selector = selector;
         }
+
+        public List<IProcessorTask> NextTasks { get; } = new List<IProcessorTask>();
+        public string Selector { get; set; }
+
         public override void Call()
         {
             ActualState = TaskState.Processing;
@@ -34,6 +31,18 @@ namespace MasterService.Tasks
                 Processor.get_iteration_links(URL, Selector);
                 ProcessorManager.Instance.AddResultListener("get_iteration_links_result", resultProcessing, Processor.Id);
             }
+        }
+
+        public override object Clone()
+        {
+            LinkIterationTask clone = new LinkIterationTask(Selector, ProcessorFilter);
+            clone.NextTasks.AddRange(NextTasks);
+            return clone;
+        }
+
+        private IProcessor GetNextProcessor()
+        {
+            return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();
         }
 
         private void resultProcessing(string result)
@@ -54,19 +63,6 @@ namespace MasterService.Tasks
             Scheduler.Scheduler.Instance.Insert(taskBatch);
             Result = Selector;
             ActualState = TaskState.Ready;
-        }
-
-
-        private IProcessor GetNextProcessor()
-        {
-            return ProcessorManager.Instance.GetProcessors(ProcessorFilter).FirstOrDefault();
-        }
-
-        public override object Clone()
-        {
-            LinkIterationTask clone = new LinkIterationTask(Selector, ProcessorFilter);
-            clone.NextTasks.AddRange(NextTasks);
-            return clone;
         }
     }
 }

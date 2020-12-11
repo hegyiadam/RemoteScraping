@@ -1,9 +1,10 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
-using Microsoft.AspNet.SignalR;
+using Owin;
 
 [assembly: OwinStartup(typeof(HubComponents.Startup))]
+
 namespace HubComponents
 {
     public class Startup
@@ -20,5 +21,4 @@ namespace HubComponents
             appBuilder.MapSignalR(hubConfiguration);
         }
     }
-
 }

@@ -1,23 +1,28 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
 using HubComponents;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.Tasks
 {
     public abstract class ProcessorTaskBase : TaskBase, IProcessorTask
     {
         private IProcessor processor;
-        public IProcessorFilter ProcessorFilter { get; protected set; }
+        private ProcessorManager processorRepo = ProcessorManager.Instance;
+
+        public ProcessorTaskBase(ComponentInterfaces.Processor.IProcessorFilter processorFilter)
+        {
+            ProcessorFilter = processorFilter;
+        }
+
+        public int PageNumber { get; set; }
+        public string PageSelector { get; set; }
+
         public IProcessor Processor
         {
             get
             {
-                if(processor == null)
+                if (processor == null)
                 {
                     return processorRepo.GetProcessors(ProcessorFilter).FirstOrDefault();
                 }
@@ -27,18 +32,10 @@ namespace MasterService.Tasks
             {
                 processor = value;
             }
-                
         }
 
-        public int PageNumber { get; set; }
-        public string PageSelector { get; set; }
+        public IProcessorFilter ProcessorFilter { get; protected set; }
         public string URL { get; set; }
-
-        ProcessorManager processorRepo = ProcessorManager.Instance;
-        public ProcessorTaskBase(ComponentInterfaces.Processor.IProcessorFilter processorFilter)
-        {
-            ProcessorFilter = processorFilter;
-        }
 
         public bool CanRun()
         {

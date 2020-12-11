@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ComponentInterfaces.Session
+﻿namespace ComponentInterfaces.Session
 {
     public interface ISessionId
     {
         int SerialNumber { get; set; }
-        string Serialize();
+
+        void Deserialize(string source);
 
         bool EqualsTo(ISessionId sessionId);
-        void Deserialize(string source);
+
+        string Serialize();
     }
 }

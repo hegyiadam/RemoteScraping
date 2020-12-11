@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ComponentInterfaces.Tasks
+﻿namespace ComponentInterfaces.Tasks
 {
     public delegate void TaskStateChangeHandler();
 
     public interface ITask
     {
-        ITaskId Id { get; }
-
         event TaskStateChangeHandler StateChangedEvent;
 
+        TaskState ActualState { get; }
+        ITaskId Id { get; }
         object Result { get; }
 
-        TaskState ActualState { get; }
+        void Call();
 
         bool CanRun();
-
-        void Call();
     }
 }

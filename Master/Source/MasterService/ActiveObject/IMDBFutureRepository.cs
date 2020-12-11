@@ -1,18 +1,18 @@
-﻿using ComponentInterfaces.Tasks;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterService.ActiveObject
 {
     public class IMDBFutureRepository : IFutureRepository
     {
-        private List<Future> futures = new List<Future>();
-        private IFutureRepositoryConfig futureRepositoryConfig = new IMDBFutureRepositoryConfig();
         private static IMDBFutureRepository _instance = null;
-        private IMDBFutureRepository() { }
+        private IFutureRepositoryConfig futureRepositoryConfig = new IMDBFutureRepositoryConfig();
+        private List<Future> futures = new List<Future>();
+
+        private IMDBFutureRepository()
+        {
+        }
+
         public static IMDBFutureRepository Instance
         {
             get
@@ -24,6 +24,12 @@ namespace MasterService.ActiveObject
                 return _instance;
             }
         }
+
+        public Future GetFuture(FutureId futureId)
+        {
+            return futures.Where(future => future.Id.Equals(futureId)).FirstOrDefault();
+        }
+
         public void RegisterFuture(Future future)
         {
             futures.Add(future);
@@ -38,11 +44,6 @@ namespace MasterService.ActiveObject
         {
             Future resultFuture = GetFuture(futureId);
             futures.Remove(resultFuture);
-        }
-
-        public Future GetFuture(FutureId futureId)
-        {
-            return futures.Where(future => future.Id.Equals(futureId)).FirstOrDefault();
         }
     }
 }

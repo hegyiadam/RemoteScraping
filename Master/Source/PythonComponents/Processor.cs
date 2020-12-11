@@ -1,10 +1,4 @@
 ﻿using ComponentInterfaces.Processor;
-using PythonComponents.ClientInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PythonComponents
 {
@@ -18,8 +12,7 @@ namespace PythonComponents
             }
         }
 
-        public IProcessorId Id { get; set; }
-
         public IProcessorHub Hub { get; set; }
+        public IProcessorId Id { get; set; }
     }
 }

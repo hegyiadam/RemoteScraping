@@ -1,26 +1,20 @@
-﻿using ComponentInterfaces.Processor;
-using ComponentInterfaces.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ComponentInterfaces.Tasks;
 
 namespace MasterService.Tasks
 {
     public abstract class TaskBase : ITask
     {
         public Session.ISessionRepository sessionRepository = Session.SessionRepository.Instance;
-        ITaskIdFactory taskIdFactory = TaskIdFactory.Instance;
-        ITaskId taskId;
-
+        private TaskState actualState;
+        private ITaskId taskId;
+        private ITaskIdFactory taskIdFactory = TaskIdFactory.Instance;
 
         public TaskBase()
         {
             taskId = taskIdFactory.CreateId();
         }
 
-        private TaskState actualState;
+        public event TaskStateChangeHandler StateChangedEvent;
 
         public TaskState ActualState
         {
@@ -31,14 +25,12 @@ namespace MasterService.Tasks
             set
             {
                 actualState = value;
-                if(StateChangedEvent != null)
+                if (StateChangedEvent != null)
                 {
                     StateChangedEvent();
                 }
             }
         }
-
-        public object Result { get; protected set; }
 
         public ITaskId Id
         {
@@ -48,8 +40,7 @@ namespace MasterService.Tasks
             }
         }
 
-
-        public event TaskStateChangeHandler StateChangedEvent;
+        public object Result { get; protected set; }
 
         public abstract void Call();
 

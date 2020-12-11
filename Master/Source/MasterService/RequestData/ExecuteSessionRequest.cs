@@ -1,10 +1,4 @@
-﻿using ComponentInterfaces.Session;
-using MasterService.RequestData.DAO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MasterService.RequestData.DAO;
 
 namespace MasterService.RequestData
 {

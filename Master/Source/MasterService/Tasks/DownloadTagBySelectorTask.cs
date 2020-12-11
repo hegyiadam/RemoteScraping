@@ -1,16 +1,13 @@
 ﻿using ComponentInterfaces.Processor;
 using ComponentInterfaces.Tasks;
-using HubComponents;
 using PythonComponents;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 
 namespace MasterService.Tasks
 {
     public class DownloadTagBySelectorTask : ProcessorTaskBase
     {
-        public DownloadTagBySelectorTask(string selector ,IProcessorFilter processorFilter) : base(processorFilter)
+        public DownloadTagBySelectorTask(string selector, IProcessorFilter processorFilter) : base(processorFilter)
         {
             Selector = selector;
         }
