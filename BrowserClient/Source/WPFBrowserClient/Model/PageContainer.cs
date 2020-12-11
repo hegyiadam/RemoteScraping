@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFBrowserClient.Model
+﻿namespace WPFBrowserClient.Model
 {
     /*public class PageContainer
     {
-
 		private static PageContainer _instance = null;
-		private PageContainer() 
+		private PageContainer()
 		{
 			CompositionManagement.CompositionHandler.Compose(typeof(ISingletonPage), this);
 		}
@@ -41,7 +33,5 @@ namespace WPFBrowserClient.Model
 			}
 			throw new DllNotFoundException(typeof(T).AssemblyQualifiedName);
 		}
-
 	}*/
-
 }

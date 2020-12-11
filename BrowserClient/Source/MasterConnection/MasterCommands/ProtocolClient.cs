@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MasterConnection.MasterCommands.SwaggerGenerated;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using MasterConnection.MasterCommands.SwaggerGenerated;
 
 namespace MasterConnection.MasterCommands
 {

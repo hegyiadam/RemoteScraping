@@ -1,11 +1,7 @@
-﻿using CefSharp;
-using CefSharp.Wpf;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
+using CefSharp;
+using CefSharp.Wpf;
 
 namespace BrowserManagement.Wrappers.CefSharpWrapper
 {
@@ -14,7 +10,6 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
         public JavaScriptExecutor(ChromiumWebBrowser browser)
         {
             Browser = new CefSharpProxy(browser);
-
         }
 
         public JavaScriptExecutor(IJavaScriptExecutorBrowser browser)
@@ -24,11 +19,13 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
 
         public IJavaScriptExecutorBrowser Browser { get; set; }
 
-        public void ExecuteJavaScriptFileContent(string javaScriptFilePath)
+        public Task<JavascriptResponse> EvaluateJavaScriptCommand(string javaScriptCommand)
         {
-            string javaScriptCommand = ReadJavaScriptFromFile(javaScriptFilePath);
-            ExecuteJavaScriptCommand(javaScriptCommand);
+            javaScriptCommand.Replace("\r", "").Replace("\n", "");
+            Task<JavascriptResponse> task = Browser.EvaluateScriptAsync(javaScriptCommand);
+            return task;
         }
+
         public Task<JavascriptResponse> EvaluateJavaScriptFileContent(string javaScriptFilePath)
         {
             string javaScriptCommand = ReadJavaScriptFromFile(javaScriptFilePath);
@@ -40,13 +37,12 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             javaScriptCommand.Replace("\r", "").Replace("\n", "");
             Browser.ExecuteScriptAsync(javaScriptCommand);
         }
-        public Task<JavascriptResponse> EvaluateJavaScriptCommand(string javaScriptCommand)
-        {
-            javaScriptCommand.Replace("\r", "").Replace("\n", "");
-            Task<JavascriptResponse> task = Browser.EvaluateScriptAsync(javaScriptCommand);
-            return task;
-        }
 
+        public void ExecuteJavaScriptFileContent(string javaScriptFilePath)
+        {
+            string javaScriptCommand = ReadJavaScriptFromFile(javaScriptFilePath);
+            ExecuteJavaScriptCommand(javaScriptCommand);
+        }
 
         public string ReadJavaScriptFromFile(string javaScriptFilePath)
         {
@@ -59,7 +55,7 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
 
         private void ValidateFile(string javaScriptFilePath)
         {
-            if(!File.Exists(javaScriptFilePath))
+            if (!File.Exists(javaScriptFilePath))
             {
                 throw new FileNotFoundException(javaScriptFilePath);
             }

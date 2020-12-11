@@ -1,27 +1,32 @@
 ﻿using BrowserManagement;
-using CefSharp.Wpf;
-using MasterConnection;
 using MasterConnection.MasterCommands;
 using MasterConnection.MasterCommands.SwaggerGenerated;
 using System;
-using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using WPFBrowserClient.Model;
 
 namespace WPFBrowserClient.ViewModel.Commands
 {
     public class GetElementAtMousePositionCommand : IScrapingCommand
     {
-        public IBrowserWrapper Browser { get; set; }
-
-
         public event EventHandler CanExecuteChanged;
+
+        public IBrowserWrapper Browser { get; set; }
 
         public bool CanExecute(object parameter)
         {
             return true;
+        }
+
+        public void CreateScrapingRequest(string selector)
+        {
+            SelectorRequest selectorRequest = new SelectorRequest();
+            selectorRequest.Selector = selector;
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            DownloadTagBySelectorRequest downloadTagBySelectorRequest = new DownloadTagBySelectorRequest();
+            downloadTagBySelectorRequest.Selector = selector;
+            downloadTagBySelectorRequest.SessionId = SessionContainer.Instance.ID;
+            methodClient.DownloadTagBySelectorAsync(downloadTagBySelectorRequest);
         }
 
         public async void Execute(object parameter)
@@ -47,18 +52,6 @@ namespace WPFBrowserClient.ViewModel.Commands
                 Browser.ControlKeyPressed -= BrowserWrapper_ControlKeyPressed;
             });
             thread.Start();
-        }
-
-        public void CreateScrapingRequest(string selector)
-        {
-
-            SelectorRequest selectorRequest = new SelectorRequest();
-            selectorRequest.Selector = selector;
-            IMethodClient methodClient = ProtocolClient.Instance.Client;
-            DownloadTagBySelectorRequest downloadTagBySelectorRequest = new DownloadTagBySelectorRequest();
-            downloadTagBySelectorRequest.Selector = selector;
-            downloadTagBySelectorRequest.SessionId = SessionContainer.Instance.ID;
-            methodClient.DownloadTagBySelectorAsync(downloadTagBySelectorRequest);
         }
     }
 }

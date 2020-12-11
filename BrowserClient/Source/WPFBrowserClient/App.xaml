@@ -12,6 +12,5 @@
                 <ResourceDictionary Source="/View/Resources/ColorDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>

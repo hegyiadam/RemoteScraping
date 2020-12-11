@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace WPFBrowserClient.ViewModel
@@ -12,17 +8,17 @@ namespace WPFBrowserClient.ViewModel
     {
         private ICommand command;
 
+        public string Caption { get; set; }
+
         public ICommand Command
         {
             get { return command; }
-            set 
-            { 
+            set
+            {
                 command = value;
                 Caption = GetCaption(value);
             }
         }
-
-        public string Caption { get; set; }
 
         private string GetCaption(ICommand command)
         {

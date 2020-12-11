@@ -1,24 +1,27 @@
-﻿using CefSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Controls;
+using CefSharp;
 
 namespace BrowserManagement
 {
-
     public delegate void ControlKeyHandler();
+
     public interface IBrowserWrapper
     {
         event ControlKeyHandler ControlKeyPressed;
-        Control GetControl();
+
         void AutoHighlightControl();
-        void RemoveAutoHighlightControl();
-        void HighlightControl(string selector);
-        void RemoveHighlightControl(string selector);
+
+        Control GetControl();
+
         Task<JavascriptResponse> GetElementOnMousePosition();
+
         Task<JavascriptResponse> GetSiblingsOnMousePosition();
+
+        void HighlightControl(string selector);
+
+        void RemoveAutoHighlightControl();
+
+        void RemoveHighlightControl(string selector);
     }
 }

@@ -1,13 +1,13 @@
 ﻿<Page x:Class="WPFBrowserClient.View.Pages.RootSitePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:view="clr-namespace:WPFBrowserClient.View"
       xmlns:local="clr-namespace:WPFBrowserClient.View.Pages"
       xmlns:usercontrols="clr-namespace:WPFBrowserClient.View.UserControls"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RootSitePage">
 
@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <view:SearchBarUserControl Grid.Column="0"></view:SearchBarUserControl>
             <Button Grid.Column="1" VerticalAlignment="Center" Background="{StaticResource LightBlueColor}" Padding="5" FontSize="15" Command="{Binding StartScrapingCommand}">Start Scraping</Button>

@@ -1,21 +1,14 @@
-﻿using CefSharp.Wpf;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using CefSharp.Wpf;
 using WPFBrowserClient.Model;
 
 namespace WPFBrowserClient.ViewModel
 {
     public class BrowserUserControlViewModel : INotifyPropertyChanged
     {
-        private string url;
         private ActualWebPage actualWebPage = ActualWebPage.Instance;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        private string url;
 
         public BrowserUserControlViewModel(ChromiumWebBrowser chromiumWebBrowser)
         {
@@ -23,18 +16,7 @@ namespace WPFBrowserClient.ViewModel
             chromiumWebBrowser.AddressChanged += ChromiumWebBrowser_AddressChanged;
         }
 
-        private void ChromiumWebBrowser_AddressChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            if(e.NewValue != URL)
-            {
-                actualWebPage.URL = (string)e.NewValue;
-            }
-        }
-
-        private void ActualWebPage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            NotifyPropertyChanged(e.PropertyName);
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string URL
         {
@@ -43,10 +25,23 @@ namespace WPFBrowserClient.ViewModel
                 return actualWebPage.URL;
             }
         }
+
+        private void ActualWebPage_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyPropertyChanged(e.PropertyName);
+        }
+
+        private void ChromiumWebBrowser_AddressChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != URL)
+            {
+                actualWebPage.URL = (string)e.NewValue;
+            }
+        }
+
         private void NotifyPropertyChanged(String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

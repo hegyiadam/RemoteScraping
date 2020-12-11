@@ -1,10 +1,6 @@
 ﻿using BrowserManagement.Wrappers.CefSharpWrapper;
-using CefSharp.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CefSharp.Wpf;
 
 namespace BrowserManagement
 {
@@ -14,7 +10,7 @@ namespace BrowserManagement
 
         public static IBrowserWrapper CreateBrowserWrapper<T>(T browser)
         {
-            if(typeof(T) == typeof(ChromiumWebBrowser))
+            if (typeof(T) == typeof(ChromiumWebBrowser))
             {
                 return new CefSharpWrapper(browser as ChromiumWebBrowser);
             }

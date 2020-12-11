@@ -1,8 +1,8 @@
 ﻿<Page x:Class="WPFBrowserClient.View.Pages.SiteScrapingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
       xmlns:local="clr-namespace:WPFBrowserClient.View.Pages"
       xmlns:view="clr-namespace:WPFBrowserClient.View"
@@ -10,31 +10,31 @@
       xmlns:usercontrols="clr-namespace:WPFBrowserClient.View.UserControls"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:command="http://www.galasoft.ch/mvvmlight"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SiteScrapingPage">
 
     <Page.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="300" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
     <Page.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenuButton">
-            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseMenuButton">
-            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Page.Triggers>
     <Grid x:Name="RootGrid">
@@ -45,24 +45,24 @@
             <StackPanel>
                 <Grid Height="60" Background="{StaticResource WhiteColor}">
                     <Button x:Name="CloseMenuButton" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding Path=MenuIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Click="CloseMenuButton_Click">
-                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="ArrowLeft" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="ArrowLeft" Width="25" Height="25" />
                     </Button>
                     <Button x:Name="OpenMenuButton"  Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="{Binding Path=MenuIsHidden, Converter={StaticResource BooleanToVisibilityConverter}}" Click="OpenMenuButton_Click">
-                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="Menu" Width="25" Height="25"/>
+                        <materialDesign:PackIcon Foreground="{StaticResource LightBlueColor}" Kind="Menu" Width="25" Height="25" />
                     </Button>
                 </Grid>
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="{StaticResource LightBlueColor}" ItemsSource="{Binding Commands}" x:Name="CommandList" Visibility="{Binding Path=MenuIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <ListView.ItemTemplate >
-                        <DataTemplate >
-                            <StackPanel Orientation="Horizontal" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                        <command:EventToCommand  Command="{Binding Command }"/>
+                                        <command:EventToCommand  Command="{Binding Command }" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <materialDesign:PackIcon Kind="Reiterate" Height="25" Width="25" Margin="10" VerticalAlignment="Center"></materialDesign:PackIcon>
-                                <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" Margin="20 10"/>
+                                <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" Margin="20 10" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

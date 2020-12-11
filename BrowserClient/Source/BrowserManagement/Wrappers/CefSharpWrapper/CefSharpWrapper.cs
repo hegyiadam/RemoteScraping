@@ -1,33 +1,17 @@
 ﻿using BrowserManagement.Wrappers.CefSharpWrapper.JavaScripts;
-using CefSharp;
-using CefSharp.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CefSharp;
+using CefSharp.Wpf;
 
 namespace BrowserManagement.Wrappers.CefSharpWrapper
 {
     public class CefSharpWrapper : IBrowserWrapper
     {
         private const string INVALID_BROWSER = "Invalid browser type was requested.";
-
-        public event ControlKeyHandler ControlKeyPressed;
-
-        private JavaScriptExecutor ScriptExecutor
-        {
-            get
-            {
-                return new JavaScriptExecutor(Browser);
-            }
-        }
-
-        public ChromiumWebBrowser Browser { get; set; }
 
         public CefSharpWrapper(ChromiumWebBrowser browser)
         {
@@ -37,28 +21,26 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             browser.KeyDown += Browser_KeyDown;
         }
 
-        private void Browser_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        public event ControlKeyHandler ControlKeyPressed;
+
+        public ChromiumWebBrowser Browser { get; set; }
+
+        private JavaScriptExecutor ScriptExecutor
         {
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            get
             {
-                ControlKeyPressed?.Invoke();
+                return new JavaScriptExecutor(Browser);
             }
         }
-
-        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
-        {
-            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.ImportJQuery);
-        }
-
 
         public void AutoHighlightControl()
         {
             ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.AutoHighlightControl);
         }
 
-        public void RemoveAutoHighlightControl()
+        public Control GetControl()
         {
-            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.RemoveAutoHighlightControl);
+            return Browser;
         }
 
         public Task<JavascriptResponse> GetElementOnMousePosition()
@@ -73,17 +55,46 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
             return response;
         }
 
-        public Control GetControl()
-        {
-            return Browser;
-        }
-
         public void HighlightControl(string selector)
         {
             string validSelector = ValidateSelector(selector);
             string fileContent = ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.HighlightControl);
             string command = fileContent.Replace("{0}", validSelector);
             ScriptExecutor.ExecuteJavaScriptCommand(command);
+        }
+
+        public void RemoveAutoHighlightControl()
+        {
+            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.RemoveAutoHighlightControl);
+        }
+
+        public void RemoveHighlightControl(string selector)
+        {
+            string command = String.Format(ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.RemoveHighlightControl), selector);
+            ScriptExecutor.ExecuteJavaScriptCommand(command);
+        }
+
+        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            ScriptExecutor.ExecuteJavaScriptFileContent(JavaScriptFile.ImportJQuery);
+        }
+
+        private void Browser_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                ControlKeyPressed?.Invoke();
+            }
+        }
+
+        private string RemoveBodyTag(string selector)
+        {
+            return "\'BODY " + selector.Split(new string[] { "BODY" }, StringSplitOptions.None)[1] + "\'";
+        }
+
+        private bool SelectorHasBodyTag(string selector)
+        {
+            return selector.ToUpper().Contains("BODY");
         }
 
         private string ValidateSelector(string selector)
@@ -94,22 +105,6 @@ namespace BrowserManagement.Wrappers.CefSharpWrapper
                 result = RemoveBodyTag(selector);
             }
             return result;
-        }
-
-        private bool SelectorHasBodyTag(string selector)
-        {
-            return selector.ToUpper().Contains("BODY");
-        }
-
-        private string RemoveBodyTag(string selector)
-        {
-            return "\'BODY " + selector.Split(new string[] { "BODY" }, StringSplitOptions.None)[1] + "\'";
-        }
-
-        public void RemoveHighlightControl(string selector)
-        {
-            string command = String.Format(ScriptExecutor.ReadJavaScriptFromFile(JavaScriptFile.RemoveHighlightControl), selector);
-            ScriptExecutor.ExecuteJavaScriptCommand(command);
         }
     }
 }

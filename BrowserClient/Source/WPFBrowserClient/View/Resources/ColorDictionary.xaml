@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WPFBrowserClient.View.Resources">
-    <SolidColorBrush x:Key="LightBlueColor" Color="#FF1285F5"/>
-    <SolidColorBrush x:Key="WhiteColor" Color="WhiteSmoke"/>
-    <SolidColorBrush x:Key="DarkBlueColor" Color="#FF0D4F8F"/>
+    <SolidColorBrush x:Key="LightBlueColor" Color="#FF1285F5" />
+    <SolidColorBrush x:Key="WhiteColor" Color="WhiteSmoke" />
+    <SolidColorBrush x:Key="DarkBlueColor" Color="#FF0D4F8F" />
 </ResourceDictionary>

@@ -1,19 +1,17 @@
 ﻿using MasterConnection.MasterCommands.SwaggerGenerated;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MasterConnection.MasterCommands
 {
     public class SessionContainer
     {
-
         private static SessionContainer _instance = null;
-        private SessionContainer() { }
+
+        private SessionContainer()
+        {
+        }
+
         public static SessionContainer Instance
         {
             get
@@ -25,6 +23,9 @@ namespace MasterConnection.MasterCommands
                 return _instance;
             }
         }
+
+        public SessionIdDAO ID { get; set; }
+
         public void CreateNewSession(string url)
         {
             CreateRootUrlRequest(url).ContinueWith((result) =>
@@ -43,13 +44,6 @@ namespace MasterConnection.MasterCommands
              });
         }
 
-        public SessionIdDAO GetFutureResult(FutureId futureId)
-        {
-            IMethodClient methodClient = ProtocolClient.Instance.Client;
-            JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
-            return (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
-        }
-
         public Task<Future> CreateRootUrlRequest(string url)
         {
             IMethodClient methodClient = ProtocolClient.Instance.Client;
@@ -60,8 +54,11 @@ namespace MasterConnection.MasterCommands
             return methodClient.RootUrlAsync(rootURLRequest);
         }
 
-        public SessionIdDAO ID { get; set; }
-
-
+        public SessionIdDAO GetFutureResult(FutureId futureId)
+        {
+            IMethodClient methodClient = ProtocolClient.Instance.Client;
+            JObject sessionResult = (JObject)methodClient.GetFutureResultAsync(futureId).Result;
+            return (SessionIdDAO)sessionResult.ToObject(typeof(SessionIdDAO));
+        }
     }
 }
